@@ -45,6 +45,7 @@ class SiteController extends EController
     function actionRisking()
     {
         //pa("risking action");
+        pa("branch of frontend rbac");
         exit;
     }
 }
