@@ -44,7 +44,7 @@ class SiteController extends EController
 
     function actionRisking()
     {
-        pa("risking action");
+        //pa("risking action");
         exit;
     }
 }
