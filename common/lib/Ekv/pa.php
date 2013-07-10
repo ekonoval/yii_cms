@@ -1,9 +1,8 @@
 <?php
+
 /**
- * User: sunsey
- * Date: 12.05.13
+ * debugging function which takes infinite number of params to show as debug
  */
- 
 function pa()
 {
 	$backtrace = debug_backtrace();
