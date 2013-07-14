@@ -21,6 +21,10 @@ return array(
 		'yiiwheels' => 'vendor.2amigos.yiiwheels'
 	),
 
+    'import' => array(
+   		'backend.components.*',
+    ),
+
 	// application behaviors
 	'behaviors' => array(),
 
@@ -57,6 +61,7 @@ return array(
 		),
 		'user' => array(
 			'allowAutoLogin' => true,
+			'class' => "BWebUser",
 		),
 		'errorHandler' => array(
 			'errorAction' => 'site/error',
