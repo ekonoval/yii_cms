@@ -7,6 +7,7 @@ class ProjectCustomAutoloader
         "Frontend",
         "Api"
     );
+
     static function loadClass($class_name_fully_qualified)
     {
 

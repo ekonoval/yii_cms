@@ -56,6 +56,9 @@ class Initializer
 
         Yii::registerAutoloader(array('\ProjectCustomAutoloader','loadClass'), true);
 
+        //--- importing global shortcut functions ---//
+        Yii::import("common.helpers.global_shortcuts", true);
+
 		//  return an app
 		return $app;
 	}
