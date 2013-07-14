@@ -36,6 +36,15 @@ return array(
 
 	// application components
 	'components' => array(
+        'authManager' => array(
+            'class' => 'BAuthManager', // override standart authManager class!!!
+            'defaultRoles' => array('guest'),
+        ),
+
+		'user' => array(
+			'allowAutoLogin' => true,
+			'class' => "BWebUser", // override standart User class
+		),
 
 		'bootstrap' => array(
 			'class' => 'bootstrap.components.TbApi',
@@ -59,10 +68,7 @@ return array(
 				'<controller:\w+>/<action:\w+>'				=> '<controller>/<action>',
 			),
 		),
-		'user' => array(
-			'allowAutoLogin' => true,
-			'class' => "BWebUser",
-		),
+
 		'errorHandler' => array(
 			'errorAction' => 'site/error',
 		)

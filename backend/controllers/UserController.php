@@ -2,16 +2,20 @@
 
 class UserController extends EController
 {
+    /**
+     * @var CWebUser
+     */
+    private $_appUser;
+
+    public function init()
+    {
+        parent::init();
+
+        $this->_appUser = yUser();
+    }
+
     function actionLogin()
     {
-        pa($_REQUEST);
-        pa(Yii::app()->session->sessionID); //exit;
-        //yUser()->logout();
-        pa("is_guest", yUser()->isGuest);exit;
-
-
-
-
         $username = @$_REQUEST["login"];
         $pwd = @$_REQUEST["password"];
 
@@ -44,5 +48,13 @@ class UserController extends EController
 
         //session_start();
 
+    }
+
+    function actionAccess()
+    {
+
+        if($this->_appUser->checkAccess(BUser::ROLE_ADMIN)){
+            echo "<h2>I'm admin  </h2>\n";
+        }
     }
 }
