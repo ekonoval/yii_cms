@@ -13,6 +13,14 @@ function yUser()
     return Yii::app()->user;
 }
 
+/**
+ * @return CHttpRequest
+ */
+function yR()
+{
+    return Yii::app()->request;
+}
+
 function yDb()
 {
     return Yii::app()->db;

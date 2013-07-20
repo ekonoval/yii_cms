@@ -11,7 +11,7 @@ return array(
         'type' => CAuthItem::TYPE_ROLE,
         'description' => 'User',
         'children' => array(
-            'guest', // унаследуемся от гостя
+            BUser::ROLE_GUEST, // inherit from the guest
         ),
         'bizRule' => null,
         'data' => null
@@ -21,7 +21,7 @@ return array(
         'type' => CAuthItem::TYPE_ROLE,
         'description' => 'Moderator',
         'children' => array(
-            'user',          // позволим модератору всё, что позволено пользователю
+            BUser::ROLE_USER, // inherit from user
         ),
         'bizRule' => null,
         'data' => null
@@ -31,7 +31,7 @@ return array(
         'type' => CAuthItem::TYPE_ROLE,
         'description' => 'Administrator',
         'children' => array(
-            'moderator',         // позволим админу всё, что позволено модератору
+            BUser::ROLE_MODER, // inherit from moder
         ),
         'bizRule' => null,
         'data' => null

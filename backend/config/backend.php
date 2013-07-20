@@ -44,6 +44,7 @@ return array(
 		'user' => array(
 			'allowAutoLogin' => true,
 			'class' => "BWebUser", // override standart User class
+            'loginUrl' => array('user/login'),
 		),
 
 		'bootstrap' => array(

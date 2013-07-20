@@ -54,7 +54,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="#">Project name</a>
+			<a class="brand" href="/">Project name</a>
 
 			<div class="nav-collapse collapse">
 				<ul class="nav">
@@ -74,12 +74,21 @@
 						</ul>
 					</li>
 				</ul>
-				<form action="/user/login/" method="post" class="navbar-form pull-right">
-					<input class="span2" type="text" placeholder="login" name="login">
-					<input class="span2" type="password" placeholder="Password" name="password">
-                    <input type="hidden" name="top_login_form_submitted" value="1"/>
-					<button type="submit" class="btn">Sign in</button>
-				</form>
+                <?php
+                if(yUser()->isGuest){
+                ?>
+                    <form action="/user/login/" method="post" class="navbar-form pull-right">
+                        <input class="span2" type="text" placeholder="login" name="login">
+                        <input class="span2" type="password" placeholder="Password" name="password">
+                        <input type="hidden" name="top_login_form_submitted" value="1"/>
+                        <button type="submit" class="btn">Sign in</button>
+                    </form>
+                <?php }else{ ?>
+                    <div class="authed">
+                        <span class="username">%username%</span>
+                        <a href="/user/logout">logout</a>
+                    </div>
+                <?php } ?>
 			</div>
 			<!--/.nav-collapse -->
 		</div>

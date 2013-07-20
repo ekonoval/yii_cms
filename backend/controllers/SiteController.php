@@ -1,27 +1,19 @@
 <?php
-/**
- * SiteController class
- *
- * @author Antonio Ramirez <amigo.cobos@gmail.com>
- * @link http://www.ramirezcobos.com/
- * @link http://www.2amigos.us/
- * @copyright 2013 2amigOS! Consultation Group LLC
- * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
- */
-class SiteController extends EController
-{
-    public $layout = "lMain";
 
+use Ekv\Backend\Controllers\BackendControllerBase;
+
+class SiteController extends BackendControllerBase
+{
     /**
      * Renders index
      */
     public function actionIndex()
     {
-        echo "<h2>Backend index  </h2>\n";
+        //echo "<h2>Backend index  </h2>\n";
 
         //\Ekv\Product\Helpers\ProductDetailedHelper::staticTest();
 
-        \Ekv\Frontend\ProductFormatter::main();
+        //\Ekv\Frontend\ProductFormatter::main();
 
         //pa(Yii::getPathAliases());exit;
         $this->render('index');

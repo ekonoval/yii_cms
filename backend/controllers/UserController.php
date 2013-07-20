@@ -18,7 +18,7 @@ class UserController extends BackendControllerBase
 
     function actionLogin()
     {
-        if(Yii::app()->request->getParam("top_login_form_submitted")){
+        if(yR()->getParam("top_login_form_submitted")){
             $username = @$_REQUEST["login"];
             $pwd = @$_REQUEST["password"];
 
@@ -29,16 +29,22 @@ class UserController extends BackendControllerBase
 
             if ($identity->authenticate()) {
                 yUser()->login($identity);
+                $this->redirectIndex();
             } else {
                 echo $identity->errorCode;
             }
-
-            pa("is_guest", yUser()->isGuest);
-
-            pa("backend action user login");
         }else{
             $this->render("login");
         }
+    }
+
+    function actionLogout()
+    {
+        if(yUser()->isGuest == false){
+            yUser()->logout();
+        }
+
+        $this->redirect("/");
     }
 
     function actionTest()
