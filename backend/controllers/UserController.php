@@ -1,6 +1,8 @@
 <?php
 
-class UserController extends EController
+use Ekv\Backend\Controllers\BackendControllerBase;
+
+class UserController extends BackendControllerBase
 {
     /**
      * @var CWebUser
