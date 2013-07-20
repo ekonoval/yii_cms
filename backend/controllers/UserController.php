@@ -16,23 +16,27 @@ class UserController extends EController
 
     function actionLogin()
     {
-        $username = @$_REQUEST["login"];
-        $pwd = @$_REQUEST["password"];
+        if(Yii::app()->request->getParam("top_login_form_submitted")){
+            $username = @$_REQUEST["login"];
+            $pwd = @$_REQUEST["password"];
 
-        $username = "admin";
-        $pwd = "1";
+            $username = "admin";
+            $pwd = "1";
 
-        $identity = new BUserIdentity($username, $pwd);
+            $identity = new BUserIdentity($username, $pwd);
 
-        if ($identity->authenticate()) {
-            yUser()->login($identity);
-        } else {
-            echo $identity->errorCode;
+            if ($identity->authenticate()) {
+                yUser()->login($identity);
+            } else {
+                echo $identity->errorCode;
+            }
+
+            pa("is_guest", yUser()->isGuest);
+
+            pa("backend action user login");
+        }else{
+            $this->render("login");
         }
-
-        pa("is_guest", yUser()->isGuest);
-
-        pa("backend action user login");
     }
 
     function actionTest()
