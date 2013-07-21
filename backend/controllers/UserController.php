@@ -22,20 +22,24 @@ class UserController extends BackendControllerBase
             $username = @$_REQUEST["login"];
             $pwd = @$_REQUEST["password"];
 
-            $username = "admin";
-            $pwd = "1";
+            //$username = "admin";
+            //$pwd = "1";
 
             $identity = new BUserIdentity($username, $pwd);
 
             if ($identity->authenticate()) {
                 yUser()->login($identity);
+                yUser()->setFlash('login_success', "Greeting '{$username}'");
+                //pa($_SESSION);exit;
+
                 $this->redirectIndex();
             } else {
-                echo $identity->errorCode;
+                //echo $identity->errorCode;
+                yUser()->setFlash("login_failed", "Login error #{$identity->errorCode}");
             }
-        }else{
-            $this->render("login");
         }
+
+        $this->render("login");
     }
 
     function actionLogout()

@@ -96,9 +96,19 @@
 </div>
 
 <div class="container">
-<!-- = = = = = = [ layout content ] = = = = = = -->
-<?php echo $content; ?>
-<!-- = = = = = = [ /layout content/ ] = = = = = = -->
+    <?php if(yUser()->hasFlash("login_success")){ ?>
+    <div class="alert alert-success">
+        <?=yUser()->getFlash("login_success") ?>
+    </div>
+    <?php } elseif(yUser()->hasFlash("login_failed")){ ?>
+        <div class="alert alert-error">
+            <?=yUser()->getFlash("login_failed") ?>
+        </div>
+    <?php } ?>
+
+    <!-- = = = = = = [ layout content ] = = = = = = -->
+    <?php echo $content; ?>
+    <!-- = = = = = = [ /layout content/ ] = = = = = = -->
     <footer>
    		<p>&copy; Company 2013</p>
    	</footer>

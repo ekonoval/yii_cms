@@ -2,6 +2,14 @@
 
 class BWebUser extends CWebUser
 {
+    function __construct()
+    {
+        /*
+         * Required to have separate sessions for backend and frontend user
+         */
+        $this->setStateKeyPrefix("backend_user");
+    }
+
 
     function getRole()
     {
