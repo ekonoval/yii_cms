@@ -1,6 +1,7 @@
 <?php
 
-use Ekv\Backend\Controllers\BackendControllerBase;
+use Ekv\B\User\Auth\BTest;
+use Ekv\B\Controllers\BackendControllerBase;
 
 class SiteController extends BackendControllerBase
 {
@@ -21,6 +22,7 @@ class SiteController extends BackendControllerBase
 
     function actionTest()
     {
+        $obj = new BTest();
         echo "<h2>Test  </h2>\n";
         $this->render('index');
     }

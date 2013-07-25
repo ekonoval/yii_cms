@@ -10,7 +10,10 @@ class BWebUser extends CWebUser
         $this->setStateKeyPrefix("backend_user");
     }
 
-
+    /**
+     * Access for ->role
+     * @return mixed
+     */
     function getRole()
     {
         $role = null;

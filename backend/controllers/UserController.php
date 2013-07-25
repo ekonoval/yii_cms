@@ -1,6 +1,6 @@
 <?php
 
-use Ekv\Backend\Controllers\BackendControllerBase;
+use Ekv\B\Controllers\BackendControllerBase;
 
 class UserController extends BackendControllerBase
 {

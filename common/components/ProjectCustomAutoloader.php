@@ -2,13 +2,13 @@
 
 class ProjectCustomAutoloader
 {
-    static private $_predefined = array(
-        "Backend",
-        "Frontend",
-        "Api"
+    private $_predefined = array(
+        "B" => "backend",
+        "F" => "frontend",
+        "A" => "api"
     );
 
-    static function loadClass($class_name_fully_qualified)
+    function loadClass($class_name_fully_qualified)
     {
 
         $exists = false;
@@ -28,7 +28,7 @@ class ProjectCustomAutoloader
             //--- common ---//
             $parts_1 = $parts[1];
 
-            if(!in_array($parts_1, self::$_predefined)){
+            if(!in_array($parts_1, array_keys($this->_predefined))){
                 $base_path = realpath(Yii::getPathOfAlias("common.components")) . DIRECTORY_SEPARATOR;
                 $relative_parts = array_slice($parts, 1);
                 $absolute_path = $base_path . implode($ns_delim, $relative_parts) . ".php";
@@ -37,7 +37,8 @@ class ProjectCustomAutoloader
             }
             //--- any of possible -end parts ---//
             else{
-                $path_alias = strtolower($parts_1);
+                //$path_alias = strtolower($parts_1);
+                $path_alias = $this->_predefined[$parts_1];
                 //TODO - check if proper alias exists
                 $base_path = realpath(Yii::getPathOfAlias($path_alias));
                 $base_path .= DIRECTORY_SEPARATOR . "components" . DIRECTORY_SEPARATOR;

@@ -1,5 +1,5 @@
 <?php
-namespace Ekv\Backend\Controllers;
+namespace Ekv\B\Controllers;
 
 class BackendControllerBase extends \EController
 {

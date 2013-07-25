@@ -54,7 +54,7 @@ class Initializer
         //#------------------- custom autoloader -------------------#//
         //Yii::import("common.", true);
 
-        Yii::registerAutoloader(array('\ProjectCustomAutoloader','loadClass'), true);
+        Yii::registerAutoloader(array(new \ProjectCustomAutoloader(),'loadClass'), true);
 
         //--- importing global shortcut functions ---//
         Yii::import("common.helpers.global_shortcuts", true);

@@ -16,6 +16,7 @@ class BAuthManager extends CPhpAuthManager
         // for guests we have already role
         if (!$appUserObj->isGuest) {
             //pa($appUserObj->role, $appUserObj->id);exit;
+
             /*
              * Link previously defined user role to userID (returned by BUserIdentity::getId())
              */
