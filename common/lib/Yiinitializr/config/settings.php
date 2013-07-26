@@ -13,7 +13,9 @@ $root = $dirname . '/../../../..';
 
 return array(
 	'yii' => array(
-		'path' => $root . '/common/lib/vendor/yiisoft/yii/framework'
+		'path' => $root . '/common/lib/vendor/yiisoft/yii/framework',
+        //'common_ext' => $root . "/common/extensions/components"
+        'common' => $root . "/common"
 	),
 	'yiinitializr' => array(
 		'config' => array(

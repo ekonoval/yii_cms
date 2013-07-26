@@ -1,6 +1,6 @@
 <?php
 
-class BWebUser extends CWebUser
+class BWebUser1 extends CWebUser
 {
     function __construct()
     {
