@@ -37,7 +37,8 @@ return array(
 	// application components
 	'components' => array(
         'authManager' => array(
-            'class' => 'BAuthManager', // override standart authManager class!!!
+            //'class' => 'BAuthManager', // override standart authManager class!!!
+            'class' => 'Ekv\B\User\Auth\BAuthManager', // override standart authManager class!!!
             'defaultRoles' => array('guest'),
         ),
 
