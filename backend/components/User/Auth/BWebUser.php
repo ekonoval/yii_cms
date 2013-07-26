@@ -1,7 +1,7 @@
 <?php
 
 namespace Ekv\B\User\Auth;
-use BUser;
+use Ekv\B\User\Auth\BUser;
 use Ekv\B\User\Auth\BUserIdentity;
 use CWebUser;
 

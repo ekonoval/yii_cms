@@ -1,5 +1,7 @@
 <?php
 
+namespace Ekv\B\User\Auth;
+
 class BUser
 {
     const ROLE_GUEST = "guest";

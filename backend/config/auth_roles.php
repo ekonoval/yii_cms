@@ -1,4 +1,6 @@
 <?php
+use Ekv\B\User\Auth\BUser;
+
 return array(
     BUser::ROLE_GUEST => array(
         'type' => CAuthItem::TYPE_ROLE,

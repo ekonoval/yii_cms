@@ -1,6 +1,7 @@
 <?php
 
 use Ekv\B\Controllers\BackendControllerBase;
+use Ekv\B\User\Auth\BUser;
 use Ekv\B\User\Auth\BUserIdentity;
 
 class UserController extends BackendControllerBase
