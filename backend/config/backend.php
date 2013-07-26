@@ -43,7 +43,8 @@ return array(
 
 		'user' => array(
 			'allowAutoLogin' => true,
-			'class' => "BWebUser", // override standart User class
+			//'class' => "BWebUser", // override standart User class
+			'class' => 'Ekv\B\User\Auth\BWebUser', // override standart User class
             'loginUrl' => array('user/login'),
 		),
 

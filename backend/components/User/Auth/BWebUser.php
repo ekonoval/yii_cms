@@ -1,8 +1,11 @@
 <?php
 
+namespace Ekv\B\User\Auth;
+use BUser;
 use Ekv\B\User\Auth\BUserIdentity;
+use CWebUser;
 
-class BWebUser1 extends CWebUser
+class BWebUser extends CWebUser
 {
     function __construct()
     {
@@ -20,9 +23,9 @@ class BWebUser1 extends CWebUser
     {
         $role = null;
 
-        if(!$this->isGuest){
+        if (!$this->isGuest) {
             $user_id = $this->getId();
-            if($user_id == BUserIdentity::SUPER_ADMIN_ID){
+            if ($user_id == BUserIdentity::SUPER_ADMIN_ID) {
 //                $role = BUser::ROLE_ADMIN;
                 $role = BUser::ROLE_MODER;
             }

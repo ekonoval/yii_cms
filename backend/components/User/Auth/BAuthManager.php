@@ -1,5 +1,9 @@
 <?php
 
+namespace Ekv\B\User\Auth;
+use CPhpAuthManager;
+use Yii;
+
 class BAuthManager extends CPhpAuthManager
 {
     public function init()

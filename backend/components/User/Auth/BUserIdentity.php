@@ -1,5 +1,8 @@
 <?php
 
+namespace Ekv\B\User\Auth;
+use CUserIdentity;
+
 class BUserIdentity extends CUserIdentity
 {
     const SUPER_ADMIN_ID = 1;
@@ -24,12 +27,12 @@ class BUserIdentity extends CUserIdentity
         $admin_login = "admin";
         $admin_pwd = "1";
 
-        if($this->username != $admin_login){
+        if ($this->username != $admin_login) {
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-        }else{
-            if($this->password != $admin_pwd){
+        } else {
+            if ($this->password != $admin_pwd) {
                 $this->errorCode = self::ERROR_PASSWORD_INVALID;
-            }else{
+            } else {
                 $this->_idInt = 1;
                 $this->setState('title', "Administrator");
                 $this->errorCode = self::ERROR_NONE;
