@@ -25,12 +25,17 @@
         {
             "type": "composer",
             "url": "http://packages.phundament.com"
+        },
+        {
+            "type": "composer",
+            "url": "http://packagist.org"
         }
     ],
     "require": {
         "yiisoft/yii": "dev-master",
         "yii-twbs/yiistrap": "dev-master",
-        "2amigos/yiiwheels": "dev-master"
+        "2amigos/yiiwheels": "dev-master",
+        "ircmaxell/password-compat": "1.0.3"
     },
     "autoload": {
         "psr-0": {

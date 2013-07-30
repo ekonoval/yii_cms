@@ -22,8 +22,17 @@ class SiteController extends BackendControllerBase
 
     function actionTest()
     {
-        $obj = new BTest();
+        //$obj = new BTest();
         echo "<h2>Test  </h2>\n";
+        //$hash = password_hash("risking", PASSWORD_DEFAULT);
+        //pa($hash);
+
+        $pwdManageObj = new Ekv\User\PasswordManage();
+
+        $pwd = "risking";
+        $hash = $pwdManageObj->passwordHash($pwd);
+        pa($hash, strlen($hash), $pwdManageObj->passwordVerify($pwd, $hash));exit;
+
         $this->render('index');
     }
 

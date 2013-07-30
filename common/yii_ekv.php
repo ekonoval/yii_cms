@@ -38,6 +38,7 @@ class Yii extends \YiiBase
             $forceInclude
             && strpos($alias, 'Ekv\\') !== false
         ){
+            //pa($alias);
             $customAutoloaderObj = self::_getCustomAutoloader();
             $customAutoloaderObj->loadClass($alias);
             return $alias;
