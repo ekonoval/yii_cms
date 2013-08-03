@@ -17,14 +17,18 @@ return array(
 	),
 	'components' => array(
 		// configure to suit your needs
-//		'db' => array(
-//			'connectionString' => '{DB_CONNECTION}',
-//			'username' => '{DB_USER}',
-//			'password' => '{DB_PASSWORD}',
-//			'enableProfiling' => true,
-//			'enableParamLogging' => true,
-//			'charset' => 'utf8',
-//		),
+        'db' => array(
+            'connectionString' => 'mysql:host=localhost;dbname=yii',
+            'username' => 'root',
+            'password' => '',
+
+            'class' => '\Ekv\Yii\Db\EkvDbConnection', //!!!!
+            'pdoClass' => '\Ekv\Yii\Db\Pdo\EkvPdo', //!!!!
+            'enableProfiling' => true,
+            'enableParamLogging' => true,
+            'charset' => 'utf8',
+            'emulatePrepare' => true,
+        ),
 	),
 	'params' => array(
 		'yii.handleErrors'   => true,

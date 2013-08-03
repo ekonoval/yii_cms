@@ -1,5 +1,7 @@
 <?php
 
+use Ekv\Yii\Db\EkvDbConnection;
+
 function yApp()
 {
     return Yii::app();
@@ -21,6 +23,9 @@ function yR()
     return Yii::app()->request;
 }
 
+/**
+ * @return EkvDbConnection
+ */
 function yDb()
 {
     return Yii::app()->db;
