@@ -14,3 +14,11 @@ class EkvDbConnection extends \CDbConnection
     }
 
 }
+
+class EkvDbCommand extends \CDbCommand
+{
+    function debugSql($values = array())
+    {
+        return $this->pdoStatement->getSql($values);
+    }
+}
