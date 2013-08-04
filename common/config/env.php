@@ -23,7 +23,7 @@ return array(
             'password' => '',
 
             'class' => '\Ekv\Yii\Db\EkvDbConnection', //!!!!
-            'pdoClass' => '\Ekv\Yii\Db\Pdo\EkvPdo', //!!!!
+            'pdoClass' => '\Ekv\Yii\Db\EkvPdo', //!!!!
             'enableProfiling' => true,
             'enableParamLogging' => true,
             'charset' => 'utf8',
