@@ -2,6 +2,13 @@
 namespace Ekv\Yii\Db;
 use PDO;
 
+/*
+ * A single file is used to reduce number of autoloads for trivial functionality
+ */
+
+/**
+ * Used to override CDbCommand and provide debugSql method
+ */
 class EkvDbConnection extends \CDbConnection
 {
     /**
@@ -38,6 +45,9 @@ class EkvPdo extends PDO
     public function __construct($dsn, $username = null, $password = null, $driver_options = array())
     {
         parent::__construct($dsn, $username, $password, $driver_options);
+        /*
+         * Override PDO statement class
+         */
         $this->setAttribute(PDO::ATTR_STATEMENT_CLASS, array('\Ekv\Yii\Db\EkvPdoStatement', array($this))); // !!!!
     }
 }
@@ -47,6 +57,10 @@ class EkvPdoStatement extends \PDOStatement
     const NO_MAX_LENGTH = -1;
 
     protected $connection;
+    /**
+     * Bound params are collected here
+     * @var array
+     */
     protected $bound_params = array();
 
     protected function __construct(PDO $connection)
