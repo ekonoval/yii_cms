@@ -85,7 +85,7 @@
                     </form>
                 <?php }else{ ?>
                     <div class="authed">
-                        <span class="username">%username%</span>
+                        <span class="username"><?=yUser()->name; ?></span>
                         <a href="/user/logout">logout</a>
                     </div>
                 <?php } ?>

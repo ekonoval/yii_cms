@@ -35,7 +35,7 @@ class BUserIdentity extends CUserIdentity
             } else {
                 //--- everything ok ---//
                 $this->_idInt = $mUser->id;
-                $this->setState('title', $mUser->real_name);
+                $this->setState('real_name', $mUser->real_name);
                 $this->errorCode = self::ERROR_NONE;
             }
         }
