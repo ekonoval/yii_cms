@@ -4,6 +4,9 @@ namespace Ekv\B\User\Auth;
 use CPhpAuthManager;
 use Yii;
 
+/**
+ * Define where roles hierarchy can be gotten and apply role to user
+ */
 class BAuthManager extends CPhpAuthManager
 {
     public function init()

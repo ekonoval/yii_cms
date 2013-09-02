@@ -39,6 +39,18 @@ class Initializer
 
 		$config = self::config($configName, $mergeWith);
 
+        //--- add db_bilet conf ---//
+        $config["components"]["db_bilet"] = $config["components"]["db"];
+        $config["components"]["db_bilet"]["connectionString"] =
+            str_replace(
+                "dbname=yii",
+                //"dbname=bilet",
+                "dbname=sched_dev",
+                $config["components"]["db_bilet"]["connectionString"]
+            );
+
+        //pa($config);exit;
+
 		if (php_sapi_name() !== 'cli') // aren't we in console?
 			$app = \Yii::createWebApplication($config); // create web
 		else

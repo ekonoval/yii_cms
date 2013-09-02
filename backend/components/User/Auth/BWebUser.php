@@ -1,7 +1,6 @@
 <?php
 
 namespace Ekv\B\User\Auth;
-use Ekv\B\User\Auth\BUser;
 use Ekv\B\User\Auth\BUserIdentity;
 use CWebUser;
 
@@ -16,7 +15,7 @@ class BWebUser extends CWebUser
     }
 
     /**
-     * Access for ->role
+     * Access for property ->role (Used in BAuthManager)
      * @return mixed
      */
     function getRole()
@@ -25,9 +24,12 @@ class BWebUser extends CWebUser
 
         if (!$this->isGuest) {
             $user_id = $this->getId();
-            if ($user_id == BUserIdentity::SUPER_ADMIN_ID) {
+            $mUser = \MUser::model()->findByPk($user_id);
+
+            if (!is_null($mUser)) {
 //                $role = BUser::ROLE_ADMIN;
-                $role = BUser::ROLE_MODER;
+//                $role = BUser::ROLE_MODER;
+                $role = $mUser->role;
             }
         }
 

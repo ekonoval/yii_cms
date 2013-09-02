@@ -73,6 +73,10 @@ class UserController extends BackendControllerBase
 
         if($this->_appUser->checkAccess(BUser::ROLE_ADMIN)){
             echo "<h2>I'm admin  </h2>\n";
+        }elseif(yUser()->checkAccess(BUser::ROLE_MODER)){
+            echo "<h2>I'm MODER  </h2>\n";
+        }else{
+            pa("access denied");
         }
     }
 }

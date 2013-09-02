@@ -4,9 +4,9 @@ namespace Ekv\B\User\Auth;
 
 class BUser
 {
-    const ROLE_GUEST = "guest";
-    const ROLE_ADMIN = 'admin';
-    const ROLE_MODER = 'moder';
-    const ROLE_USER = 'user';
-    const ROLE_BANNED = 'banned';
+    const ROLE_GUEST = 0;
+    const ROLE_ADMIN = 1;
+    const ROLE_MODER = 2;
+    const ROLE_USER = 3;
+    const ROLE_BANNED = 4;
 }

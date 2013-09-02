@@ -29,8 +29,8 @@ class PasswordManage
         return password_needs_rehash($hash, $this->_algo, $this->_options);
     }
 
-    function passwordVerify($password, $hash)
+    function passwordVerify($password_plain, $hash)
     {
-        return password_verify($password, $hash);
+        return password_verify($password_plain, $hash);
     }
 }
