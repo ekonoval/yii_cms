@@ -7,7 +7,7 @@
  * @copyright 2013 2amigOS! Consultation Group LLC
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
-return array(
+$env_conf =  array(
 	'modules' => array(
 		'gii' => array(
 			'class' => 'system.gii.GiiModule',
@@ -36,3 +36,14 @@ return array(
 		'yii.traceLevel' => 3,
 	)
 );
+
+$env_conf["components"]["db_sakila"] = $env_conf["components"]["db"];
+$env_conf["components"]["db_sakila"]["connectionString"] =
+    str_replace(
+        "dbname=yii",
+        //"dbname=bilet",
+        "dbname=sakila",
+        $env_conf["components"]["db_sakila"]["connectionString"]
+    );
+
+return $env_conf;
