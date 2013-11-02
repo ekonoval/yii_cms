@@ -32,21 +32,28 @@ return array(
 	'controllerMap' => array(),
 
 	// application modules
-	'modules' => array(),
+	'modules' => array(
+        'user' => array(
+            'class' => '\Ekv\B\modules\user\UserModule'
+        ),
+        'test' => array(
+            'class' => '\Ekv\B\modules\test\TestModule'
+        ),
+    ),
 
 	// application components
 	'components' => array(
         'authManager' => array(
             //'class' => 'BAuthManager', // override standart authManager class!!!
-            'class' => 'Ekv\B\User\Auth\BAuthManager', // override standart authManager class!!!
+            'class' => 'Ekv\B\components\User\Auth\BAuthManager', // override standart authManager class!!!
             'defaultRoles' => array('guest'),
         ),
 
 		'user' => array(
 			'allowAutoLogin' => true,
 			//'class' => "BWebUser", // override standart User class
-			'class' => 'Ekv\B\User\Auth\BWebUser', // override standart User class
-            'loginUrl' => array('user/login'),
+			'class' => 'Ekv\B\components\User\Auth\BWebUser', // override standart User class
+            'loginUrl' => array('user/auth/login'),
 		),
 
 		'bootstrap' => array(

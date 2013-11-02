@@ -1,5 +1,5 @@
 <?php
-use Ekv\B\User\Auth\BUser;
+use Ekv\B\components\User\Auth\BUser;
 
 return array(
     BUser::ROLE_GUEST => array(

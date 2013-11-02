@@ -1,7 +1,7 @@
 <?php
 
-namespace Ekv\B\User\Auth;
-use Ekv\B\User\Auth\BUserIdentity;
+namespace Ekv\B\components\User\Auth;
+use Ekv\B\components\User\Auth\BUserIdentity;
 use CWebUser;
 
 class BWebUser extends CWebUser

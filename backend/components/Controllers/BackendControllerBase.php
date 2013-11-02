@@ -1,5 +1,5 @@
 <?php
-namespace Ekv\B\Controllers;
+namespace Ekv\B\components\Controllers;
 
 class BackendControllerBase extends \EController
 {
@@ -7,7 +7,7 @@ class BackendControllerBase extends \EController
      * Default layout for all backend controllers
      * @var string
      */
-    public $layout = "lMain";
+    public $layout = "//layouts/lMain";
 
     public function filters()
     {

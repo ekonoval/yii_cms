@@ -77,7 +77,7 @@
                 <?php
                 if(yUser()->isGuest){
                 ?>
-                    <form action="/user/login/" method="post" class="navbar-form pull-right">
+                    <form action="/user/auth/login/" method="post" class="navbar-form pull-right">
                         <input class="span2" type="text" placeholder="login" name="login">
                         <input class="span2" type="password" placeholder="Password" name="password">
                         <input type="hidden" name="top_login_form_submitted" value="1"/>
@@ -86,7 +86,7 @@
                 <?php }else{ ?>
                     <div class="authed">
                         <span class="username"><?=yUser()->name; ?></span>
-                        <a href="/user/logout">logout</a>
+                        <a href="/user/auth/logout">logout</a>
                     </div>
                 <?php } ?>
 			</div>
