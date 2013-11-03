@@ -33,7 +33,8 @@ return array(
 	'components' => array(
 		'db_sqlite'=>array(
             'class'=>'CDbConnection',
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
+			//'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
+			'connectionString' => 'sqlite:'.__DIR__.'/../data/DBmovies.db3',
 		),
 		'errorHandler' => array(
 			'errorAction' => 'site/error',
