@@ -22,8 +22,8 @@ $env_conf =  array(
             'username' => 'root',
             'password' => '',
 
-            'class' => '\Ekv\Yii\Db\EkvDbConnection', //!!!!
-            'pdoClass' => '\Ekv\Yii\Db\EkvPdo', //!!!!
+            'class' => '\Ekv\components\Yii\Db\EkvDbConnection', //!!!!
+            'pdoClass' => '\Ekv\components\Yii\Db\EkvPdo', //!!!!
             'enableProfiling' => true,
             'enableParamLogging' => true,
             'charset' => 'utf8',

@@ -1,6 +1,6 @@
 <?php
 
-use Ekv\Yii\Db\EkvDbConnection;
+use Ekv\components\Yii\Db\EkvDbConnection;
 
 function yApp()
 {

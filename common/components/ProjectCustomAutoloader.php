@@ -8,6 +8,8 @@ class ProjectCustomAutoloader
         "A" => "api"
     );
 
+    private $_nsDelim = '\\';
+
     function loadClass($class_name_fully_qualified)
     {
 
@@ -31,11 +33,18 @@ class ProjectCustomAutoloader
             //--- try COMMON app ---//
             if(!in_array($parts_1, array_keys($this->_predefined))){
                 //todo - fix direct path from namespace not components
-                $base_path = realpath(Yii::getPathOfAlias("common.components")) . DIRECTORY_SEPARATOR;
+                $base_path = realpath(Yii::getPathOfAlias("common")) . DIRECTORY_SEPARATOR;
                 $relative_parts = array_slice($parts, 1);
-                $absolute_path = $base_path . implode($ns_delim, $relative_parts) . ".php";
-                require $absolute_path;
-                $exists = class_exists($class_name_fully_qualified) || interface_exists($class_name_fully_qualified);
+
+                $this->_includeClass(
+                    $class_name_fully_qualified,
+                    $base_path,
+                    $relative_parts
+                );
+
+//                $absolute_path = $base_path . implode($ns_delim, $relative_parts) . ".php";
+//                require $absolute_path;
+//                $exists = class_exists($class_name_fully_qualified) || interface_exists($class_name_fully_qualified);
             }
             //--- any of possible -end parts ---//
             else{
@@ -46,13 +55,27 @@ class ProjectCustomAutoloader
                 //$base_path .= DIRECTORY_SEPARATOR . "components" . DIRECTORY_SEPARATOR;
                 $relative_parts = array_slice($parts, 2);
 
-                $absolute_path = $base_path . implode($ns_delim, $relative_parts) . ".php";
-                //pa($absolute_path);
-                require $absolute_path;
-                $exists = class_exists($class_name_fully_qualified) || interface_exists($class_name_fully_qualified);
+                $this->_includeClass(
+                    $class_name_fully_qualified,
+                    $base_path,
+                    $relative_parts
+                );
+//                $absolute_path = $base_path . implode($ns_delim, $relative_parts) . ".php";
+//                //pa($absolute_path);
+//                require $absolute_path;
+//                $exists = class_exists($class_name_fully_qualified) || interface_exists($class_name_fully_qualified);
             }
         }
 
         return $exists;
+    }
+
+    private function _includeClass($class_name_fully_qualified, $base_path, $relative_parts)
+    {
+        $absolute_path = $base_path . implode($this->_nsDelim, $relative_parts) . ".php";
+        //pa($absolute_path);
+
+        require $absolute_path;
+        $exists = class_exists($class_name_fully_qualified) || interface_exists($class_name_fully_qualified);
     }
 }

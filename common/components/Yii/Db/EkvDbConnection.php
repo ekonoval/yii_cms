@@ -1,5 +1,5 @@
 <?php
-namespace Ekv\Yii\Db;
+namespace Ekv\components\Yii\Db;
 use PDO;
 
 /*
@@ -48,7 +48,7 @@ class EkvPdo extends PDO
         /*
          * Override PDO statement class
          */
-        $this->setAttribute(PDO::ATTR_STATEMENT_CLASS, array('\Ekv\Yii\Db\EkvPdoStatement', array($this))); // !!!!
+        $this->setAttribute(PDO::ATTR_STATEMENT_CLASS, array('\Ekv\components\Yii\Db\EkvPdoStatement', array($this))); // !!!!
     }
 }
 

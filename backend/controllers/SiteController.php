@@ -27,7 +27,7 @@ class SiteController extends BackendControllerBase
         //$hash = password_hash("risking", PASSWORD_DEFAULT);
         //pa($hash);
 
-        $pwdManageObj = new Ekv\User\PasswordManage();
+        $pwdManageObj = new \Ekv\components\User\PasswordManage();
 
         $pwd = "risking";
         $hash = $pwdManageObj->passwordHash($pwd);

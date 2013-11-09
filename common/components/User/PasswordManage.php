@@ -1,5 +1,5 @@
 <?php
-namespace Ekv\User;
+namespace Ekv\components\User;
 
 class PasswordManage
 {

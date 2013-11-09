@@ -1,5 +1,5 @@
 <?php
-namespace Ekv\Yii\Db;
+namespace Ekv\components\Yii\Db;
 
 /**
  * NOT used. Don't know how to apply it automatically without overriding CDbConnection

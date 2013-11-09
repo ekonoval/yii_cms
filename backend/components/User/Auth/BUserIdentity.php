@@ -2,7 +2,7 @@
 
 namespace Ekv\B\components\User\Auth;
 use CUserIdentity;
-use Ekv\User\PasswordManage;
+use Ekv\components\User\PasswordManage;
 
 /**
  * Check whether user can be authentified.
