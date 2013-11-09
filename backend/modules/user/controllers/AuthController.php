@@ -1,10 +1,10 @@
 <?php
 
-use Ekv\B\Controllers\BackendControllerBase;
-use Ekv\B\User\Auth\BUser;
-use Ekv\B\User\Auth\BUserIdentity;
+use Ekv\B\components\Controllers\BackendControllerBase;
+use Ekv\B\components\User\Auth\BUser;
+use Ekv\B\components\User\Auth\BUserIdentity;
 
-class UserController extends BackendControllerBase
+class AuthController extends BackendControllerBase
 {
     /**
      * @var CWebUser

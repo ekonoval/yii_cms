@@ -1,6 +1,6 @@
 <?php
 
-namespace Ekv\B\User\Auth;
+namespace Ekv\B\components\User\Auth;
 use CUserIdentity;
 use Ekv\User\PasswordManage;
 

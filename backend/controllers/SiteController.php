@@ -1,7 +1,7 @@
 <?php
 
-use Ekv\B\User\Auth\BTest;
-use Ekv\B\Controllers\BackendControllerBase;
+use Ekv\B\components\User\Auth\BTest;
+use Ekv\B\components\Controllers\BackendControllerBase;
 
 class SiteController extends BackendControllerBase
 {
