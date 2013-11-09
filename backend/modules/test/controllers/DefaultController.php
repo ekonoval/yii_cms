@@ -1,4 +1,5 @@
 <?php
+namespace Ekv\B\modules\test\controllers;
 
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\modules\test\classes\SqliteToMysql;

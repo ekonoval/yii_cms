@@ -1,4 +1,5 @@
 <?php
+namespace Ekv\B\modules\user\controllers;
 
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\components\User\Auth\BUser;

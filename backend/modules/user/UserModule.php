@@ -1,8 +1,16 @@
 <?php
 namespace Ekv\B\modules\user;
 
-class UserModule extends \CWebModule
+use Ekv\B\components\WebModule;
+
+class UserModule extends WebModule
 {
+    protected function init()
+    {
+        $this->_setNamespace(__NAMESPACE__);
+        parent::init();
+    }
+
 //	public function init()
 //	{
 //		// this method is called when the module is being created

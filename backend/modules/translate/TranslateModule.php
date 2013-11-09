@@ -1,16 +1,16 @@
 <?php
-namespace Ekv\B\modules\test;
+namespace Ekv\B\modules\translate;
 
 use Ekv\B\components\WebModule;
 
-class TestModule extends WebModule
+class TranslateModule extends WebModule
 {
-
     protected function init()
     {
         $this->_setNamespace(__NAMESPACE__);
         parent::init();
     }
+
 
 //	public function init()
 //	{

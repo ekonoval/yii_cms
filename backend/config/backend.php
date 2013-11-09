@@ -39,6 +39,9 @@ return array(
         'test' => array(
             'class' => '\Ekv\B\modules\test\TestModule'
         ),
+        'translate' => array(
+            'class' => '\Ekv\B\modules\translate\TranslateModule'
+        ),
     ),
 
 	// application components
