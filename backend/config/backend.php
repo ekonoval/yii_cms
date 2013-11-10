@@ -13,26 +13,26 @@ defined('APP_CONFIG_NAME') or define('APP_CONFIG_NAME', 'backend');
 
 // web application configuration
 return array(
-	'basePath' => realPath(__DIR__ . '/..'),
-	// path aliases
-	'aliases' => array(
-		// assumed the use of yiistrap and yiiwheels extensions
-		'bootstrap' => 'vendor.yii-twbs.yiistrap',
-		'yiiwheels' => 'vendor.2amigos.yiiwheels'
-	),
-
-    'import' => array(
-   		'backend.components.*',
+    'basePath' => realPath(__DIR__ . '/..'),
+    // path aliases
+    'aliases' => array(
+        // assumed the use of yiistrap and yiiwheels extensions
+        'bootstrap' => 'vendor.yii-twbs.yiistrap',
+        'yiiwheels' => 'vendor.2amigos.yiiwheels'
     ),
 
-	// application behaviors
-	'behaviors' => array(),
+    'import' => array(
+        'backend.components.*',
+    ),
 
-	// controllers mappings
-	'controllerMap' => array(),
+    // application behaviors
+    'behaviors' => array(),
 
-	// application modules
-	'modules' => array(
+    // controllers mappings
+    'controllerMap' => array(),
+
+    // application modules
+    'modules' => array(
         'user' => array(
             'class' => '\Ekv\B\modules\user\UserModule'
         ),
@@ -44,46 +44,55 @@ return array(
         ),
     ),
 
-	// application components
-	'components' => array(
+    // application components
+    'components' => array(
         'authManager' => array(
             //'class' => 'BAuthManager', // override standart authManager class!!!
             'class' => 'Ekv\B\components\User\Auth\BAuthManager', // override standart authManager class!!!
             'defaultRoles' => array('guest'),
         ),
 
-		'user' => array(
-			'allowAutoLogin' => true,
-			//'class' => "BWebUser", // override standart User class
-			'class' => 'Ekv\B\components\User\Auth\BWebUser', // override standart User class
+        'user' => array(
+            'allowAutoLogin' => true,
+            //'class' => "BWebUser", // override standart User class
+            'class' => 'Ekv\B\components\User\Auth\BWebUser', // override standart User class
             'loginUrl' => array('user/auth/login'),
-		),
+        ),
 
-		'bootstrap' => array(
-			'class' => 'bootstrap.components.TbApi',
-		),
+        'bootstrap' => array(
+            'class' => 'bootstrap.components.TbApi',
+        ),
 
-		'clientScript' => array(
-			'scriptMap' => array(
-				'bootstrap.min.css' => false,
-				'bootstrap.min.js' => false,
-				'bootstrap-yii.css' => false
-			)
-		),
-		'urlManager' => array(
-			// uncomment the following if you have enabled Apache's Rewrite module.
-			'urlFormat' => 'path',
-			'showScriptName' => false,
-			'rules' => array(
-				// default rules
-				'<controller:\w+>/<id:\d+>' 				=> '<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>' 	=> '<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'				=> '<controller>/<action>',
-			),
-		),
+        'clientScript' => array(
+//            'packages' => array(
+//                'jquery' => array(
+//                    'baseUrl' => '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/',
+//                    'js' => array('jquery.min.js'),
+//                    //'js' => array('/js/libs/jquery-1.9.1.min.js'),
+//                ),
+//            ),
+            'scriptMap' => array(
+                'jquery.js' => false,
+                'bootstrap.min.css' => false,
+                'bootstrap.min.js' => false,
+                'bootstrap-yii.css' => false,
 
-		'errorHandler' => array(
-			'errorAction' => 'site/error',
-		)
-	),
+            )
+        ),
+        'urlManager' => array(
+            // uncomment the following if you have enabled Apache's Rewrite module.
+            'urlFormat' => 'path',
+            'showScriptName' => false,
+            'rules' => array(
+                // default rules
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+            ),
+        ),
+
+        'errorHandler' => array(
+            'errorAction' => 'site/error',
+        )
+    ),
 );

@@ -8,6 +8,11 @@
  * @copyright 2013 2amigOS! Consultation Group LLC
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
+//$cs = Yii::app()->clientScript;
+//$cs->scriptMap = array(
+//    'jquery.js' => false,
+//    //'jquery.ui.js' => false,
+//);
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>
@@ -19,6 +24,9 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
 <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js/libs/jquery-1.9.1.min.js"><\/script>')</script>
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title></title>
@@ -34,6 +42,7 @@
 	</style>
 
 	<link rel="stylesheet" href="/css/main.css">
+
 
 	<script src="/js/libs/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
@@ -114,11 +123,13 @@
    	</footer>
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-<script src="js/libs/bootstrap.min.js"></script>
-<script src="js/plugins.js"></script>
-<script src="js/main.js"></script><script>
+<!-- static footer js -->
+<script src="/js/libs/bootstrap.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/main.js"></script>
+<!-- /static footer js/ -->
+<? /* ?>
+<script>
 	var _gaq = [
 		['_setAccount', 'UA-XXXXX-X'],
 		['_trackPageview']
@@ -129,5 +140,6 @@
 		s.parentNode.insertBefore(g, s)
 	}(document, 'script'));
 </script>
+ <? */ ?>
 </body>
 </html>
