@@ -9,12 +9,13 @@ class MovieController extends BackendControllerBase
 {
     function actionIndex()
     {
-        //$model = new MMovies('search');
-        $model = new \OldMovies('search');
+        //$model = new MMovies('search'); $get_name = 'Ekv\models\MMovies';
+        $model = new \MTransMovie('search'); $get_name = get_class($model);
+        //$model = new \OldMovies('search'); $get_name = "OldMovies";
         $model->unsetAttributes(); // clear any default values
 
-        if (isset($_GET['OldMovies'])) {
-            $model->attributes = $_GET['OldMovies'];
+        if (isset($_GET[$get_name])) {
+            $model->attributes = $_GET[$get_name];
         }
 
 //        $res = MMovies::model()->findAll();

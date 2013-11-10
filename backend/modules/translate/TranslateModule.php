@@ -9,6 +9,10 @@ class TranslateModule extends WebModule
     {
         $this->_setNamespace(__NAMESPACE__);
         parent::init();
+
+        $this->setImport(array(
+            'translate.models.*'
+        ));
     }
 
 

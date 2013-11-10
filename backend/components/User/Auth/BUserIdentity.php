@@ -20,9 +20,9 @@ class BUserIdentity extends CUserIdentity
     public function authenticate()
     {
         /**
-         * @var $mUser \MUser
+         * @var $mUser \Ekv\models\MUser
          */
-        $mUser = \MUser::model()->find(" `login` = :login AND enabled = 1", array(':login' => $this->username));
+        $mUser = \Ekv\models\MUser::model()->find(" `login` = :login AND enabled = 1", array(':login' => $this->username));
 
         //--- user not found ---//
         if (is_null($mUser)) {

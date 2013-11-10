@@ -24,7 +24,7 @@ class BWebUser extends CWebUser
 
         if (!$this->isGuest) {
             $user_id = $this->getId();
-            $mUser = \MUser::model()->findByPk($user_id);
+            $mUser = \Ekv\models\MUser::model()->findByPk($user_id);
 
             if (!is_null($mUser)) {
 //                $role = BUser::ROLE_ADMIN;
