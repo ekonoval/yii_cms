@@ -67,8 +67,8 @@
 
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
+					<li class="active"><a href="/">Home</a></li>
+					<li><a href="/translate/movie/index">MovieTranslation</a></li>
 					<li><a href="#contact">Contact</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
