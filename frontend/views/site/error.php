@@ -1,3 +1,3 @@
 <div class="container">
-    <h2>Error</h2>
+    <h2><?=$error["message"]; ?></h2>
 </div>
