@@ -1,15 +1,11 @@
 <?php
-/**
- * CJuiDatePicker class file.
- *
- * @author Sebastian Thierer <sebathi@gmail.com>
- * @link http://www.yiiframework.com/
- * @copyright 2008-2013 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
-
 Yii::import('zii.widgets.jui.CJuiDatePicker');
 
+/**
+ * CJuiDatepicker fix a bug when defaultOptions are set but 'language' param is not passed
+ * (Chinese default locale for english lang)
+ * https://github.com/ekonoval/yii/commit/b05e994ee39845db805f64a0767c1d0b05d8e9f6
+ */
 class EkvJuiDatePicker extends CJuiDatePicker
 {
     public function run()
