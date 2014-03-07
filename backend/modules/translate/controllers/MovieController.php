@@ -2,7 +2,7 @@
 namespace Ekv\B\modules\translate\controllers;
 
 use Ekv\B\components\Controllers\BackendControllerBase;
-use MTransMovie, CHttpException;
+use BTransMovie, CHttpException;
 
 
 class MovieController extends BackendControllerBase
@@ -10,7 +10,7 @@ class MovieController extends BackendControllerBase
     function actionIndex()
     {
         //$model = new MMovies('search'); $get_name = 'Ekv\models\MMovies';
-        $model = new \MTransMovie('search'); $get_name = get_class($model);
+        $model = new \BTransMovie('search'); $get_name = get_class($model);
         //$model = new \OldMovies('search'); $get_name = "OldMovies";
         $model->unsetAttributes(); // clear any default values
 
@@ -62,7 +62,7 @@ class MovieController extends BackendControllerBase
      */
     public function actionCreate()
     {
-        $model = new MTransMovie();
+        $model = new BTransMovie();
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);

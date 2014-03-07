@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $model MTransMovie
+ * @var $model BTransMovie
  */
 ?>
 

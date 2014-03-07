@@ -2,7 +2,7 @@
 
 use Ekv\models\MMovies;
 
-class MTransMovie extends MMovies
+class BTransMovie extends MMovies
 {
 
 }

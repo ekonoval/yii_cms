@@ -1,5 +1,5 @@
 <?php
 /**
- * @var $model MTransMovie
+ * @var $model BTransMovie
  */
 echo $this->renderPartial('_form_tpl', array('model'=>$model));
