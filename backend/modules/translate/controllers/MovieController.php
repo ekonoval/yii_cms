@@ -7,6 +7,8 @@ use BTransMovie, CHttpException;
 
 class MovieController extends BackendControllerBase
 {
+    private $_mainModelName = "BTransMovie";
+
     function actionIndex()
     {
         //$model = new MMovies('search'); $get_name = 'Ekv\models\MMovies';
@@ -38,14 +40,14 @@ class MovieController extends BackendControllerBase
 
     function actionUpdate($id)
     {
-        $model = $this->loadModel("MTransMovie", $id);
+        $model = $this->loadModel($this->_mainModelName, $id);
         //$model = $this->loadModel('\Ekv\models\MMovies', $id);
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['MTransMovie'])) {
-            $model->attributes = $_POST['MTransMovie'];
+        if (isset($_POST[$this->_mainModelName])) {
+            $model->attributes = $_POST[$this->_mainModelName];
             if ($model->save()) {
                 $this->_redirectMovieIndex();
             }
@@ -67,8 +69,8 @@ class MovieController extends BackendControllerBase
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['MTransMovie'])) {
-            $model->attributes = $_POST['MTransMovie'];
+        if (isset($_POST[$this->_mainModelName])) {
+            $model->attributes = $_POST[$this->_mainModelName];
             if ($model->save()) {
                 $this->_redirectMovieIndex();
             }
