@@ -46,6 +46,10 @@ class BackendControllerBase extends \EController
         return parent::render($view, $data, $return);
     }
 
+    /**
+     * Tpl name is generated automatically
+     * @param $data
+     */
     function renderAuto($data)
     {
         $this->render(null, $data, false);
