@@ -23,7 +23,7 @@ class SiteController extends EController
         echo "<h2>-- Frontend index ACTION  </h2>\n";
         //\Ekv\Product\Helpers\ProductDetailedHelper::staticTest();
 
-        \Ekv\Frontend\ProductFormatter::main();
+        //\Ekv\Frontend\ProductFormatter::main();
 
         $this->render('index');
     }

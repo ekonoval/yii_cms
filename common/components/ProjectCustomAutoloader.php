@@ -1,4 +1,5 @@
 <?php
+class ProjectCustomAutoloaderException extends Exception{}
 
 class ProjectCustomAutoloader
 {
@@ -73,9 +74,12 @@ class ProjectCustomAutoloader
     private function _includeClass($class_name_fully_qualified, $base_path, $relative_parts)
     {
         $absolute_path = $base_path . implode($this->_nsDelim, $relative_parts) . ".php";
-        //pa($absolute_path);
 
-        require $absolute_path;
+        if(file_exists($absolute_path)){
+            require $absolute_path;
+        }else{
+            throw new ProjectCustomAutoloaderException("Classname {$class_name_fully_qualified} can't be loaded.");
+        }
         $exists = class_exists($class_name_fully_qualified) || interface_exists($class_name_fully_qualified);
     }
 }
