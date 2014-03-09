@@ -4,6 +4,8 @@
         padding: 0;
     }
 </style>
+
+<h4>grid with SQL</h4>
 <?php
 /**
  * @var $model BTransEpisodeSql
@@ -11,7 +13,7 @@
 
 
 $this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'episodeGrid',
+    'id' => 'episodeGridSql',
     //'dataProvider' => $provider,
     'filter'=>$model,
     'dataProvider'=>$model->getSqlDataProvider(),
@@ -28,11 +30,17 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'episodeID',
         'movieID',
         'episodeNum',
+
         array(
             'name' => 'seasonNum',
-            'filter' => $model->getSeasonNumFilter(),
-
+            //'filter' => $model->getSeasonNumFilter($model),
+            //'filter' => function($model){return array(7 => 's7', 3 => 's3');},
+            //'filter' => array(7 => 's7', 3 => 's3'),
+            'value' => function($data){
+                return $data["seasonNum"];
+            }
         ),
+
         array(
             'name' => "movieName", // dbField
             'value' => function($data){

@@ -4,11 +4,11 @@
         padding: 0;
     }
 </style>
+<h4>grid with AR</h4>
 <?php
 /**
  * @var $model BTransEpisode
  */
-
 
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'episodeGrid',
@@ -16,7 +16,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'filter' => $model,
     //5543'afterAjaxUpdate' => 'reinstallDatePicker',
     'selectableRows' => 2,
-
+    'ajaxUpdate'    => true,
     'columns' => array(
         array(
             'class' => 'CCheckBoxColumn',
@@ -26,17 +26,19 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'episodeID',
         'movieID',
         'episodeNum',
-        'seasonNum',
+        //'seasonNum',
+        array(
+            'name' => 'seasonNum',
+            'filter' => $model->getSeasonNumFilter($model),
+            //'filter' => function($model){return array(7 => 's7', 3 => 's3');},
+            //'filter' => array(7 => 's7', 3 => 's3'),
+            'value' => function($data){
+                return $data["seasonNum"];
+            }
+        ),
         array(
             'name' => "movieName", // dbField
             'value' => function($data){
-//                /**
-//                 * @var BTransEpisode $data
-//                 */
-//                pa($data->getRelated('lMovie')->attributes);exit;
-//                pa($data);
-//                //pa($data->relations());exit;
-//                exit;
                 return $data->lMovie->movieName;
             }
         ),

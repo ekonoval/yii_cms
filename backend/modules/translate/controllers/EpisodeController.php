@@ -30,6 +30,8 @@ class EpisodeController extends BackendControllerBase
         $model->unsetAttributes();
         $get_name = get_class($model);
 
+        //$model->seasonNum = 4;
+
         if (isset($_GET[$get_name])) {
             $model->attributes = $_GET[$get_name];
         }

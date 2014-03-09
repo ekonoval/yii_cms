@@ -1,15 +1,7 @@
 <?php
 
-class BTransEpisode extends MEpisodes
+class BTransEpisode extends BTransEpisodeCommon
 {
-    public $movieName;
-    private $_movieID;
-
-    function setMovieID($movieID)
-    {
-        $this->_movieID = intval($movieID);
-    }
-
     public function relations()
     {
         $rel = array(
@@ -48,7 +40,7 @@ class BTransEpisode extends MEpisodes
                 'defaultOrder' => 'seasonNum DESC, episodeNum DESC',
             ),
             'pagination' => array(
-                'pageSize' => 20
+                'pageSize' => 2
             ),
         ));
 

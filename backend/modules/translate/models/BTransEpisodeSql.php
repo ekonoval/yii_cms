@@ -1,15 +1,7 @@
 <?php
 
-class BTransEpisodeSql extends MEpisodes
+class BTransEpisodeSql extends BTransEpisodeCommon
 {
-    public $movieName;
-    private $_movieID;
-
-    function setMovieID($movieID)
-    {
-        $this->_movieID = intval($movieID);
-    }
-
     public function getSqlDataProvider()
     {
         //$priceCondition = !empty($this->price) ? ' WHERE unionAlias.price =' . $this->price : ' ';
@@ -36,20 +28,30 @@ class BTransEpisodeSql extends MEpisodes
                 e.movieID = :movieID
                 {$SQL_COND}
         ";
-        //pa($_GET);
-        //echo "\n <pre>$sql </pre> <br/>\n";exit;
 
+        //--- sql total ---//
+        $sql_total = "
+            SELECT COUNT(*) as `cnt`
+            FROM episodes e
+                INNER JOIN movies m
+                    ON m.movieID = e.movieID
+            WHERE
+                e.movieID = :movieID
+                {$SQL_COND}
+        ";
+        $cmd = yDb()->createCommand($sql_total);
+        $total_records = $cmd->queryScalar($params);
 
         $dataProvider = new \CSqlDataProvider($sql, array(
             //'db' => yDb(),
             'keyField' => 'episodeID',
-            'totalItemCount' => 50,//todo fix
+            'totalItemCount' => $total_records,
             'sort' => array(
                 'attributes' => array('seasonNum', 'episodeNum'),
                 'defaultOrder' => array('seasonNum' => true, 'episodeNum' => true),
             ),
             'pagination' => array(
-                'pageSize' => 10,
+                'pageSize' => 2,
             ),
             'params' => $params
         ));
@@ -57,42 +59,5 @@ class BTransEpisodeSql extends MEpisodes
         return $dataProvider;
     }
 
-
-    function getSeasonNumFilter()
-    {
-        $options = $this->_getSeasonOptions();
-
-        $ddl_name = get_class($this)."[seasonNum]";
-        return CHtml::dropDownList($ddl_name, '', $options);
-    }
-
-    private function _getSeasonOptions()
-    {
-        $sql = "
-            SELECT DISTINCT seasonNum
-            FROM `episodes`
-            WHERE 1
-            ORDER BY
-                seasonNum DESC
-        ";
-        $command = yDb()->createCommand($sql);
-        $dataReader = $command->query();
-
-        $options = array('' => '-select-');
-        foreach($dataReader as $rval){
-            $snum = intval($rval["seasonNum"]);
-            $options[$snum] = "season {$snum}";
-        }
-
-//        $res = $command->queryAll();
-//        if(!empty($res)){
-//            foreach($res as $rval){
-//                $snum = intval($rval["seasonNum"]);
-//                $options[$snum] = "season {$snum}";
-//            }
-//        }
-
-        return $options;
-    }
 
 }
