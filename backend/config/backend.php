@@ -85,6 +85,7 @@ return array(
             'showScriptName' => false,
             'rules' => array(
                 // default rules
+                "<module:\w+>/<controller:\w+>/<action:\w+>"=>"<module>/<controller>/<action>",
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
