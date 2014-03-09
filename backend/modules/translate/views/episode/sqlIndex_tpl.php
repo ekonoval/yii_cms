@@ -6,14 +6,16 @@
 </style>
 <?php
 /**
- * @var $model BTransEpisode
+ * @var $model BTransEpisodeSql
  */
 
 
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'episodeGrid',
-    'dataProvider' => $model->search(),
-    'filter' => $model,
+    //'dataProvider' => $provider,
+    'filter'=>$model,
+    'dataProvider'=>$model->getSqlDataProvider(),
+    //'filter' => $model,
     //5543'afterAjaxUpdate' => 'reinstallDatePicker',
     'selectableRows' => 2,
 
@@ -26,18 +28,15 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'episodeID',
         'movieID',
         'episodeNum',
-        'seasonNum',
+        array(
+            'name' => 'seasonNum',
+            'filter' => $model->getSeasonNumFilter(),
+
+        ),
         array(
             'name' => "movieName", // dbField
             'value' => function($data){
-//                /**
-//                 * @var BTransEpisode $data
-//                 */
-//                pa($data->getRelated('lMovie')->attributes);exit;
-//                pa($data);
-//                //pa($data->relations());exit;
-//                exit;
-                return $data->lMovie->movieName;
+                return $data["movieName"];
             }
         ),
 
@@ -45,15 +44,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'type' => "raw",
             'value' => function ($data, $row) {
                 return CHtml::link("[words]",
-                    yApp()->createUrl("translate/words/index", array("episodeID" => $data->episodeID)),
+                    yApp()->createUrl("translate/words/index", array("episodeID" => $data["episodeID"])),
                     array('title' => 'View episode words')
                 );
             }
-            //'CHtml::link(CHtml::encode($data->email), "mailto:".CHtml::encode($data->email))',
         ),
-
-//        array(
-//            'class' => 'CButtonColumn',
-//        ),
     ),
 ));

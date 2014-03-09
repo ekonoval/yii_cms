@@ -2,6 +2,7 @@
 
 class BTransEpisode extends MEpisodes
 {
+    public $movieName;
     private $_movieID;
 
     function setMovieID($movieID)
@@ -9,9 +10,21 @@ class BTransEpisode extends MEpisodes
         $this->_movieID = intval($movieID);
     }
 
+    public function relations()
+    {
+        $rel = array(
+            'lMovie' => array(
+                self::BELONGS_TO,
+                'BTransMovie',
+                'movieID'
+            )
+        );
+        return $rel;
+    }
+
+
     public function search()
     {
-        // @todo Please modify the following code to remove attributes that should not be searched.
 
         $criteria = new CDbCriteria;
 
@@ -20,10 +33,16 @@ class BTransEpisode extends MEpisodes
         $criteria->compare('episodeNum', $this->episodeNum);
         $criteria->compare('movieID', $this->movieID);
 
-        $criteria->addCondition(" movieID = '{$this->_movieID}' ");
+        //$criteria->addCondition(" movieID = '{$this->_movieID}' ");
+        $criteria->addCondition(" t.movieID = :movieID ");
+        $criteria->params[":movieID"] = $this->_movieID;
 
+        $criteria->with = array('lMovie' => array('select' => 'movieName')); // !!!!!!!!!
+        //$criteria->select = "t.*, movieName ";
+        //$criteria->select = "t.*";
+        //$criteria->select = array("t.*", );
 
-        return new CActiveDataProvider(get_class($this), array(
+        $provider =  new CActiveDataProvider(get_class($this), array(
             'criteria' => $criteria,
             'sort' => array(
                 'defaultOrder' => 'seasonNum DESC, episodeNum DESC',
@@ -32,5 +51,7 @@ class BTransEpisode extends MEpisodes
                 'pageSize' => 20
             ),
         ));
+
+        return $provider;
     }
 }
