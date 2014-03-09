@@ -40,7 +40,8 @@ class BTransEpisode extends BTransEpisodeCommon
                 'defaultOrder' => 'seasonNum DESC, episodeNum DESC',
             ),
             'pagination' => array(
-                'pageSize' => 2
+                'pageSize' => 2,
+                //'route' => "/translate/episode/index?movieID={$this->_movieID}"
             ),
         ));
 
