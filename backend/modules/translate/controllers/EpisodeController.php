@@ -41,6 +41,9 @@ class EpisodeController extends BackendControllerBase
         ));
     }
 
+    /**
+     * @deprecated
+     */
     function actionSqlIndexOLd()
     {
         $sql = "

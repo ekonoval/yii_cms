@@ -21,4 +21,20 @@ class DefaultController extends BackendControllerBase
         $importObj = new SqliteToMysql();
         $importObj->main();
     }
+
+    function actionGrid()
+    {
+        $model = new \BTestEpisode('search');
+
+        $get_name = get_class($model);
+        $model->unsetAttributes(); // clear any default values
+
+        if (isset($_GET[$get_name])) {
+            $model->attributes = $_GET[$get_name];
+        }
+
+        $this->renderAuto(array(
+            'model' => $model
+        ));
+    }
 }

@@ -49,6 +49,24 @@ class SiteController extends BackendControllerBase
                 $this->render('error', array('error' => $error));
             }
         }
+    }
+
+    function actionGrid()
+    {
+        //$this->setImport(array('test.models.*'));
+        Yii::import('test.models.*');
+
+        $model = new \BTestEpisode('search');
+
+        $get_name = get_class($model);
+        $model->unsetAttributes(); // clear any default values
+
+        if (isset($_GET[$get_name])) {
+            $model->attributes = $_GET[$get_name];
+        }
+
+        $this->render("test.views.default.grid_tpl", array('model' => $model));
 
     }
+
 }
