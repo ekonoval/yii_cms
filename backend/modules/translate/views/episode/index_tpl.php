@@ -16,7 +16,9 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'filter' => $model,
     //5543'afterAjaxUpdate' => 'reinstallDatePicker',
     'selectableRows' => 2,
-    'ajaxUpdate'    => true,
+    //'ajaxUpdate'    => true,
+    'ajaxType' => 'POST',
+
     'columns' => array(
         array(
             'class' => 'CCheckBoxColumn',

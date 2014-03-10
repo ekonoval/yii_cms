@@ -81,4 +81,12 @@ class MovieController extends BackendControllerBase
         ));
     }
 
+    function actionTest()
+    {
+        $url1 = yApp()->createUrl("translate/episode/index", array("movieID" => 5));
+        $url2 = yApp()->createUrl("na/test/", array("movieID" => 5));
+        pa($url1, $url2);
+
+    }
+
 }

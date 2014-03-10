@@ -13,8 +13,8 @@ class EpisodeController extends BackendControllerBase
         $get_name = get_class($model);
         $model->unsetAttributes(); // clear any default values
 
-        if (isset($_GET[$get_name])) {
-            $model->attributes = $_GET[$get_name];
+        if (isset($_REQUEST[$get_name])) {
+            $model->attributes = $_REQUEST[$get_name];
         }
 
         $this->renderAuto(array(
@@ -41,37 +41,37 @@ class EpisodeController extends BackendControllerBase
         ));
     }
 
-    /**
-     * @deprecated
-     */
-    function actionSqlIndexOLd()
-    {
-        $sql = "
-            SELECT e.*, m.movieName
-            FROM episodes e
-                INNER JOIN movies m
-                    ON m.movieID = e.movieID
-            WHERE
-                e.movieID = 5
-        ";
-
-        $dataProvider = new \CSqlDataProvider($sql, array(
-            //'db' => yDb(),
-            'keyField' => 'episodeID',
-            'totalItemCount' => 50,//todo fix
-            'sort' => array(
-                'attributes' => array('seasonNum', 'episodeNum'),
-                'defaultOrder' => array('seasonNum' => true, 'episodeNum' => true),
-            ),
-            'pagination' => array(
-                'pageSize' => 10,
-            ),
-        ));
-
-        $this->renderAuto(array(
-            'provider' => $dataProvider
-        ));
-    }
+//    /**
+//     * @deprecated
+//     */
+//    function actionSqlIndexOLd()
+//    {
+//        $sql = "
+//            SELECT e.*, m.movieName
+//            FROM episodes e
+//                INNER JOIN movies m
+//                    ON m.movieID = e.movieID
+//            WHERE
+//                e.movieID = 5
+//        ";
+//
+//        $dataProvider = new \CSqlDataProvider($sql, array(
+//            //'db' => yDb(),
+//            'keyField' => 'episodeID',
+//            'totalItemCount' => 50,//todo fix
+//            'sort' => array(
+//                'attributes' => array('seasonNum', 'episodeNum'),
+//                'defaultOrder' => array('seasonNum' => true, 'episodeNum' => true),
+//            ),
+//            'pagination' => array(
+//                'pageSize' => 10,
+//            ),
+//        ));
+//
+//        $this->renderAuto(array(
+//            'provider' => $dataProvider
+//        ));
+//    }
 
 }
  
