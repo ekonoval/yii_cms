@@ -52,6 +52,15 @@
         ?>
     </div>
 
+    <div class="row">
+        <?php
+            $fieldKey = "superHard";
+            echo $form->labelEx($model, $fieldKey);
+            echo $form->checkBox($model, $fieldKey);
+            echo $form->error($model, $fieldKey);
+        ?>
+    </div>
+
     <div class="row buttons">
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
