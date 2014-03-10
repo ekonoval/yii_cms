@@ -9,7 +9,7 @@
 <?php
 
 /**
- * @var $model BTransWords
+ * @var $model BTransWord
  */
 
 

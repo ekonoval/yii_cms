@@ -35,7 +35,8 @@ class MovieController extends BackendControllerBase
 
     private function _redirectMovieIndex()
     {
-        $this->redirect(array('/translate/movie/index'));
+        //$this->redirect(array('/translate/movie/index'));
+        $this->redirect('/translate/movie/index');
     }
 
     function actionUpdate($id)

@@ -1,6 +1,6 @@
 <?php
 
-class BTransWords extends MWords
+class BTransWord extends MWords
 {
     private $_episodeIDPreselected;
 

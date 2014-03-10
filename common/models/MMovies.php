@@ -28,6 +28,7 @@ class MMovies extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('movieName', 'required'),
 			array('movieName', 'length', 'max'=>222),
 			array('createDate', 'safe'),
 			// The following rule is used by search().
