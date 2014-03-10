@@ -14,6 +14,19 @@ class BTransEpisode extends BTransEpisodeCommon
         return $rel;
     }
 
+//    public function behaviors()
+//    {
+//        return array(
+//            'ERememberFiltersBehavior' => array(
+//                //'class' => 'application.components.ERememberFiltersBehavior',
+//                'class' => 'ERememberFiltersBehavior',
+//
+//                'defaults' => array('seasonNum' => 3), /* optional line */
+//                'defaultStickOnClear' => true /* optional line */
+//            ),
+//        );
+//    }
+
 
     public function search()
     {

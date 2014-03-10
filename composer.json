@@ -37,6 +37,10 @@
         "2amigos/yiiwheels": "dev-master",
         "ircmaxell/password-compat": "1.0.3"
     },
+    "require_archive": {
+        "pentium10/yii-remember-filters-gridview" : "dev-master",
+        "pentium10/yii-clear-filters-gridview" : "dev-master"
+    },
     "autoload": {
         "psr-0": {
             "Yiinitializr": "common/lib/"

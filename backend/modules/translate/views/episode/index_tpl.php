@@ -10,6 +10,7 @@
  * @var $model BTransEpisode
  */
 
+
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'episodeGrid',
     'dataProvider' => $model->search(),
@@ -17,7 +18,9 @@ $this->widget('zii.widgets.grid.CGridView', array(
     //5543'afterAjaxUpdate' => 'reinstallDatePicker',
     'selectableRows' => 2,
     //'ajaxUpdate'    => true,
-    'ajaxType' => 'POST',
+    //'ajaxType' => 'POST',
+    //'ajaxUrl' => '/translate/episode/index/movieID/5/',
+    'ajaxUrl' => yApp()->request->url, // !!! Seems to be fixing the problem with pagination and filter reset
 
     'columns' => array(
         array(
