@@ -17,6 +17,8 @@
     font-style: italic;
 }
 
+
+.errorMessage,
 .errorSummary ul li{
     color: #ff0000;
     font-weight: bold;
