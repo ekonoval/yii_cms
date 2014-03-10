@@ -52,7 +52,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'type' => "raw",
             'value' => function ($data, $row) {
                 return CHtml::link("[words]",
-                    yApp()->createUrl("translate/words/index", array("episodeID" => $data->episodeID)),
+                    yApp()->createUrl("translate/word/index", array("episodeID" => $data->episodeID)),
                     array('title' => 'View episode words')
                 );
             }

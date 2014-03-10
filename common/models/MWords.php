@@ -31,6 +31,7 @@ class MWords extends CActiveRecord
 		return array(
 			array('wordEN, wordRU', 'required'),
 			array('episodeID, isHard, superHard', 'numerical', 'integerOnly'=>true),
+			array('wordEN, wordRU', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('wordID, episodeID, wordEN, wordRU, isHard, superHard', 'safe', 'on'=>'search'),
