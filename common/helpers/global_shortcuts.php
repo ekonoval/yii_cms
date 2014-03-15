@@ -1,5 +1,7 @@
 <?php
 
+use Ekv\components\Yii\Db\EkvDbConnection;
+
 function yApp()
 {
     return Yii::app();
@@ -13,6 +15,17 @@ function yUser()
     return Yii::app()->user;
 }
 
+/**
+ * @return CHttpRequest
+ */
+function yR()
+{
+    return Yii::app()->request;
+}
+
+/**
+ * @return EkvDbConnection
+ */
 function yDb()
 {
     return Yii::app()->db;

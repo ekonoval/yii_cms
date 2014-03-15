@@ -1,14 +1,17 @@
 <?php
+class ProjectCustomAutoloaderException extends Exception{}
 
 class ProjectCustomAutoloader
 {
-    static private $_predefined = array(
-        "Backend",
-        "Frontend",
-        "Api"
+    private $_predefined = array(
+        "B" => "backend",
+        "F" => "frontend",
+        "A" => "api"
     );
 
-    static function loadClass($class_name_fully_qualified)
+    private $_nsDelim = '\\';
+
+    function loadClass($class_name_fully_qualified)
     {
 
         $exists = false;
@@ -28,38 +31,55 @@ class ProjectCustomAutoloader
             //--- common ---//
             $parts_1 = $parts[1];
 
-            if(!in_array($parts_1, self::$_predefined)){
-                $base_path = realpath(Yii::getPathOfAlias("common.components")) . DIRECTORY_SEPARATOR;
+            //--- try COMMON app ---//
+            if(!in_array($parts_1, array_keys($this->_predefined))){
+                //todo - fix direct path from namespace not components
+                $base_path = realpath(Yii::getPathOfAlias("common")) . DIRECTORY_SEPARATOR;
                 $relative_parts = array_slice($parts, 1);
-                $absolute_path = $base_path . implode($ns_delim, $relative_parts) . ".php";
-                require $absolute_path;
-                $exists = class_exists($class_name_fully_qualified) || interface_exists($class_name_fully_qualified);
+
+                $this->_includeClass(
+                    $class_name_fully_qualified,
+                    $base_path,
+                    $relative_parts
+                );
+
+//                $absolute_path = $base_path . implode($ns_delim, $relative_parts) . ".php";
+//                require $absolute_path;
+//                $exists = class_exists($class_name_fully_qualified) || interface_exists($class_name_fully_qualified);
             }
             //--- any of possible -end parts ---//
             else{
-                $path_alias = strtolower($parts_1);
+                //$path_alias = strtolower($parts_1);
+                $path_alias = $this->_predefined[$parts_1];
                 //TODO - check if proper alias exists
-                $base_path = realpath(Yii::getPathOfAlias($path_alias));
-                $base_path .= DIRECTORY_SEPARATOR . "components" . DIRECTORY_SEPARATOR;
+                $base_path = realpath(Yii::getPathOfAlias($path_alias)) . DIRECTORY_SEPARATOR;
+                //$base_path .= DIRECTORY_SEPARATOR . "components" . DIRECTORY_SEPARATOR;
                 $relative_parts = array_slice($parts, 2);
 
-                $absolute_path = $base_path . implode($ns_delim, $relative_parts) . ".php";
-                require $absolute_path;
-                $exists = class_exists($class_name_fully_qualified) || interface_exists($class_name_fully_qualified);
+                $this->_includeClass(
+                    $class_name_fully_qualified,
+                    $base_path,
+                    $relative_parts
+                );
+//                $absolute_path = $base_path . implode($ns_delim, $relative_parts) . ".php";
+//                //pa($absolute_path);
+//                require $absolute_path;
+//                $exists = class_exists($class_name_fully_qualified) || interface_exists($class_name_fully_qualified);
             }
         }
-//        foreach (self::$prefixes as $prefix) {
-//            if (strpos($className, $prefix . '_') !== false) {
-//                if (!self::$basePath) {
-//                    self::$basePath =
-//                        Yii::getPathOfAlias("application.vendors") . '/';
-//                }
-//                include self::$basePath . str_replace
-//                ('_', '/', $className) . '.php';
-//                return class_exists($className, false) ||
-//                    interface_exists($className, false);
-//            }
-//        }
+
         return $exists;
+    }
+
+    private function _includeClass($class_name_fully_qualified, $base_path, $relative_parts)
+    {
+        $absolute_path = $base_path . implode($this->_nsDelim, $relative_parts) . ".php";
+
+        if(file_exists($absolute_path)){
+            require $absolute_path;
+        }else{
+            throw new ProjectCustomAutoloaderException("Classname {$class_name_fully_qualified} can't be loaded.");
+        }
+        $exists = class_exists($class_name_fully_qualified) || interface_exists($class_name_fully_qualified);
     }
 }

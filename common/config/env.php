@@ -7,7 +7,7 @@
  * @copyright 2013 2amigOS! Consultation Group LLC
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
-return array(
+$env_conf =  array(
 	'modules' => array(
 		'gii' => array(
 			'class' => 'system.gii.GiiModule',
@@ -17,14 +17,18 @@ return array(
 	),
 	'components' => array(
 		// configure to suit your needs
-//		'db' => array(
-//			'connectionString' => '{DB_CONNECTION}',
-//			'username' => '{DB_USER}',
-//			'password' => '{DB_PASSWORD}',
-//			'enableProfiling' => true,
-//			'enableParamLogging' => true,
-//			'charset' => 'utf8',
-//		),
+        'db' => array(
+            'connectionString' => 'mysql:host=localhost;dbname=yii',
+            'username' => 'root',
+            'password' => '',
+
+            'class' => '\Ekv\components\Yii\Db\EkvDbConnection', //!!!!
+            'pdoClass' => '\Ekv\components\Yii\Db\EkvPdo', //!!!!
+            'enableProfiling' => true,
+            'enableParamLogging' => true,
+            'charset' => 'utf8',
+            'emulatePrepare' => true,
+        ),
 	),
 	'params' => array(
 		'yii.handleErrors'   => true,
@@ -32,3 +36,14 @@ return array(
 		'yii.traceLevel' => 3,
 	)
 );
+
+$env_conf["components"]["db_sakila"] = $env_conf["components"]["db"];
+$env_conf["components"]["db_sakila"]["connectionString"] =
+    str_replace(
+        "dbname=yii",
+        //"dbname=bilet",
+        "dbname=sakila",
+        $env_conf["components"]["db_sakila"]["connectionString"]
+    );
+
+return $env_conf;

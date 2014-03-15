@@ -35,10 +35,11 @@ index
 /api/config/local.php
 /console/config/env.php
 /console/config/local.php
-/backend/config/env.php
-/backend/config/local.php
-/frontend/config/env.php
-/frontend/config/local.php
+
+#/backend/config/env.php
+#/backend/config/local.php
+#/frontend/config/env.php
+#/frontend/config/local.php
 
 # yiinitializr env.lock file
 /common/lib/Yiinitializr/config/env.lock
@@ -46,3 +47,10 @@ index
 # composer
 /common/lib/vendor
 composer.lock
+
+#data folder
+/common/data/testdrive.db
+
+# mine
+NaController.php
+/common/data/DBmovies.db3

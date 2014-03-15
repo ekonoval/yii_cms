@@ -23,7 +23,7 @@ class SiteController extends EController
         echo "<h2>-- Frontend index ACTION  </h2>\n";
         //\Ekv\Product\Helpers\ProductDetailedHelper::staticTest();
 
-        \Ekv\Frontend\ProductFormatter::main();
+        //\Ekv\Frontend\ProductFormatter::main();
 
         $this->render('index');
     }
@@ -37,7 +37,7 @@ class SiteController extends EController
             if (Yii::app()->request->isAjaxRequest) {
                 echo $error['message'];
             } else {
-                $this->render('error', $error);
+                $this->render('error', array('error' => $error));
             }
         }
     }

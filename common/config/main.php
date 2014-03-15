@@ -31,8 +31,10 @@ return array(
 		'application.models.*'
 	),
 	'components' => array(
-		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
+		'db_sqlite'=>array(
+            'class'=>'CDbConnection',
+			//'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
+			'connectionString' => 'sqlite:'.__DIR__.'/../data/DBmovies.db3',
 		),
 		'errorHandler' => array(
 			'errorAction' => 'site/error',
@@ -42,7 +44,7 @@ return array(
 			'routes' => array(
 				array(
 					'class'        => 'CDbLogRoute',
-					'connectionID' => 'db',
+					'connectionID' => 'db_sqlite',
 					'levels'       => 'error, warning',
 				),
 			),

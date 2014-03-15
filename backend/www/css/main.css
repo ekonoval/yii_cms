@@ -1,22 +1,25 @@
-
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
+.authed{
+    float: right;
+    padding: 10px 15px;
+    color: #fff;
+}
+.authed .username{
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+.b-err{
+    color: #f00;
+    font-style: italic;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.errorMessage,
+.errorSummary ul li{
+    color: #ff0000;
+    font-weight: bold;
+}

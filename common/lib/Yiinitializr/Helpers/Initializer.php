@@ -39,6 +39,18 @@ class Initializer
 
 		$config = self::config($configName, $mergeWith);
 
+        //--- add db_bilet conf ---//
+        $config["components"]["db_bilet"] = $config["components"]["db"];
+        $config["components"]["db_bilet"]["connectionString"] =
+            str_replace(
+                "dbname=yii",
+                //"dbname=bilet",
+                "dbname=sched_dev",
+                $config["components"]["db_bilet"]["connectionString"]
+            );
+
+        //pa($config);exit;
+
 		if (php_sapi_name() !== 'cli') // aren't we in console?
 			$app = \Yii::createWebApplication($config); // create web
 		else
@@ -54,7 +66,7 @@ class Initializer
         //#------------------- custom autoloader -------------------#//
         //Yii::import("common.", true);
 
-        Yii::registerAutoloader(array('\ProjectCustomAutoloader','loadClass'), true);
+        Yii::registerAutoloader(array(new \ProjectCustomAutoloader(),'loadClass'), true);
 
         //--- importing global shortcut functions ---//
         Yii::import("common.helpers.global_shortcuts", true);
@@ -158,8 +170,11 @@ class Initializer
 
 		date_default_timezone_set($params['php.timezone']);
 
-		if(!class_exists('YiiBase'))
-			require(Config::value('yii.path').'/yii.php');
+        if (!class_exists('YiiBase')) {
+            //require(Config::value('yii.path') . '/yii.php');
+            require(Config::value('yii.path') . '/YiiBase.php');
+            require(Config::value('yii.common') . '/yii_ekv.php');
+        }
 	}
 
 	/**

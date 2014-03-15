@@ -25,12 +25,21 @@
         {
             "type": "composer",
             "url": "http://packages.phundament.com"
+        },
+        {
+            "type": "composer",
+            "url": "http://packagist.org"
         }
     ],
     "require": {
         "yiisoft/yii": "dev-master",
         "yii-twbs/yiistrap": "dev-master",
-        "2amigos/yiiwheels": "dev-master"
+        "2amigos/yiiwheels": "dev-master",
+        "ircmaxell/password-compat": "1.0.3"
+    },
+    "require_archive": {
+        "pentium10/yii-remember-filters-gridview" : "dev-master",
+        "pentium10/yii-clear-filters-gridview" : "dev-master"
     },
     "autoload": {
         "psr-0": {
