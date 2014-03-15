@@ -37,22 +37,4 @@ class BackendControllerBase extends \EController
         $this->redirect("/");
     }
 
-    public function render($view = null, $data = null, $return = false)
-    {
-        if(is_null($view)){
-           $view = "{$this->action->id}_tpl";
-        }
-
-        return parent::render($view, $data, $return);
-    }
-
-    /**
-     * Tpl name is generated automatically
-     * @param $data
-     */
-    function renderAuto($data)
-    {
-        $this->render(null, $data, false);
-    }
-
 }
