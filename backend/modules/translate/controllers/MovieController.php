@@ -9,6 +9,12 @@ class MovieController extends BackendControllerBase
 {
     private $_mainModelName = "BTransMovie";
 
+    public function init()
+    {
+        parent::init();
+        $this->setEximLayout();
+    }
+
     function actionIndex()
     {
         //$model = new MMovies('search'); $get_name = 'Ekv\models\MMovies';

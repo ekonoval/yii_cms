@@ -37,4 +37,9 @@ class BackendControllerBase extends \EController
         $this->redirect("/");
     }
 
+    function setEximLayout()
+    {
+        $this->layout = "//layouts/LEximus";
+    }
+
 }

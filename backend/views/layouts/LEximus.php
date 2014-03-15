@@ -123,7 +123,6 @@ $assetsManager->registerScriptFile($assetUrl.'/js/jquery.hotkeys.js');
 
     <div id="bd" class="marleft">
         <div id="yui-main">
-            <? /* ?>
 			<?php if (isset($this->pageHeader) && !empty($this->pageHeader)) echo '<h3>'.CHtml::encode($this->pageHeader).'</h3>'; ?>
 
 			<!-- Remove yui-b class for full wide -->
@@ -151,8 +150,7 @@ $assetsManager->registerScriptFile($assetUrl.'/js/jquery.hotkeys.js');
 					?>
 				</div>
 			</div>
-            <? */
-            ?>
+
         </div>
         <!-- Sidebar content -->
         <?php if (!empty($this->sidebarContent)) { ?>
