@@ -76,7 +76,7 @@
 	{
 		// Load filter data
 		$.ajax({
-			url: "/admin/core/GridView/loadFilterJsonData/?id="+filterId,
+			url: "/core/GridView/loadFilterJsonData/?id="+filterId,
 			dataType: 'json',
 			success: function(data){
 				$('#'+ gridId +' :input').clearFields();
@@ -106,7 +106,7 @@
 		if (filterJsonData != '' && filterName != '')
 		{
 			$.ajax({
-				url: "/admin/core/GridView/saveFilterData",
+				url: "/core/GridView/saveFilterData",
 				type: "POST",
 				data: {
 					YII_CSRF_TOKEN: $("#"+gridId+"saveFilterDialog").data("token"),

@@ -3,7 +3,7 @@ namespace Ekv\B\extensions\sgridview;
 
 use Ekv\B\components\System\GlobalHelper;
 use Ekv\B\components\System\IPathHelper;
-use Ekv\B\models\GridViewFilter;
+use Ekv\B\modules\core\models\GridViewFilter;
 use Yii, CGridView, CException, CClientScript, CHtml;
 
 Yii::import('zii.widgets.grid.CGridView');
@@ -36,7 +36,7 @@ class SGridView extends CGridView
      */
     public $enableCustomActions = true;
 
-    public $enableHistory = true;
+    public $enableHistory = false;
 
     /**
      * @var array List of custom actions to display in footer.
@@ -100,6 +100,7 @@ class SGridView extends CGridView
         );
 
         $this->initColumns();
+        //pa($this->ajaxUrl);
     }
 
     /**
@@ -158,10 +159,12 @@ class SGridView extends CGridView
                                 Yii::app()->createUrl('core/admin/gridView/deleteFilter', array(
                                     'id' => $filter->id,
                                 )),
+
                                 // Ajax options
                                 array(
                                     'success' => "js:function(){\$('#SGridViewFilter_{$filter->id}').remove();}"
                                 ),
+
                                 // Html options
                                 array(
                                     'confirm' => Yii::t('SGridView.core', 'Вы действительно хотите удалить этот фильтр?'),

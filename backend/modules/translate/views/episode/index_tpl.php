@@ -4,14 +4,18 @@
         padding: 0;
     }
 </style>
-<h4>grid with AR</h4>
+<h4>grid1 with AR</h4>
 <?php
 /**
  * @var $model BTransEpisode
  */
 
 
-$this->widget('zii.widgets.grid.CGridView', array(
+use Ekv\B\extensions\sgridview\SGridView;
+
+$grid_widget = 'zii.widgets.grid.CGridView';
+$grid_widget = SGridView::getFullName();
+$this->widget($grid_widget, array(
     'id' => 'episodeGrid',
     'dataProvider' => $model->search(),
     'filter' => $model,

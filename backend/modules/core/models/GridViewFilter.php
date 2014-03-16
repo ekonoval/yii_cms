@@ -1,5 +1,5 @@
 <?php
-namespace Ekv\B\models;
+namespace Ekv\B\modules\core\models;
 use CActiveRecord, CDbCriteria, CActiveDataProvider;
 
 /**

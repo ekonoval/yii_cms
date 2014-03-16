@@ -16,12 +16,18 @@ use Ekv\models\MMovies;
 
 //$this->widget('zii.widgets.grid.CGridView', array(
 //$this->widget('backend.extensions.sgridview.SGridView', array(
-$this->widget(SGridView::getFullName(), array(
+
+$grid_widget = SGridView::getFullName();
+//$grid_widget = 'zii.widgets.grid.CGridView';
+
+$this->widget($grid_widget, array(
     'id' => 'movieGrid',
     'dataProvider' => $model->search(),
     'filter' => $model,
     //5543'afterAjaxUpdate' => 'reinstallDatePicker',
     'selectableRows' => 2,
+    //'ajaxUrl' => yApp()->request->url,
+    'ajaxUrl' => "/translate/movie/index/",
 
     'columns' => array(
         array(

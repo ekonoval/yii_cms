@@ -28,7 +28,7 @@ $assetsManager->registerCssFile($assetUrl.'/css/theme.css');
 //	Jgrowl::register();
 
 // Back Button & Query Library
-$assetsManager->registerScriptFile($assetUrl.'/vendors/jquery.ba-bbq.min.js');
+//$assetsManager->registerScriptFile($assetUrl.'/vendors/jquery.ba-bbq.min.js');
 
 // Init script
 $assetsManager->registerScriptFile($assetUrl.'/js/init.scripts.js');
