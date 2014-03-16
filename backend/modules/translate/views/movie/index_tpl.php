@@ -6,12 +6,17 @@
 </style>
 <?php
 /**
+ * @var $this MovieController
  * @var $model MMovies
  */
 
+use Ekv\B\extensions\sgridview\SGridView;
+use Ekv\B\modules\translate\controllers\MovieController;
 use Ekv\models\MMovies;
 
-$this->widget('zii.widgets.grid.CGridView', array(
+//$this->widget('zii.widgets.grid.CGridView', array(
+//$this->widget('backend.extensions.sgridview.SGridView', array(
+$this->widget(SGridView::getFullName(), array(
     'id' => 'movieGrid',
     'dataProvider' => $model->search(),
     'filter' => $model,

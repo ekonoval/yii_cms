@@ -26,9 +26,9 @@ class SystemMenu extends \CWidget
         // Minimum configuration
         $this->_items = array(
             'users' => array(
-                'label' => Yii::t('AdminModule.admin', 'Система'),
+                'label' => Yii::t('AdminModule.admin', 'Movies'),
                 'position' => 1,
-                //'url' => '/xxx/'
+                'url' => '/translate/movie/index/'
             ),
             'catalog' => array(
                 'label' => Yii::t('AdminModule.admin', 'Каталог'),

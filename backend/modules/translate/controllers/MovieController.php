@@ -17,6 +17,7 @@ class MovieController extends BackendControllerBase
 
     function actionIndex()
     {
+        //pa($this->getFullName());
         //$model = new MMovies('search'); $get_name = 'Ekv\models\MMovies';
         $model = new \BTransMovie('search'); $get_name = get_class($model);
         //$model = new \OldMovies('search'); $get_name = "OldMovies";
