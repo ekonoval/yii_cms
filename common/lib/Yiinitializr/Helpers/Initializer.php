@@ -38,6 +38,7 @@ class Initializer
 			throw new Exception('could not initialize framework.');
 
 		$config = self::config($configName, $mergeWith);
+        //pa($config);
 
         //--- add db_bilet conf ---//
         $config["components"]["db_bilet"] = $config["components"]["db"];
