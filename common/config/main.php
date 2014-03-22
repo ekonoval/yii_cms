@@ -13,7 +13,10 @@ require_once __DIR__ . '/../lib/Ekv/pa.php';
 
 return array(
 	'name' => '{APPLICATION NAME}',
-	'preload' => array('log'),
+	'preload' => array(
+        'log',
+        'debug'
+    ),
 	'aliases' => array(
 		'frontend' => dirname(__FILE__) . '/../..' . '/frontend',
 		'common' => dirname(__FILE__) . '/../..' . '/common',
@@ -31,6 +34,10 @@ return array(
 		'application.models.*'
 	),
 	'components' => array(
+        'debug' => array(
+            //'class' => 'ext.yii2-debug.Yii2Debug',
+            'class' => 'vendor.zhuravljov.yii2-debug.Yii2Debug',
+        ),
 		'db_sqlite'=>array(
             'class'=>'CDbConnection',
 			//'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
