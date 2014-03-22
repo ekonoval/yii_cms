@@ -71,10 +71,6 @@ $assetsManager->registerScriptFile($assetUrl.'/js/jquery.hotkeys.js');
                 ?>
             </div>
             <div class="yui-u" id="topRightMenu">
-                <form action="/admin/store/products/" method="get" id="topSearchForm">
-                    <input type="text" name="StoreProduct[name]" id="topSearchBox">
-                </form>
-
                 <?php
                 /*
                 echo CHtml::link(Yii::t('AdminModule.admin', 'Выход ({name})', array('{name}'=>Yii::app()->user->model->username)), array('/admin/auth/logout'), array(
