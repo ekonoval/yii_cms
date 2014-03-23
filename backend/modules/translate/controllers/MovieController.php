@@ -1,11 +1,12 @@
 <?php
 namespace Ekv\B\modules\translate\controllers;
 
+use EController;
 use Ekv\B\components\Controllers\BackendControllerBase;
 use BTransMovie, CHttpException;
 
 
-class MovieController extends BackendControllerBase
+class MovieController extends TranslateController
 {
     private $_mainModelName = "BTransMovie";
 

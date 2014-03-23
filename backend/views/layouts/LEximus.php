@@ -41,7 +41,7 @@ $assetsManager->registerScriptFile($assetUrl . '/js/jquery.hotkeys.js');
 <html>
 <head>
     <meta charset="utf-8">
-    <title>EximusCommerce - Admin</title>
+    <title>Yii - CMS</title>
 
     <style type="text/css">
         /*** Fix for tabs. ***/
@@ -94,10 +94,10 @@ $assetsManager->registerScriptFile($assetUrl . '/js/jquery.hotkeys.js');
                         <?php
                         // /*
                         //$this->widget('application.modules.admin.widgets.SAdminBreadcrumbs', array(
-                        $this->breadcrumbs = array ( 'Home' => '/admin', 'Производители' => '/admin/store/manufacturer/index', 0 => 'Apple', );
+                        //$this->breadcrumbs = array ( 'Home' => '/admin', 'Производители' => '/admin/store/manufacturer/index', 0 => 'Apple', );
                         $this->widget(AdminBreadcrumps::getFullName(), array(
-                            'homeLink' => $this->createUrl('/'),
-                            'links' => $this->breadcrumbs,
+                            //'homeLink' => $this->createUrl('/'),
+                            'links' => $this->bc,
                         ));
                         // */
                         ?>

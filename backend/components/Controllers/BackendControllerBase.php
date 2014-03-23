@@ -9,6 +9,13 @@ class BackendControllerBase extends \EController
      */
     public $layout = "//layouts/lMain";
 
+    protected function _breadcrumps()
+    {
+        parent::_breadcrumps();
+        $this->_addBreadCrumpItem('Index', '/');
+    }
+
+
     public function filters()
     {
         return array(
