@@ -49,7 +49,8 @@ class WordController extends TranslateController
         }
 
         $this->renderAuto(array(
-            'model' => $model
+            'model' => $model,
+            'episodeID' => $episodeID
         ));
     }
 
@@ -96,6 +97,11 @@ class WordController extends TranslateController
         $this->render('create_tpl', array(
             'model' => $model,
         ));
+    }
+
+    function actionUpdateNew($id)
+    {
+        
     }
 
 }

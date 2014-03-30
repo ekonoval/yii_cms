@@ -10,8 +10,10 @@
 
 /**
  * @var $model BTransWord
+ * @var $this BackendControllerBase
  */
 
+use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\extensions\sgridview\SGridView;
 
 $grid_name = 'zii.widgets.grid.CGridView';
@@ -41,7 +43,19 @@ $this->widget($grid_name, array(
 
         array(
             'class' => 'CButtonColumn',
-            'template' => '{update}{delete}'
+            'template' => '{update}{delete}{updateNew}',
+            'buttons' => array(
+                'updateNew' => array(
+                    'label' => 'New update',
+                    'imageUrl' => SGridView::getExtAssetsUrl('update.png'),
+                    'url' => function($row)use($episodeID){
+                        return $this->createUrl('/translate/word/updateNew/', array(
+                            'episodeID' => $episodeID,
+                            'id' => $row->wordID
+                        ));
+                    }
+                )
+            )
         ),
     ),
 ));

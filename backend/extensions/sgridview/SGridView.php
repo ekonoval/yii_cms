@@ -103,6 +103,14 @@ class SGridView extends CGridView
         //pa($this->ajaxUrl);
     }
 
+    static function getExtAssetsUrl($file_path_relative)
+    {
+        $baseUrl = Yii::app()->assetManager->publish(__DIR__."/assets/");
+        $final = $baseUrl . "/{$file_path_relative}";
+
+        return $final;
+    }
+
     /**
      * Renders the data items for the grid view.
      */
