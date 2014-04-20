@@ -2,6 +2,7 @@
 namespace Ekv\B\modules\translate\controllers;
 
 use Ekv\B\components\Controllers\BackendControllerBase;
+use Ekv\B\modules\translate\forms\WordEditForm;
 
 class WordController extends TranslateController
 {
@@ -18,12 +19,12 @@ class WordController extends TranslateController
         parent::_breadcrumps();
         $action = $this->getActionId();
 
-        if($action == 'index'){
+        if ($action == 'index') {
             $episodeID = yR()->getParam('episodeID');
 
             $episodeObj = \BTransEpisode::model()->findByPk($episodeID);
 
-            if($episodeObj){
+            if ($episodeObj) {
                 $this->_addMovieIdBc($episodeObj->movieID);
 
                 //--- add final bc item ---//
@@ -101,7 +102,25 @@ class WordController extends TranslateController
 
     function actionUpdateNew($id)
     {
-        
+        $model = null;
+        //if ($new === true)
+        if (false) {
+//            $model = new StoreDeliveryMethod;
+//            $model->unsetAttributes();
+        } else {
+            $model = \BTransWord::model()->findByPk($id);
+        }
+
+        if (!$model) {
+            throw new \CHttpException(404, Yii::t('StoreModule.admin', 'Incorrect wordID'));
+        }
+
+        $form = WordEditForm::create($model);
+
+        $this->renderAuto(array(
+            'model'=>$model,
+            'form'=>$form,
+        ));
     }
 
 }
