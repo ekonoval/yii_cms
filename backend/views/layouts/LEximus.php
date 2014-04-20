@@ -187,7 +187,7 @@ $assetsManager->registerScriptFile($assetUrl . '/js/jquery.hotkeys.js');
         <? */
             ?>
             <div class="small-footer-text">
-                <a href="http://eximuscommerce.com/" target="_blank">EximusCommerce</a>
+                © copy
             </div>
         </div>
 
