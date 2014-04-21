@@ -9,6 +9,12 @@ class BackendControllerBase extends \EController
      */
     public $layout = "//layouts/lMain";
 
+    /**
+   	 * Buttons to display
+   	 * @var array
+   	 */
+   	public $topButtons = array();
+
     protected function _breadcrumps()
     {
         parent::_breadcrumps();

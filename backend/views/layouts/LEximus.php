@@ -110,10 +110,10 @@ $assetsManager->registerScriptFile($assetUrl . '/js/jquery.hotkeys.js');
             <div class="navigation-content-right marright" align="right" style="float:right;">
                 <div style="float:right;">
                     <?php
-                    /*
+                    ///*
                         if (!empty($this->topButtons))
                             echo $this->topButtons;
-                    */
+                    //*/
                     ?>
                 </div>
             </div>

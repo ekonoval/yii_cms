@@ -13,14 +13,20 @@ class WordEditForm extends FormBuilder
             'elements' => array(
                 'tab1' => array(
                     'type' => 'form',
-                    'title' => 'Subform title',
+                    //'title' => 'Subform title',
                     'elements' => array(
                         'wordEN' => array(
                             'type' => 'text',
                         ),
-                        "<h2>xxxx</h2>",
+                        //"<h2>xxxx</h2>",
                         'wordRU' => array(
                             'type' => 'text',
+                        ),
+                        'isHard' => array(
+                            'type' => 'checkbox'
+                        ),
+                        'superHard' => array(
+                            'type' => 'checkbox'
                         ),
                     ),
                 ),

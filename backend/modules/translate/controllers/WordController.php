@@ -117,6 +117,8 @@ class WordController extends TranslateController
 
         $form = WordEditForm::create($model);
 
+        //pa($form->elements["tab1"]->elements["wordEN"]);exit;
+
         $this->renderAuto(array(
             'model'=>$model,
             'form'=>$form,
