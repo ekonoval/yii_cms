@@ -1,14 +1,11 @@
 <?php
 namespace Ekv\B\modules\translate\forms;
 
-class WordEditForm extends \CForm
-{
-    static function create($model)
-    {
-        return new self(self::_config(), $model);
-    }
+use Ekv\B\components\System\FormBuilder;
 
-    private static function _config()
+class WordEditForm extends FormBuilder
+{
+    protected static function _getConfig()
     {
         $config = array(
             'id' => 'wordEditForm',
