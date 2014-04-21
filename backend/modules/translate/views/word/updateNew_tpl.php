@@ -10,14 +10,9 @@ $this->topButtons = $this->widget(TopButtons::getFullName(), array(
 
 <div class="form wide padding-all">
     <?php
-    //echo $form;
-    //$form->elements["tab1"]->elements["wordEN"]->render();
-    echo $form->renderBegin();
-
-    //        pa($form["tab1"]["wordEN"]);
-
-    echo $form["tab1"]["wordEN"]->render();
-
-    echo $form->renderEnd();
+    echo $form;
+//    echo $form->renderBegin();
+//    echo $form["tab1"]["wordEN"]->render();
+//    echo $form->renderEnd();
     ?>
 </div>
