@@ -10,11 +10,26 @@
 
 /**
  * @var $model BTransWord
- * @var $this BackendControllerBase
+ * @var $this TranslateController
  */
 
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\extensions\sgridview\SGridView;
+use Ekv\B\modules\translate\controllers\TranslateController;
+use Ekv\B\widgets\TopButtons;
+
+$this->topButtons = $this->widget(TopButtons::getFullName(), array(
+    'template' => array('create'),
+    'elements' => array(
+        'create' => array(
+            'link' => $this->getEpisodeWordsCreateUrl($episodeID),
+            'title' => Yii::t('StoreModule.admin', 'Создать'),
+            'options' => array(
+                'icons' => array('primary' => 'ui-icon-plus')
+            )
+        ),
+    ),
+));
 
 $grid_name = 'zii.widgets.grid.CGridView';
 $grid_name = SGridView::getFullName();

@@ -25,8 +25,17 @@ class TranslateController extends BackendControllerBase
 
     function getEpisodeWordsIndexUrl($episodeID)
     {
-        $url = $this->createUrl("/translate/word/index", array("episodeID" => $episodeID));
-        return $url;
+        return $this->_episodeWordsUrl($episodeID, "index");
+    }
+
+    function getEpisodeWordsCreateUrl($episodeID)
+    {
+        return $this->_episodeWordsUrl($episodeID, "createExt");
+    }
+
+    private function _episodeWordsUrl($episodeID, $action)
+    {
+        return $url = $this->createUrl("/translate/word/{$action}", array("episodeID" => $episodeID));
     }
 }
  

@@ -19,7 +19,7 @@ class WordController extends TranslateController
         parent::_breadcrumps();
         $action = $this->getActionId();
 
-        $actionsList = array("index", "updateExt");
+        $actionsList = array("index", "updateExt", 'createExt');
         if (in_array($action, $actionsList)) {
             $episodeID = yR()->getParam('episodeID');
 
@@ -101,21 +101,24 @@ class WordController extends TranslateController
         ));
     }
 
-    function actionUpdateExt($id)
+    function actionCreateExt($episodeID)
     {
-        $edit_mode = true;
+        $this->actionUpdateExt(false, $episodeID);
+    }
 
+    function actionUpdateExt($edit_mode = true, $episodeID = 0)
+    {
         /**
          * @var $model \BTransWord
          */
         $model = null;
 
-        //if ($new === true)
-        if (false) {
-//            $model = new StoreDeliveryMethod;
-//            $model->unsetAttributes();
+        if (!$edit_mode) {
+            $model = new \BTransWord();
+            $model->unsetAttributes();
         } else {
-            $model = \BTransWord::model()->findByPk($id);
+            $wordID = @intval($_GET["id"]);
+            $model = \BTransWord::model()->findByPk($wordID);
         }
 
         if (!$model) {
@@ -128,6 +131,10 @@ class WordController extends TranslateController
         if(yR()->isPostRequest){
             $model->attributes = $_POST[get_class($model)];
 
+            if(!$edit_mode){
+                $model->episodeID = $episodeID;
+            }
+
             if ($model->validate()) {
                 $model->save();
                 $this->setFlashMessage(\Yii::t('StoreModule.admin', 'Изменения успешно сохранены'));
@@ -136,7 +143,7 @@ class WordController extends TranslateController
             }
         }
 
-        $this->renderAuto(array(
+        $this->render("updateExt_tpl", array(
             'model'=>$model,
             'form'=>$form,
         ));
