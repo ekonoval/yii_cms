@@ -2,6 +2,7 @@
 
 // Register jquery and jquery ui.
 
+use Ekv\B\extensions\jgrowl\Jgrowl;
 use Ekv\B\widgets\AdminBreadcrumps;
 use Ekv\B\widgets\SystemMenu;
 use Ekv\components\Yii\Db\EkvPdoStatement;
@@ -24,9 +25,8 @@ $assetsManager->registerCssFile($assetUrl . '/css/breadcrumbs/style.css');
 $assetsManager->registerCssFile($assetUrl . '/vendors/jquery_ui/css/custom-theme/jquery-ui-1.8.14.custom.css');
 $assetsManager->registerCssFile($assetUrl . '/css/theme.css');
 
-//	// jGrowl
-//	Yii::import('ext.jgrowl.Jgrowl');
-//	Jgrowl::register();
+// jGrowl
+Jgrowl::register();
 
 // Back Button & Query Library
 //$assetsManager->registerScriptFile($assetUrl.'/vendors/jquery.ba-bbq.min.js');
