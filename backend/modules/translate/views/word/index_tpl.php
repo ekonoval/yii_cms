@@ -43,13 +43,13 @@ $this->widget($grid_name, array(
 
         array(
             'class' => 'CButtonColumn',
-            'template' => '{update}{delete}{updateNew}',
+            'template' => '{update}{delete}{updateExt}',
             'buttons' => array(
-                'updateNew' => array(
+                'updateExt' => array(
                     'label' => 'New update',
                     'imageUrl' => SGridView::getExtAssetsUrl('update.png'),
                     'url' => function($row)use($episodeID){
-                        return $this->createUrl('/translate/word/updateNew/', array(
+                        return $this->createUrl('/translate/word/updateExt/', array(
                             'episodeID' => $episodeID,
                             'id' => $row->wordID
                         ));

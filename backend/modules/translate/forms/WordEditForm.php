@@ -36,5 +36,20 @@ class WordEditForm extends FormBuilder
         return $config;
     }
 
+//    public function render()
+//    {
+//        $output = $this->renderBegin();
+//
+//        foreach ($this->getElements() as $element) {
+//            //$output .= $element->render();
+//            $output .= $this->renderElement($element);
+//        }
+//
+//        $output .= $this->renderEnd();
+//
+//        return $output;
+//    }
+
+
 }
  

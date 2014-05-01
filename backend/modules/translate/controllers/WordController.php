@@ -100,7 +100,7 @@ class WordController extends TranslateController
         ));
     }
 
-    function actionUpdateNew($id)
+    function actionUpdateExt($id)
     {
         $model = null;
         //if ($new === true)
