@@ -22,5 +22,11 @@ class TranslateController extends BackendControllerBase
             $this->_addBreadCrumpItem($movieObj->movieName, $url);
         }
     }
+
+    function getEpisodeWordsIndexUrl($episodeID)
+    {
+        $url = $this->createUrl("/translate/word/index", array("episodeID" => $episodeID));
+        return $url;
+    }
 }
  

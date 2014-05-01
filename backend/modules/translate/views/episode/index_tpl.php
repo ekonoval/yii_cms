@@ -8,10 +8,14 @@
 <?php
 /**
  * @var $model BTransEpisode
+ * @var $this EpisodeController
  */
 
 
 use Ekv\B\extensions\sgridview\SGridView;
+use Ekv\B\modules\translate\controllers\EpisodeController;
+
+$controller = $this; // fix 5.3 in anonymous functions
 
 $grid_widget = 'zii.widgets.grid.CGridView';
 $grid_widget = SGridView::getFullName();
@@ -54,9 +58,10 @@ $this->widget($grid_widget, array(
 
         array(
             'type' => "raw",
-            'value' => function ($data, $row) {
+            'value' => function ($data, $row)use($controller) {
                 return CHtml::link("[words]",
-                    yApp()->createUrl("translate/word/index", array("episodeID" => $data->episodeID)),
+                    $controller->getEpisodeWordsIndexUrl($data->episodeID),
+                    //yApp()->createUrl("translate/word/index", array("episodeID" => $data->episodeID)),
                     array('title' => 'View episode words')
                 );
             }
