@@ -19,7 +19,8 @@ class WordController extends TranslateController
         parent::_breadcrumps();
         $action = $this->getActionId();
 
-        if ($action == 'index') {
+        $actionsList = array("index", "updateExt");
+        if (in_array($action, $actionsList)) {
             $episodeID = yR()->getParam('episodeID');
 
             $episodeObj = \BTransEpisode::model()->findByPk($episodeID);
@@ -30,12 +31,12 @@ class WordController extends TranslateController
                 //--- add final bc item ---//
                 $this->_addBreadCrumpItem(
                     "Episode #{$episodeID}",
-                    $this->createUrl("/translate/word/index/", array('episodeID' => $episodeID))
+                    $this->getEpisodeWordsIndexUrl($episodeID)
                 );
             }
         }
-    }
 
+    }
 
     function actionIndex($episodeID)
     {
@@ -118,7 +119,7 @@ class WordController extends TranslateController
         }
 
         if (!$model) {
-            throw new \CHttpException(404, Yii::t('StoreModule.admin', 'Incorrect wordID'));
+            throw new \CHttpException(404, \Yii::t('StoreModule.admin', 'Incorrect wordID'));
         }
 
         $form = WordEditForm::create($model);

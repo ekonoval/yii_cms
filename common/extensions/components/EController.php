@@ -15,10 +15,10 @@ class EController extends CController
 	public $meta_keywords = array();
 	public $meta_description = array();
 
-    protected function beforeRender($view)
+    protected function beforeAction($action)
     {
         $this->_breadcrumps();
-        return parent::beforeRender($view);
+        return parent::beforeAction($action);
     }
 
 

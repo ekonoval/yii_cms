@@ -13,6 +13,8 @@ require_once __DIR__ . '/../lib/Ekv/pa.php';
 
 return array(
 	'name' => '{APPLICATION NAME}',
+    //'language' => 'en',
+    'sourceLanguage' => 'en',
 	'preload' => array(
         'log',
         'debug'

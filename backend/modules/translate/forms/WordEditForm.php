@@ -5,6 +5,13 @@ use Ekv\B\components\System\FormBuilder;
 
 class WordEditForm extends FormBuilder
 {
+    protected function init()
+    {
+        parent::init();
+        $this->showErrorSummary = true;
+        $this->showErrors = false;
+    }
+
     protected static function _getConfig()
     {
         $config = array(
