@@ -55,4 +55,19 @@ class BackendControllerBase extends \EController
         $this->layout = "//layouts/LEximus";
     }
 
+    /**
+   	 * Set flash messages.
+   	 *
+   	 * @param string $message
+   	 */
+   	public function setFlashMessage($message)
+   	{
+   		$currentMessages = yUser()->getFlash('messages');
+
+   		if (!is_array($currentMessages))
+   			$currentMessages = array();
+
+   		yUser()->setFlash('messages', \CMap::mergeArray($currentMessages, array($message)));
+   	}
+
 }

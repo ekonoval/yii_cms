@@ -57,7 +57,7 @@ class WordController extends TranslateController
 
     private function _redirectWordIndex($episodeID)
     {
-        $this->redirect(yApp()->createUrl("translate/word/index", array("episodeID" => $episodeID)));
+        $this->redirect($this->getEpisodeWordsIndexUrl($episodeID));
     }
 
     function actionUpdate($id)
@@ -102,7 +102,13 @@ class WordController extends TranslateController
 
     function actionUpdateExt($id)
     {
+        $edit_mode = true;
+
+        /**
+         * @var $model \BTransWord
+         */
         $model = null;
+
         //if ($new === true)
         if (false) {
 //            $model = new StoreDeliveryMethod;
@@ -117,7 +123,17 @@ class WordController extends TranslateController
 
         $form = WordEditForm::create($model);
 
-        //pa($form->elements["tab1"]->elements["wordEN"]);exit;
+        //--- check was form posted ---//
+        if(yR()->isPostRequest){
+            $model->attributes = $_POST[get_class($model)];
+
+            if ($model->validate()) {
+                $model->save();
+                $this->setFlashMessage(\Yii::t('StoreModule.admin', 'Изменения успешно сохранены'));
+
+                $this->_redirectWordIndex($model->episodeID);
+            }
+        }
 
         $this->renderAuto(array(
             'model'=>$model,
