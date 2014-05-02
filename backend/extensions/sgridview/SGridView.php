@@ -2,7 +2,7 @@
 namespace Ekv\B\extensions\sgridview;
 
 use Ekv\B\components\System\GlobalHelper;
-use Ekv\B\components\System\IPathHelper;
+use Ekv\B\components\System\IFullyQualified;
 use Ekv\B\modules\core\models\GridViewFilter;
 use Yii, CGridView, CException, CClientScript, CHtml;
 

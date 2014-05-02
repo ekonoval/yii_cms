@@ -18,7 +18,7 @@ use Ekv\B\extensions\sgridview\SGridView;
 use Ekv\B\modules\translate\controllers\TranslateController;
 use Ekv\B\widgets\TopButtons;
 
-$this->topButtons = $this->widget(TopButtons::getFullName(), array(
+$this->topButtons = $this->widget(TopButtons::getClassNameFQ(), array(
     'template' => array('create'),
     'elements' => array(
         'create' => array(

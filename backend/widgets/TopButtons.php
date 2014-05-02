@@ -2,12 +2,12 @@
 namespace Ekv\B\widgets;
 
 use Ekv\B\components\System\GlobalHelper;
-use Ekv\B\components\System\IPathHelper;
+use Ekv\B\components\System\IFullyQualified;
 use Yii, CForm, CMap, CClientScript, CHtml, CActiveRecord;
 
-class TopButtons extends \CWidget implements IPathHelper
+class TopButtons extends \CWidget implements IFullyQualified
 {
-    static function getFullName()
+    static function getClassNameFQ()
     {
         return GlobalHelper::getPath(__CLASS__);
     }

@@ -3,9 +3,9 @@ namespace Ekv\B\widgets;
 
 use CHtml, Yii;
 use Ekv\B\components\System\GlobalHelper;
-use Ekv\B\components\System\IPathHelper;
+use Ekv\B\components\System\IFullyQualified;
 
-class AdminBreadcrumps extends \CWidget implements IPathHelper
+class AdminBreadcrumps extends \CWidget implements IFullyQualified
 {
 // See CBreadcrumbs.php for more details
     public $tagName = 'ul';
@@ -52,7 +52,7 @@ class AdminBreadcrumps extends \CWidget implements IPathHelper
         echo CHtml::closeTag($this->tagName);
     }
 
-    static function getFullName()
+    static function getClassNameFQ()
     {
         return GlobalHelper::getPath(__CLASS__);
     }

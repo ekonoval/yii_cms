@@ -95,7 +95,7 @@ $assetsManager->registerScriptFile($assetUrl . '/js/jquery.hotkeys.js');
                         // /*
                         //$this->widget('application.modules.admin.widgets.SAdminBreadcrumbs', array(
                         //$this->breadcrumbs = array ( 'Home' => '/admin', 'Производители' => '/admin/store/manufacturer/index', 0 => 'Apple', );
-                        $this->widget(AdminBreadcrumps::getFullName(), array(
+                        $this->widget(AdminBreadcrumps::getClassNameFQ(), array(
                             //'homeLink' => $this->createUrl('/'),
                             'links' => $this->bc,
                         ));
