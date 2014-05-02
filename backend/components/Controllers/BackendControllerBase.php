@@ -70,4 +70,25 @@ class BackendControllerBase extends \EController
    		yUser()->setFlash('messages', \CMap::mergeArray($currentMessages, array($message)));
    	}
 
+    function assignFormGetAttributes($model)
+    {
+        $get_name = get_class($model);
+
+        if (isset($_GET[$get_name])) {
+            $model->attributes = $_GET[$get_name];
+        }
+    }
+
+    function isEditFormPosted($model)
+    {
+        $get_name = get_class($model);
+        $isPosted = isset($_POST[$get_name]);
+
+        if($isPosted){
+            $model->attributes = $_POST[$get_name];
+        }
+
+        return $isPosted;
+    }
+
 }

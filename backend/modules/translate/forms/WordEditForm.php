@@ -8,8 +8,8 @@ class WordEditForm extends FormBuilder
     protected function init()
     {
         parent::init();
-        $this->showErrorSummary = true;
-        $this->showErrors = false;
+//        $this->showErrorSummary = true;
+//        $this->showErrors = false;
     }
 
     protected static function _getConfig()
