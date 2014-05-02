@@ -14,3 +14,8 @@ function pa()
 	print_r($res);
 	echo "</pre>";
 }
+
+function getClassNameFullyQualified($class_ns_full = __CLASS__)
+{
+    return '\\'.$class_ns_full;
+}

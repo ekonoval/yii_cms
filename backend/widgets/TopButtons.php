@@ -9,7 +9,7 @@ class TopButtons extends \CWidget implements IFullyQualified
 {
     static function getClassNameFQ()
     {
-        return GlobalHelper::getPath(__CLASS__);
+        return getClassNameFullyQualified(__CLASS__);
     }
 
     /**

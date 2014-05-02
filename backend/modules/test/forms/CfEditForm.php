@@ -18,6 +18,10 @@ class CfEditForm extends FormBuilder
                         'fName' => array(
                             'type' => 'text',
                         ),
+
+                        'markup' => array(
+                            'type' => 'text'
+                        )
                     ),
                 ),
             ),

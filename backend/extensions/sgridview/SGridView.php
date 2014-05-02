@@ -46,7 +46,7 @@ class SGridView extends CGridView
 
     static function getFullName()
     {
-        return GlobalHelper::getPath(__CLASS__);
+        return getClassNameFullyQualified(__CLASS__);
     }
 
 
