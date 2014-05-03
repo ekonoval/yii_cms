@@ -15,8 +15,6 @@
  */
 class MFieldsCustom extends CActiveRecord
 {
-    public $markupCalc;
-
 	/**
 	 * @return string the associated database table name
 	 */
@@ -41,7 +39,6 @@ class MFieldsCustom extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, fName, dt, txtFile, photoFile, rubricID, markupNumeric, markupPercent', 'safe', 'on'=>'search'),
-            array('markupCalc', 'safe')
 		);
 	}
 
@@ -70,7 +67,6 @@ class MFieldsCustom extends CActiveRecord
 			'rubricID' => 'Rubric',
 			'markupNumeric' => 'Markup Numeric',
 			'markupPercent' => 'Markup Percent',
-            'markupCalc' => "Risking"
 		);
 	}
 
@@ -116,13 +112,5 @@ class MFieldsCustom extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-
-    protected function afterValidate()
-    {
-        if(!$this->hasErrors()){
-            $this->addError("markupCalc", "Super custom error");
-        }
-    }
-
 
 }

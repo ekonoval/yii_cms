@@ -2,6 +2,7 @@
 namespace Ekv\B\widgets\Input;
 
 use Ekv\B\components\System\IFullyQualified;
+use Ekv\B\modules\test\models\BTestFieldsCustom;
 use Yii, CHtml;
 
 
@@ -20,6 +21,17 @@ class WPriceMarkup extends \CInputWidget implements IFullyQualified
 
     public function run()
     {
+        /**
+         * @var $model BTestFieldsCustom
+         */
+        $model = $this->model;
+        $hasMarkup = true;
+        if(
+            $model->markupNumeric > 0
+            || $model->markupPercent > 0
+        ){
+            $hasMarkup = true;
+        }
 
         $markupFile = include_once __DIR__."/markup.php";
 

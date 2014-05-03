@@ -2,6 +2,7 @@
 namespace Ekv\B\modules\test\forms;
 
 use Ekv\B\components\System\FormBuilder;
+use Ekv\B\modules\test\models\BTestFieldsCustom;
 use Ekv\B\widgets\Input\WPriceMarkup;
 
 class CfEditForm extends FormBuilder
@@ -82,7 +83,7 @@ class CfEditForm extends FormBuilder
 
         /**
          * @var $element \CFormInputElement
-         * @var $model \MFieldsCustom
+         * @var $model BTestFieldsCustom
          */
 
         $model = $this->getParent()->getModel();
