@@ -62,6 +62,8 @@ class CustomFieldsController extends BackendControllerBase
             }
         }
 
+        //pa($form->getElements());
+
         $this->render("update_tpl", array(
             'model'=>$model,
             'form'=>$form,
