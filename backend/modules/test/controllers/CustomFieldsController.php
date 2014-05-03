@@ -3,7 +3,7 @@ namespace Ekv\B\modules\test\controllers;
 
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\modules\test\forms\CfEditForm;
-use Ekv\B\modules\test\models\BTestFieldsCustom;
+use \BTestFieldsCustom;
 
 class CustomFieldsController extends BackendControllerBase
 {
@@ -59,6 +59,15 @@ class CustomFieldsController extends BackendControllerBase
                 $this->setFlashMessage(\Yii::t('StoreModule.admin', 'Изменения успешно сохранены'));
 
                 $this->redirect($this->getIndexUrl());
+            }
+        }else{
+            //--- init has markup ---//
+            $model->hasMarkup = false;
+            if(
+                $model->markupNumeric > 0
+                || $model->markupPercent > 0
+            ){
+                $model->hasMarkup = true;
             }
         }
 

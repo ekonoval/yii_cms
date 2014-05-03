@@ -1,12 +1,9 @@
 <?php
-namespace Ekv\B\modules\test\models;
-
-use CActiveRecord;
-use MFieldsCustom;
 
 class BTestFieldsCustom extends \MFieldsCustom
 {
     public $markupCalc;
+    public $hasMarkup;
 
     /**
      * @param string $className
@@ -21,7 +18,7 @@ class BTestFieldsCustom extends \MFieldsCustom
     {
         $base_rules = parent::rules();
 
-        $base_rules[] = array('markupCalc', 'safe');
+        $base_rules[] = array('markupCalc, hasMarkup', 'safe');
 
         return $base_rules;
     }
@@ -30,7 +27,7 @@ class BTestFieldsCustom extends \MFieldsCustom
     {
         $base_labels = parent::attributeLabels();
 
-        $base_labels[] = array('markupCalc' => "Risking");
+        $base_labels['markupCalc'] =  "Risking";
 
         return $base_labels;
     }

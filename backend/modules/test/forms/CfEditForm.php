@@ -2,7 +2,7 @@
 namespace Ekv\B\modules\test\forms;
 
 use Ekv\B\components\System\FormBuilder;
-use Ekv\B\modules\test\models\BTestFieldsCustom;
+use \BTestFieldsCustom;
 use Ekv\B\widgets\Input\WPriceMarkup;
 
 class CfEditForm extends FormBuilder
@@ -69,47 +69,47 @@ class CfEditForm extends FormBuilder
 //        return $output;
 //    }
 
-    public function renderElement1($element)
-    {
-        //pa(get_class($element));
-//        if (is_string($element)) {
-//            if (($e = $this[$element]) === null && ($e = $this->getButtons()->itemAt($element)) === null) {
-//                pa("exit"); exit;
-//                return $element;
+//    public function renderElement1($element)
+//    {
+//        //pa(get_class($element));
+////        if (is_string($element)) {
+////            if (($e = $this[$element]) === null && ($e = $this->getButtons()->itemAt($element)) === null) {
+////                pa("exit"); exit;
+////                return $element;
+////            } else {
+////                $element = $e;
+////            }
+////        }
+//
+//        /**
+//         * @var $element \CFormInputElement
+//         * @var $model BTestFieldsCustom
+//         */
+//
+//        $model = $this->getParent()->getModel();
+////        pa(
+////            $model->scenario,
+////            $model->getSafeAttributeNames(),
+////            $model->attributes
+////        );//exit;
+//
+//        if ($element->getVisible()) {
+//            if ($element instanceof \CFormInputElement) {
+//                if ($element->type === 'hidden') {
+//                    return "<div style=\"visibility:hidden\">\n" . $element->render() . "</div>\n";
+//                } else {
+//                    return "<div class=\"row field_{$element->name}\">\n" . $element->render() . "</div>\n";
+//                }
+//            } elseif ($element instanceof \CFormButtonElement) {
+//                return $element->render() . "\n";
 //            } else {
-//                $element = $e;
+//                echo "<h2>Vasya   </h2>\n";
+//                return $element->render();
 //            }
+//        }else{
+//            pa($element);
 //        }
-
-        /**
-         * @var $element \CFormInputElement
-         * @var $model BTestFieldsCustom
-         */
-
-        $model = $this->getParent()->getModel();
-//        pa(
-//            $model->scenario,
-//            $model->getSafeAttributeNames(),
-//            $model->attributes
-//        );//exit;
-
-        if ($element->getVisible()) {
-            if ($element instanceof \CFormInputElement) {
-                if ($element->type === 'hidden') {
-                    return "<div style=\"visibility:hidden\">\n" . $element->render() . "</div>\n";
-                } else {
-                    return "<div class=\"row field_{$element->name}\">\n" . $element->render() . "</div>\n";
-                }
-            } elseif ($element instanceof \CFormButtonElement) {
-                return $element->render() . "\n";
-            } else {
-                echo "<h2>Vasya   </h2>\n";
-                return $element->render();
-            }
-        }else{
-            pa($element);
-        }
-        return '';
-    }
+//        return '';
+//    }
 }
  

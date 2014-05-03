@@ -1,6 +1,6 @@
 <?php
 use Ekv\B\extensions\sgridview\SGridView;
-use Ekv\B\modules\test\models\BTestFieldsCustom;
+use \BTestFieldsCustom;
 
 /**
  * @var $model BTestFieldsCustom
