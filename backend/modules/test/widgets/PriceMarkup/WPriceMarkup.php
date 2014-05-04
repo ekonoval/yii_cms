@@ -1,13 +1,11 @@
 <?php
-namespace Ekv\B\widgets\Input;
+namespace Ekv\B\modules\test\widgets\PriceMarkup;
 
 use Ekv\B\components\System\IFullyQualified;
-use \BTestFieldsCustom;
-use Yii, CHtml;
-
 
 class WPriceMarkup extends \CInputWidget implements IFullyQualified
 {
+
     static function getClassNameFQ()
     {
         return getClassNameFullyQualified(__CLASS__);
@@ -22,7 +20,7 @@ class WPriceMarkup extends \CInputWidget implements IFullyQualified
     public function run()
     {
         /**
-         * @var $model BTestFieldsCustom
+         * @var $model \BTestFieldsCustom
          */
         $model = $this->model;
 //        $hasMarkup = true;
@@ -42,4 +40,3 @@ class WPriceMarkup extends \CInputWidget implements IFullyQualified
     }
 
 }
- 

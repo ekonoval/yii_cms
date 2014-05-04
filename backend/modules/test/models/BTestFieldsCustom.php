@@ -34,6 +34,7 @@ class BTestFieldsCustom extends \MFieldsCustom
 
     protected function afterValidate()
     {
+        $this->addError("markupCalc", "Can't have both");
         if(!$this->hasErrors()){
             $this->addError("markupCalc", "Super custom error");
         }

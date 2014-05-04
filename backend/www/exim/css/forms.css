@@ -236,13 +236,11 @@ div.form input[type=text], div.form input[type=password]
     width:70%;
     /*max-width:650px;*/
     vertical-align: middle;
-    padding: 5px 25px 5px 5px ;
+    padding: 5px 5px 5px 5px ;
     color: #666;
     border: 1px solid #BBB;
     border-color: #CCC #CCC #CCC #CCC;
     border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
     outline: 0;
 
 }

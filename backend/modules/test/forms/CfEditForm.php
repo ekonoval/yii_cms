@@ -2,8 +2,7 @@
 namespace Ekv\B\modules\test\forms;
 
 use Ekv\B\components\System\FormBuilder;
-use \BTestFieldsCustom;
-use Ekv\B\widgets\Input\WPriceMarkup;
+use Ekv\B\modules\test\widgets\PriceMarkup\WPriceMarkup;
 
 class CfEditForm extends FormBuilder
 {
@@ -20,7 +19,8 @@ class CfEditForm extends FormBuilder
                         'fName' => array( 'type' => 'text', ),
 
                         'markupCalc' => array(
-                            'type' => WPriceMarkup::getClassNameFQ()
+                            'type' => WPriceMarkup::getClassNameFQ(),
+                            //'risking' => 3
                         )
                     ),
                 ),
