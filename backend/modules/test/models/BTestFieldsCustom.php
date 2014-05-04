@@ -28,6 +28,7 @@ class BTestFieldsCustom extends \MFieldsCustom
         $base_labels = parent::attributeLabels();
 
         $base_labels['markupCalc'] =  "Risking";
+        $base_labels['hasMarkup'] =  "Наценка";
 
         return $base_labels;
     }
