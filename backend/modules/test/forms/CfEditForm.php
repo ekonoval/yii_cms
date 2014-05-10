@@ -36,7 +36,7 @@ class CfEditForm extends FormBuilder
 //                              ),
                         ),
 
-                        'txtShort' => array('type' => WCKEditor::getClassNameFQ())
+//                        'txtShort' => array('type' => WCKEditor::getClassNameFQ())
                     ),
                 ),
             ),
