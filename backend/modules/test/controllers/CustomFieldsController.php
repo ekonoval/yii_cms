@@ -1,6 +1,7 @@
 <?php
 namespace Ekv\B\modules\test\controllers;
 
+use Ekv\B\classes\Misc\DateHelper;
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\modules\test\forms\CfEditForm;
 use \BTestFieldsCustom;
@@ -70,7 +71,7 @@ class CustomFieldsController extends BackendControllerBase
                 $model->hasMarkup = true;
             }
 
-            
+            $model->dt = DateHelper::getJqDatePickerFormatedDate($model->dt, false);
         }
 
         //pa($form->getElements());

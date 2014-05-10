@@ -4,6 +4,7 @@ namespace Ekv\B\modules\test\forms;
 use Ekv\B\components\System\FormBuilder;
 use Ekv\B\modules\test\widgets\PriceMarkup\WPriceMarkup;
 use Ekv\B\widgets\Input\CKEditor\WCKEditor;
+use Ekv\B\widgets\Input\Datepicker\WDatePicker;
 use Ekv\widgets\Jui\EkvJuiDatePicker;
 
 class CfEditForm extends FormBuilder
@@ -26,15 +27,16 @@ class CfEditForm extends FormBuilder
                         ),
 
                         'dt' => array(
-                            'type' => EkvJuiDatePicker::getClassNameFQ(),
-                            'defaultOptions' => array(
-                                'changeMonth' => true,
-                                'changeYear' => true,
-                            ),
-                            'options' => array(
-                                'dateFormat' => 'dd.mm.yy',
-                            ),
-                            'language' => 'uk'
+                            //'type' => EkvJuiDatePicker::getClassNameFQ(),
+                            'type' => WDatePicker::getClassNameFQ(),
+//                            'defaultOptions' => array(
+//                                'changeMonth' => true,
+//                                'changeYear' => true,
+//                            ),
+//                            'options' => array(
+//                                'dateFormat' => 'dd.mm.yy',
+//                            ),
+//                            'language' => 'uk'
                         )
 
 //                        'txtBig' => array(
