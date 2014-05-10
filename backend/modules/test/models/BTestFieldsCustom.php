@@ -5,6 +5,10 @@ class BTestFieldsCustom extends \MFieldsCustom
     public $markupCalc;
     public $hasMarkup;
 
+    public $txtBig;
+
+    public $txtShort;
+
     /**
      * @param string $className
      * @return BTestFieldsCustom
@@ -18,7 +22,7 @@ class BTestFieldsCustom extends \MFieldsCustom
     {
         $base_rules = parent::rules();
 
-        $base_rules[] = array('markupCalc, hasMarkup', 'safe');
+        $base_rules[] = array('markupCalc, hasMarkup, txtBig, txtShort', 'safe');
 
         return $base_rules;
     }
@@ -35,7 +39,7 @@ class BTestFieldsCustom extends \MFieldsCustom
 
     protected function afterValidate()
     {
-//        $this->addError("markupCalc", "Can't have both");
+        $this->addError("markupCalc", "Can't have both");
 //        if(!$this->hasErrors()){
 //            $this->addError("markupCalc", "Super custom error");
 //        }

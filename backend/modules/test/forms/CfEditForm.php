@@ -3,6 +3,7 @@ namespace Ekv\B\modules\test\forms;
 
 use Ekv\B\components\System\FormBuilder;
 use Ekv\B\modules\test\widgets\PriceMarkup\WPriceMarkup;
+use Ekv\B\widgets\Input\CKEditor\WCKEditor;
 
 class CfEditForm extends FormBuilder
 {
@@ -21,7 +22,21 @@ class CfEditForm extends FormBuilder
                         'markupCalc' => array(
                             'type' => WPriceMarkup::getClassNameFQ(),
                             //'risking' => 3
-                        )
+                        ),
+
+                        'txtBig' => array(
+                            //'type' => ECKEditor::getClassNameFQ(),
+                            //'type' => ECKEditorPlain::getClassNameFQ(),
+                            'type' => WCKEditor::getClassNameFQ(),
+//                            'config' => array(
+//                                'toolbar'=>array(
+//                                    array( 'Source', '-', 'Bold', 'Italic', 'Underline', 'Strike' ),
+//                                    array( 'Image', 'Link', 'Unlink', 'Anchor' ) ,
+//                                ),
+//                              ),
+                        ),
+
+                        'txtShort' => array('type' => WCKEditor::getClassNameFQ())
                     ),
                 ),
             ),
