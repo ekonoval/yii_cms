@@ -69,6 +69,8 @@ class CustomFieldsController extends BackendControllerBase
             ){
                 $model->hasMarkup = true;
             }
+
+            
         }
 
         //pa($form->getElements());

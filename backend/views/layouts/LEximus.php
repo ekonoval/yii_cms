@@ -34,7 +34,7 @@ Jgrowl::register();
 // Init script
 $assetsManager->registerScriptFile($assetUrl . '/js/init.scripts.js');
 //$assetsManager->registerScriptFile($assetUrl.'/js/red_circles.js');
-$assetsManager->registerScriptFile($assetUrl . '/js/jquery-datepicker-russian.js');
+//$assetsManager->registerScriptFile($assetUrl . '/js/jquery-datepicker-russian.js');
 $assetsManager->registerScriptFile($assetUrl . '/js/jquery.hotkeys.js');
 ?>
 <!doctype html>

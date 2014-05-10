@@ -18,7 +18,7 @@ class CfEditForm extends FormBuilder
                     'type' => 'form',
                     //'title' => 'Subform title',
                     'elements' => array(
-                        'fName' => array( 'type' => 'text', ),
+                        'fName' => array('type' => 'text',),
 
                         'markupCalc' => array(
                             'type' => WPriceMarkup::getClassNameFQ(),
@@ -26,7 +26,15 @@ class CfEditForm extends FormBuilder
                         ),
 
                         'dt' => array(
-                            'type' => EkvJuiDatePicker::getClassNameFQ()
+                            'type' => EkvJuiDatePicker::getClassNameFQ(),
+                            'defaultOptions' => array(
+                                'changeMonth' => true,
+                                'changeYear' => true,
+                            ),
+                            'options' => array(
+                                'dateFormat' => 'dd.mm.yy',
+                            ),
+                            'language' => 'uk'
                         )
 
 //                        'txtBig' => array(
