@@ -28,6 +28,7 @@ index
 /backend/www/assets
 /backend/runtime
 /frontend/www/assets
+/frontend/www/images/*
 /frontend/runtime
 
 # configuration files
