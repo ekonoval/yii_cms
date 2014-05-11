@@ -50,7 +50,7 @@ return array(
 
     'params' => array(
         'yii.handleErrors' => true,
-        'yii.debug' => true,
+        'yii.debug' => false,
         'yii.traceLevel' => 3,
     )
 );
