@@ -37,4 +37,11 @@ class DefaultController extends BackendControllerBase
             'model' => $model
         ));
     }
+
+    function actionSimple()
+    {
+        $this->layout = "//layouts/LSimple";
+
+        $this->renderAuto();
+    }
 }

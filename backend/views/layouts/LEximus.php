@@ -9,14 +9,27 @@ use Ekv\components\Yii\Db\EkvPdoStatement;
 
 $assetUrl = "/exim";
 
+/**
+ * @var $assetsManager CClientScript
+ */
 $assetsManager = yApp()->clientScript;
+//pa($assetsManager->scriptMap);
+// Disable jquery-ui default theme
+$assetsManager->scriptMap = array(
+    'jquery' => array(
+//        'baseUrl' => $assetsManager->getCoreScriptUrl().'/',
+//        'js' => array('jquery.min.js')
+        'baseUrl' => '//ajax.googleapis.com/ajax/libs/jquery/1.8/',
+        'js' => array('jquery.min.js'),
+    ),
+
+    //'jquery.js' => '/jquery.min.js',
+    'jquery-ui.css' => false,
+);
+
 $assetsManager->registerCoreScript('jquery');
 $assetsManager->registerCoreScript('jquery.ui');
 
-// Disable jquery-ui default theme
-$assetsManager->scriptMap = array(
-    'jquery-ui.css' => false,
-);
 
 $assetsManager->registerCssFile($assetUrl . '/css/yui-grids/reset-fonts-grids.css');
 $assetsManager->registerCssFile($assetUrl . '/css/base.css');
