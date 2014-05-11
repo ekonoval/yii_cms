@@ -39,7 +39,7 @@ return array(
         'debug' => array(
             //'class' => 'ext.yii2-debug.Yii2Debug',
             'class' => 'vendor.zhuravljov.yii2-debug.Yii2Debug',
-            //'enabled' => false
+            'enabled' => false
         ),
 		'db_sqlite'=>array(
             'class'=>'CDbConnection',
