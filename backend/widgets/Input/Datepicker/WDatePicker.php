@@ -2,8 +2,8 @@
 namespace Ekv\B\widgets\Input\Datepicker;
 
 use CWidget;
-use Ekv\B\classes\Misc\DateHelper;
 use Ekv\widgets\Jui\EkvJuiDatePicker;
+use Yii;
 
 /**
     'defaultOptions' => array(
@@ -29,10 +29,29 @@ class WDatePicker extends EkvJuiDatePicker
         $this->defaultOptions["changeMonth"] = true;
         $this->defaultOptions["changeYear"] = true;
 
-        $this->options["dateFormat"] = DateHelper::FORMAT_JQ_DATE_PICKER_NO_TIME;
+        $this->options["dateFormat"] = 'dd.mm.yy';
 
         $this->language = 'uk';
+
+
+//        $timeOptions = array(
+//            'duration' => 0,
+//            'showTime' => true,
+//            'stepMinutes' => 5,
+//            'time24h' => true
+//        );
+//        $this->options = array_merge($this->options, $timeOptions);
+//        $this->defaultOptions = array_merge($this->defaultOptions, $timeOptions);
+        //pa($this->options);
+
+
+        $assets = Yii::app()->getAssetManager()->publish(__DIR__.DIRECTORY_SEPARATOR.'assets');
+
+        $cs = Yii::app()->getClientScript();
+        $cs->registerScriptFile($assets.'/timepicker.js');
     }
+
+
 
 }
  
