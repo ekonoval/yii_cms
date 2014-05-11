@@ -13,6 +13,7 @@
 use Ekv\B\extensions\sgridview\SGridView;
 use Ekv\B\modules\translate\controllers\MovieController;
 use Ekv\models\MMovies;
+use Ekv\widgets\Jui\EkvJuiDatePicker;
 
 //$this->widget('zii.widgets.grid.CGridView', array(
 //$this->widget('backend.extensions.sgridview.SGridView', array(
@@ -82,7 +83,8 @@ $this->widget($grid_widget, array(
             'type' => 'raw',
             'value' => '$data->createDate',
             //'filter' => $this->widget('zii.widgets.jui.CJuiDatePicker',
-            'filter' => $this->widget('common.widgets.jui.EkvJuiDatePicker',
+            //'filter' => $this->widget('common.widgets.jui.EkvJuiDatePicker',
+            'filter' => $this->widget(EkvJuiDatePicker::getClassNameFQ(),
                     array(
                         'model' => $model,
                         'attribute' => 'createDate',
