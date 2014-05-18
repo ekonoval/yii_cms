@@ -46,6 +46,7 @@ $this->widget($grid_widget, array(
             //'CHtml::link(CHtml::encode($data->email), "mailto:".CHtml::encode($data->email))',
         ),
 
+        //<editor-fold desc="example fields">
 //        'movieNameLnk' => array(
 //            //'name' => "movieName",
 //            'class' => 'CLinkColumn',
@@ -74,6 +75,7 @@ $this->widget($grid_widget, array(
 //                0 => 'НЕактивен'
 //            )
 //        ),
+        //</editor-fold>
 
         array(
             'name' => 'createDate',
@@ -90,7 +92,7 @@ $this->widget($grid_widget, array(
                     'attribute' => 'createDate',
                 ),
                 true
-            ), // (#4)
+            ),
         ),
 
         array(
