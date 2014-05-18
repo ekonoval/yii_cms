@@ -28,8 +28,7 @@ class CfEditForm extends FormBuilder
                         ),
 
                         'dt' => array(
-                            //'type' => EkvJuiDatePicker::getClassNameFQ(),
-                            'type' => WDatePicker::getClassNameFQ(),
+                            //'type' => WDatePicker::getClassNameFQ(),
 //                            'defaultOptions' => array(
 //                                'changeMonth' => true,
 //                                'changeYear' => true,
