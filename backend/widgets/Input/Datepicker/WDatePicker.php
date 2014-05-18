@@ -17,6 +17,8 @@ use Yii;
  */
 class WDatePicker extends EkvJuiDatePicker
 {
+    const JS_DATE_FORMAT = "dd.mm.yy";
+
     static function getClassNameFQ()
     {
         return getClassNameFullyQualified(__CLASS__);
@@ -29,7 +31,7 @@ class WDatePicker extends EkvJuiDatePicker
         $this->defaultOptions["changeMonth"] = true;
         $this->defaultOptions["changeYear"] = true;
 
-        $this->options["dateFormat"] = 'dd.mm.yy';
+        $this->options["dateFormat"] = self::JS_DATE_FORMAT;
 
         $this->language = 'uk';
 
@@ -45,10 +47,9 @@ class WDatePicker extends EkvJuiDatePicker
         //pa($this->options);
 
 
-        $assets = Yii::app()->getAssetManager()->publish(__DIR__.DIRECTORY_SEPARATOR.'assets');
-
-        $cs = Yii::app()->getClientScript();
-        $cs->registerScriptFile($assets.'/timepicker.js');
+//        $assets = Yii::app()->getAssetManager()->publish(__DIR__.DIRECTORY_SEPARATOR.'assets');
+//        $cs = Yii::app()->getClientScript();
+//        $cs->registerScriptFile($assets.'/timepicker.js');
     }
 
 

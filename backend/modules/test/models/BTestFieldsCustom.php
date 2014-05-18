@@ -9,6 +9,8 @@ class BTestFieldsCustom extends \MFieldsCustom
 
     public $txtShort;
 
+    public $dtFull;
+
     /**
      * @param string $className
      * @return BTestFieldsCustom
@@ -22,7 +24,7 @@ class BTestFieldsCustom extends \MFieldsCustom
     {
         $base_rules = parent::rules();
 
-        $base_rules[] = array('markupCalc, hasMarkup, txtBig, txtShort', 'safe');
+        $base_rules[] = array('markupCalc, hasMarkup, txtBig, txtShort, dtFull', 'safe');
 
         return $base_rules;
     }

@@ -5,6 +5,7 @@ use Ekv\B\components\System\FormBuilder;
 use Ekv\B\modules\test\widgets\PriceMarkup\WPriceMarkup;
 use Ekv\B\widgets\Input\CKEditor\WCKEditor;
 use Ekv\B\widgets\Input\Datepicker\WDatePicker;
+use Ekv\B\widgets\Input\Datepicker\WDateTimePicker;
 use Ekv\widgets\Jui\EkvJuiDatePicker;
 
 class CfEditForm extends FormBuilder
@@ -37,7 +38,12 @@ class CfEditForm extends FormBuilder
 //                                'dateFormat' => 'dd.mm.yy',
 //                            ),
 //                            'language' => 'uk'
-                        )
+                        ),
+
+                        'dtFull' => array(
+                            'type' => WDateTimePicker::getClassNameFQ(),
+                            //'lang' => 'ru'
+                        ),
 
 //                        'txtBig' => array(
 //                            'type' => WCKEditor::getClassNameFQ(),
