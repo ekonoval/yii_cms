@@ -6,7 +6,7 @@ use \BTestFieldsCustom;
  * @var $model BTestFieldsCustom
  */
 
-$grid_widget = SGridView::getFullName();
+$grid_widget = SGridView::getClassNameFQ();
 //$grid_widget = 'zii.widgets.grid.CGridView';
 
 $this->widget($grid_widget, array(

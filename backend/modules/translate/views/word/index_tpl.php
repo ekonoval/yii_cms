@@ -32,7 +32,7 @@ $this->topButtons = $this->widget(TopButtons::getClassNameFQ(), array(
 ));
 
 $grid_name = 'zii.widgets.grid.CGridView';
-$grid_name = SGridView::getFullName();
+$grid_name = SGridView::getClassNameFQ();
 $this->widget($grid_name, array(
     'id' => 'wordGrid',
     'dataProvider' => $model->search(),

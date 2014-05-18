@@ -16,7 +16,7 @@ Yii::import('zii.widgets.grid.CGridView');
  * @package admin.widgets
  */
 //implements IPathHelper
-class SGridView extends CGridView
+class SGridView extends CGridView implements IFullyQualified
 {
     public $template = '{items}{summary}{pager}';
     public $selectableRows = 2;
@@ -44,11 +44,10 @@ class SGridView extends CGridView
      */
     protected $_customActions;
 
-    static function getFullName()
+    static function getClassNameFQ()
     {
         return getClassNameFullyQualified(__CLASS__);
     }
-
 
     /**
      * Initializes the grid view.

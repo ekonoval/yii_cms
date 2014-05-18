@@ -10,17 +10,13 @@
  * @var $model MMovies
  */
 
+use Ekv\B\classes\Misc\DateHelper;
 use Ekv\B\extensions\sgridview\SGridView;
 use Ekv\B\modules\translate\controllers\MovieController;
 use Ekv\B\widgets\Input\Datepicker\WDatePicker;
 use Ekv\models\MMovies;
-use Ekv\widgets\Jui\EkvJuiDatePicker;
 
-//$this->widget('zii.widgets.grid.CGridView', array(
-//$this->widget('backend.extensions.sgridview.SGridView', array(
-
-$grid_widget = SGridView::getFullName();
-//$grid_widget = 'zii.widgets.grid.CGridView';
+$grid_widget = SGridView::getClassNameFQ();
 
 $this->widget($grid_widget, array(
     'id' => 'movieGrid',
@@ -82,32 +78,16 @@ $this->widget($grid_widget, array(
         array(
             'name' => 'createDate',
             'type' => 'raw',
-            'value' => '$data->createDate',
+            //'value' => '$data->createDate',
+            'value' => function ($data) {
+                return DateHelper::getJqDatePickerFormatedDate($data->createDate, false);
+            },
 
             'filter' => $this->widget(
                 WDatePicker::getClassNameFQ(),
                 array(
                     'model' => $model,
                     'attribute' => 'createDate',
-                    //'language' => 'uk',
-                    //'language' => '',
-                    // 'i18nScriptFile' => 'jquery.ui.datepicker-ja.js', (#2)
-//                    'htmlOptions' => array(
-//                        'id' => 'dpCreateDate',
-//                        'size' => '10',
-//                    ),
-//                    'options' => array('dateFormat' => 'yy-mm-dd'),
-//                    'defaultOptions' => array( // (#3)
-//                        //'yearRange' => '2013:2013',
-//                        'showOn' => 'focus',
-//                        //'dateFormat' => 'yy/mm/dd',
-//                        'dateFormat' => 'yy-mm-dd',
-//                        'showOtherMonths' => true,
-//                        'selectOtherMonths' => true,
-//                        'changeMonth' => true,
-//                        'changeYear' => true,
-//                        'showButtonPanel' => true,
-//                    )
                 ),
                 true
             ), // (#4)

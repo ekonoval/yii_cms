@@ -18,7 +18,7 @@ use Ekv\B\modules\translate\controllers\EpisodeController;
 $controller = $this; // fix 5.3 in anonymous functions
 
 $grid_widget = 'zii.widgets.grid.CGridView';
-$grid_widget = SGridView::getFullName();
+$grid_widget = SGridView::getClassNameFQ();
 $this->widget($grid_widget, array(
     'id' => 'episodeGrid',
     'dataProvider' => $model->search(),
