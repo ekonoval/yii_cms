@@ -18,7 +18,7 @@ class WDateTimePicker extends BaseInputWidget
         $assets = Yii::app()->getAssetManager()->publish(__DIR__.DIRECTORY_SEPARATOR.'assets');
         $cs = yClientScript();
 
-        $cs->registerScriptFile($assets.'/jquery-ui-sliderAccess.js');
+        //$cs->registerScriptFile($assets.'/jquery-ui-sliderAccess.js');
         $cs->registerScriptFile($assets.'/jquery-ui-timepicker-addon.min.js');
         $cs->registerScriptFile($assets.'/jquery-ui-timepicker-uk.js');
         $cs->registerCssFile($assets.'/jquery-ui-timepicker-addon.css');
