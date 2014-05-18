@@ -28,31 +28,25 @@ class WDatePicker extends EkvJuiDatePicker
     {
         parent::init();
 
-        $this->defaultOptions["changeMonth"] = true;
-        $this->defaultOptions["changeYear"] = true;
-
-        $this->options["dateFormat"] = self::JS_DATE_FORMAT;
+        //$this->defaultOptions["changeMonth"] = true;
+        //$this->defaultOptions["changeYear"] = true;
+        //$this->defaultOptions["dateFormat"] = self::JS_DATE_FORMAT;
+        //$this->options["dateFormat"] = self::JS_DATE_FORMAT;
 
         $this->language = 'uk';
+        //$this->language = 'ru';
 
+        /*
+         * This whole mess up is used for ajax filter grid (resetting settings after grid ajax request)
+         */
+        $this->i18nScriptFile = null;// !!!!
+        if(!$this->_isLangDefault()){
+            $assets = Yii::app()->getAssetManager()->publish(__DIR__.DIRECTORY_SEPARATOR.'assets');
+            $cs = yClientScript();
+            $cs->registerScriptFile($assets."/i18n/datepicker-{$this->language}.js");
+        }
 
-//        $timeOptions = array(
-//            'duration' => 0,
-//            'showTime' => true,
-//            'stepMinutes' => 5,
-//            'time24h' => true
-//        );
-//        $this->options = array_merge($this->options, $timeOptions);
-//        $this->defaultOptions = array_merge($this->defaultOptions, $timeOptions);
-        //pa($this->options);
-
-
-//        $assets = Yii::app()->getAssetManager()->publish(__DIR__.DIRECTORY_SEPARATOR.'assets');
-//        $cs = Yii::app()->getClientScript();
-//        $cs->registerScriptFile($assets.'/timepicker.js');
     }
-
-
 
 }
  

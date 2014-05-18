@@ -18,11 +18,13 @@ use Ekv\models\MMovies;
 
 $grid_widget = SGridView::getClassNameFQ();
 
+$filterCreateDateJsID = 'filterCreateDate';
+
 $this->widget($grid_widget, array(
     'id' => 'movieGrid',
     'dataProvider' => $model->search(),
     'filter' => $model,
-    //5543'afterAjaxUpdate' => 'reinstallDatePicker',
+    'afterAjaxUpdate' => 'reinstallDatePicker',
     'selectableRows' => 2,
     //'ajaxUrl' => yApp()->request->url,
     'ajaxUrl' => "/translate/movie/index/",
@@ -88,6 +90,7 @@ $this->widget($grid_widget, array(
             'filter' => $this->widget(
                 WDatePicker::getClassNameFQ(),
                 array(
+                    'id' => $filterCreateDateJsID, // !!!! important for reinstall
                     'model' => $model,
                     'attribute' => 'createDate',
                 ),
@@ -100,3 +103,12 @@ $this->widget($grid_widget, array(
         ),
     ),
 ));
+
+//#------------------- reset after ajax !! -------------------#//
+yClientScript()->registerScript(
+    're-install-date-picker',
+    "function reinstallDatePicker(id, data) {
+        $('#{$filterCreateDateJsID}').datepicker();
+    }
+    "
+);
