@@ -27,5 +27,33 @@ class DateHelper
     {
         return strtotime($mysqldate);
     }
+
+    static function phpDate2MysqlDate($phpdate)
+    {
+        return date('Y-m-d H:i:s', $phpdate);
+    }
+
+    static function getDateFromMysqlDatetime($mysql_datetime)
+    {
+        $res = explode(" ", $mysql_datetime);
+        if (count($res) == 2) {
+            return $res[0];
+        }
+        return false;
+    }
+
+    static function convertJqDatePickerDate2MysqlDate($jq_picker_date, $has_time = true)
+    {
+        //--- convert datepicker date to proper mysql formated date ---//
+        $tstmp = strtotime($jq_picker_date);
+        $mysql_date = "";
+        if ($tstmp !== FALSE) {
+            $mysql_date = self::phpDate2MysqlDate($tstmp);
+            if ($has_time == false) {
+                $mysql_date = self::getDateFromMysqlDatetime($mysql_date);
+            }
+        }
+        return $mysql_date;
+    }
 }
  
