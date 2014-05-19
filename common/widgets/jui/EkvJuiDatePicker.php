@@ -1,6 +1,7 @@
 <?php
 namespace Ekv\widgets\Jui;
 
+use CClientScript;
 use CHtml;
 use CJavaScript;
 use CJuiDatePicker;
@@ -78,8 +79,24 @@ class EkvJuiDatePicker extends CJuiDatePicker implements IFullyQualified
         $cs->registerScript(__CLASS__ . '#' . $id, $js);
     }
 
-    private function _isLangDefault()
+    protected function _isLangDefault()
     {
         return $this->language == '' || $this->language == 'en';
     }
+
+    /**
+     * Overrided for manual i18nScriptFile usage, set $this->i18nScriptFile = null and manualy register custom
+     * i18nScriptFile file from custom assets. As this file is being tried to re-register in some other places
+     * see if $fileName as null is comming and ignore re-register (custom file has to be already included at this point)
+     * @param string $fileName
+     * @param int $position
+     */
+    protected function registerScriptFile($fileName, $position = CClientScript::POS_END)
+    {
+        if(!is_null($fileName)){
+            parent::registerScriptFile($fileName, $position);
+        }
+    }
+
+
 }
