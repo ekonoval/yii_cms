@@ -10,6 +10,7 @@ use Ekv\models\MOrderExtra;
  * The followings are the available columns in table 'orderBase':
  * @property integer $idOrder
  * @property integer $uid
+ * @property integer $status
  * @property string $baseTxtField
  *
  * The followings are the available model relations:
@@ -17,6 +18,8 @@ use Ekv\models\MOrderExtra;
  */
 class MOrderBase extends ActiveRecordBase
 {
+    const REL_ORDER_EXTRAS = "orderExtras";
+
     static function getClassNameFQ()
     {
         return getClassNameFullyQualified(__CLASS__);
@@ -30,6 +33,8 @@ class MOrderBase extends ActiveRecordBase
 		return 'orderBase';
 	}
 
+
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -39,7 +44,7 @@ class MOrderBase extends ActiveRecordBase
 		// will receive user inputs.
 		return array(
 			array('uid, baseTxtField', 'required'),
-			array('uid', 'numerical', 'integerOnly'=>true),
+			array('uid, status', 'numerical', 'integerOnly'=>true),
 			array('baseTxtField', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -52,10 +57,14 @@ class MOrderBase extends ActiveRecordBase
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
-			'orderExtras' => array(self::HAS_ONE, MOrderExtra::getClassNameFQ(), 'baseOrderID'),
+			self::REL_ORDER_EXTRAS => array(
+                self::HAS_ONE,
+                MOrderExtra::getClassNameFQ(),
+                'baseOrderID',
+                'joinType' => "INNER JOIN",
+                'alias' => 'oe'
+            ),
 		);
 	}
 
