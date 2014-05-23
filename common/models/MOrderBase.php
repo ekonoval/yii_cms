@@ -14,7 +14,7 @@ use Ekv\models\MOrderExtra;
  * @property string $baseTxtField
  *
  * The followings are the available model relations:
- * @property MOrderExtra[] $orderExtras
+ * @property MOrderExtra $orderExtras
  */
 class MOrderBase extends ActiveRecordBase
 {
@@ -46,7 +46,7 @@ class MOrderBase extends ActiveRecordBase
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('uid, baseTxtField', 'required'),
+			array('uid', 'required'),
 			array('uid, status', 'numerical', 'integerOnly'=>true),
 			array('baseTxtField', 'length', 'max'=>100),
 			// The following rule is used by search().
@@ -63,13 +63,18 @@ class MOrderBase extends ActiveRecordBase
 		return array(
 			self::REL_ORDER_EXTRAS => array(
                 self::HAS_ONE,
-                MOrderExtra::getClassNameFQ(),
+                $this->getOrderExtraModelFq(),
                 'baseOrderID',
                 'joinType' => "INNER JOIN",
                 'alias' => 'oe'
             ),
 		);
 	}
+
+    protected function getOrderExtraModelFq()
+    {
+        return MOrderExtra::getClassNameFQ();
+    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)

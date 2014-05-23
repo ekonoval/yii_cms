@@ -91,4 +91,21 @@ class BackendControllerBase extends \EController
         return $isPosted;
     }
 
+    function isEditFormPostedMulti($modelsArray)
+    {
+        $isPosted = false;
+
+        foreach($modelsArray as $model){
+            $get_name = get_class($model);
+            $isPosted = isset($_POST[$get_name]);
+
+            if($isPosted){
+                $model->attributes = $_POST[$get_name];
+            }
+        }
+
+
+        return $isPosted;
+    }
+
 }

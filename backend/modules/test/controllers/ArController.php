@@ -2,9 +2,9 @@
 namespace Ekv\B\modules\test\controllers;
 
 use BTestOrderBase;
-use BTestOrderEditForm;
+use BTestOrderExtra;
 use Ekv\B\components\Controllers\BackendControllerBase;
-use Ekv\B\modules\test\forms\OrderForm;
+use Ekv\B\modules\test\forms\OrderEditForm;
 use Ekv\models\MOrderBase;
 use Ekv\models\MOrderExtra;
 
@@ -75,28 +75,42 @@ class ArController extends BackendControllerBase
         $edit_mode = true;
 
         /**
-         * @var $model BTestOrderEditForm
+         * @var $modelBase BTestOrderBase
          */
-        $model = null;
+        $modelBase = null;
+        $modelExtra = null;
 
         if (!$edit_mode) {
 //            $model = new \BTransWord();
 //            $model->unsetAttributes();
         } else {
-            $model = BTestOrderEditForm::getModelByPk($rowID);
+            $modelBase = BTestOrderBase::getModelByPk($rowID);
+            //$modelExtra = $modelBase->orderExtras;
+
+            $modelExtra = BTestOrderExtra::model()->findByAttributes(array('baseOrderID' => $rowID));
         }
 
-        if (!$model) {
+        if (!$modelBase) {
             throw new \CHttpException(404, \Yii::t('StoreModule.admin', 'Incorrect ID'));
         }
 
-        $form = OrderForm::create($model);
-//pa($model);exit;
-        //--- check was form posted ---//
-        if($this->isEditFormPosted($model)){
 
-            if ($model->validate()) {
-                $model->save();
+        //$form = OrderEditForm::create($modelBase);
+        $form = OrderEditForm::create(null);
+        $form["base"]->model = $modelBase;
+        $form["extra"]->model = $modelExtra;
+
+        //--- check was form posted ---//
+        if($this->isEditFormPostedMulti(array($modelBase, $modelExtra))){
+            if (
+                $modelBase->validate()
+                && $modelExtra->validate()
+            ) {
+                $baseSaveRes = $modelBase->save(false);
+                if($baseSaveRes){
+
+                    $modelExtra->save(false);
+                }
                 $this->setFlashMessage(\Yii::t('StoreModule.admin', 'Изменения успешно сохранены'));
 
                 $this->redirect($this->getIndexUrl());
@@ -108,9 +122,10 @@ class ArController extends BackendControllerBase
         //pa($form->getElements());
 
         $this->render("update_tpl", array(
-            'model'=>$model,
+            'model'=>$modelBase,
             'form'=>$form,
         ));
     }
+
 }
  

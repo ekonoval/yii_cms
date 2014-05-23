@@ -42,15 +42,18 @@ class MOrderExtra extends ActiveRecordBase
 	 */
 	public function rules()
 	{
+
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('baseOrderID, extraTxtField', 'required'),
+			array('baseOrderID', 'required'),
 			array('baseOrderID', 'numerical', 'integerOnly'=>true),
 			array('extraTxtField', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('idOrderExtra, baseOrderID, extraTxtField', 'safe', 'on'=>'search'),
+
+            array('extraTxtField', 'safe')
 		);
 	}
 
