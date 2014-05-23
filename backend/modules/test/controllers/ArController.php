@@ -4,6 +4,7 @@ namespace Ekv\B\modules\test\controllers;
 use BTestOrderBase;
 use BTestOrderExtra;
 use Ekv\B\components\Controllers\BackendControllerBase;
+use Ekv\B\modules\test\controllers\Ar\ArOrderCreateAction;
 use Ekv\B\modules\test\controllers\Ar\ArOrderEditAction;
 use Ekv\B\modules\test\forms\OrderEditForm;
 use Ekv\models\MOrderBase;
@@ -20,9 +21,8 @@ class ArController extends BackendControllerBase
     public function actions()
     {
         return array(
-            'update' => array(
-                'class' => ArOrderEditAction::getClassNameFQ(),
-            )
+            'update' => array('class' => ArOrderEditAction::getClassNameFQ()),
+            'create' => array('class' => ArOrderCreateAction::getClassNameFQ()),
         );
     }
 
