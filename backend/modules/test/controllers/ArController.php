@@ -4,6 +4,7 @@ namespace Ekv\B\modules\test\controllers;
 use BTestOrderBase;
 use BTestOrderExtra;
 use Ekv\B\components\Controllers\BackendControllerBase;
+use Ekv\B\modules\test\controllers\Ar\ArOrderEditAction;
 use Ekv\B\modules\test\forms\OrderEditForm;
 use Ekv\models\MOrderBase;
 use Ekv\models\MOrderExtra;
@@ -15,6 +16,16 @@ class ArController extends BackendControllerBase
         parent::init();
         $this->setEximLayout();
     }
+
+    public function actions()
+    {
+        return array(
+            'update' => array(
+                'class' => ArOrderEditAction::getClassNameFQ(),
+            )
+        );
+    }
+
 
     function actionTest()
     {
@@ -68,7 +79,7 @@ class ArController extends BackendControllerBase
         $this->renderAuto(array('model' => $model));
     }
 
-    function actionUpdate()
+    function actionUpdate1()
     {
         $rowID = yR()->getQuery('idOrder');
 
