@@ -85,9 +85,9 @@ class ArController extends BackendControllerBase
 //            $model->unsetAttributes();
         } else {
             $modelBase = BTestOrderBase::getModelByPk($rowID);
-            //$modelExtra = $modelBase->orderExtras;
+            $modelExtra = $modelBase->orderExtras;
 
-            $modelExtra = BTestOrderExtra::model()->findByAttributes(array('baseOrderID' => $rowID));
+            //$modelExtra = BTestOrderExtra::model()->findByAttributes(array('baseOrderID' => $rowID));
         }
 
         if (!$modelBase) {

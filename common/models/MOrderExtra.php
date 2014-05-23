@@ -53,7 +53,7 @@ class MOrderExtra extends ActiveRecordBase
 			// @todo Please remove those attributes that should not be searched.
 			array('idOrderExtra, baseOrderID, extraTxtField', 'safe', 'on'=>'search'),
 
-            array('extraTxtField', 'safe')
+            //array('extraTxtField', 'safe')
 		);
 	}
 
