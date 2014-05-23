@@ -12,6 +12,7 @@ class TestModule extends WebModule
         parent::init();
 
         $this->setImport(array($this->name.'.models.*'));
+        $this->setImport(array($this->name.'.models.Ar.*'));
     }
 
 //	public function init()

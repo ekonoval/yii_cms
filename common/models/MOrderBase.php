@@ -33,7 +33,10 @@ class MOrderBase extends ActiveRecordBase
 		return 'orderBase';
 	}
 
-
+    function getExtRelateFieldName($fieldName)
+    {
+        return self::REL_ORDER_EXTRAS . ".{$fieldName}";
+    }
 
 	/**
 	 * @return array validation rules for model attributes.
