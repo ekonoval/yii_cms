@@ -48,6 +48,10 @@ class EpisodeController extends TranslateController
         ));
     }
 
+    /**
+     * Grid with JOIN and CUSTOM working filters
+     * @param $movieID
+     */
     function actionSqlIndex($movieID)
     {
         $model = new \BTransEpisodeSql('search');
