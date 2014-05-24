@@ -81,6 +81,17 @@ class ArController extends BackendControllerBase
         $this->renderAuto(array('model' => $model));
     }
 
+    function actionGridJoin()
+    {
+        $model = new BTestOrderBaseBrowse("search");
+
+        $model->unsetAttributes();
+
+        $this->assignFormGetAttributes($model);
+
+        $this->renderAuto(array('model' => $model));
+    }
+
 //    function actionUpdate1()
 //    {
 //        $rowID = yR()->getQuery('idOrder');
