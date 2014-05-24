@@ -27,5 +27,13 @@ class ActiveRecordBase extends CActiveRecord implements IFullyQualified
         return $finalRes;
     }
 
+    protected function mergeRules($additionalRules, $parentRules)
+    {
+        return array_merge(
+            $additionalRules,
+            $parentRules
+        );
+    }
+
 }
  

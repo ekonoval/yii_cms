@@ -66,7 +66,7 @@ class MOrderBase extends ActiveRecordBase
                 $this->getOrderExtraModelFq(),
                 'baseOrderID',
                 'joinType' => "INNER JOIN",
-                'alias' => 'oe'
+                //'alias' => 'oe'
             ),
 		);
 	}
