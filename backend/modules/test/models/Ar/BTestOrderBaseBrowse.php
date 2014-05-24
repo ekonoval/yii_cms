@@ -44,16 +44,16 @@ class BTestOrderBaseBrowse extends MOrderBase
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
-//            'sort' => array(
-//                'attributes' => array(
-//                    'extraTxtFieldSearch' => array(
-//                        'asc' => "{$extraTxtFieldFullName} ASC",
-//                        'desc' => "{$extraTxtFieldFullName} DESC",
-//                    ),
-//                    '*',
-//                ),
-//
-//            )
+            'sort' => array(
+                'attributes' => array(
+                    'extraTxtFieldSearch' => array(
+                        'asc' => "{$extraTxtFieldFullName} ASC",
+                        'desc' => "{$extraTxtFieldFullName} DESC",
+                    ),
+                    '*',
+                ),
+
+            )
         ));
     }
 
