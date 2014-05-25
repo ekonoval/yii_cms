@@ -27,6 +27,12 @@ class ArController extends BackendControllerBase
         );
     }
 
+    protected function _breadcrumps()
+    {
+        parent::_breadcrumps();
+        $this->_addBreadCrumpItem("AR test", $this->createUrlBackend("index"));
+    }
+
 
     function actionTest()
     {
