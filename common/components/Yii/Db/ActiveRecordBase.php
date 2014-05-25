@@ -20,7 +20,15 @@ class ActiveRecordBase extends CActiveRecord implements IFullyQualified
 
         if(!empty($relationNames)){
             foreach($relationNames as $relName){
-                $finalRes[$relName] = $this->$relName->attributes;
+                if($this->hasRelated($relName)){
+                    if(is_array($this->$relName)){
+                        foreach($this->$relName as $k => $val){
+                            $finalRes[$relName][$k] = $val->attributes;
+                        }
+                    }else{
+                        $finalRes[$relName] = $this->$relName->attributes;
+                    }
+                }
             }
         }
 
@@ -36,4 +44,3 @@ class ActiveRecordBase extends CActiveRecord implements IFullyQualified
     }
 
 }
- 
