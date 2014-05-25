@@ -5,8 +5,9 @@ use Ekv\B\extensions\sgridview\SGridView;
  * @var $model BTestOrderBaseBrowse
  */
 
-$grid_widget = SGridView::getClassNameFQ();
+$this->addTopButtonsCreate();
 
+$grid_widget = SGridView::getClassNameFQ();
 
 $this->widget($grid_widget, array(
     'id' => 'fieldsOrdersGridJoin',

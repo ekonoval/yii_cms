@@ -1,9 +1,15 @@
 <?php
 use Ekv\B\extensions\sgridview\SGridView;
+use Ekv\B\modules\test\controllers\ArController;
+use Ekv\B\widgets\TopButtons;
 
 /**
  * @var $model BTestOrderBase
+ * @var $this ArController
  */
+
+$this->addTopButtonsCreate();
+
 
 $grid_widget = SGridView::getClassNameFQ();
 

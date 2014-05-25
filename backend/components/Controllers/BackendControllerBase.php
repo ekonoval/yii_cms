@@ -1,6 +1,9 @@
 <?php
 namespace Ekv\B\components\Controllers;
 
+use Ekv\B\widgets\TopButtons;
+use Yii;
+
 class BackendControllerBase extends \EController
 {
     /**
@@ -106,6 +109,27 @@ class BackendControllerBase extends \EController
 
 
         return $isPosted;
+    }
+
+    function createUrlBackend($action, $params = array())
+    {
+        return $this->createUrl("/{$this->module->id}/{$this->id}/{$action}", $params);
+    }
+
+    function addTopButtonsCreate($createUrl = "create")
+    {
+        $this->topButtons = $this->widget(TopButtons::getClassNameFQ(), array(
+            'template' => array('create'),
+            'elements' => array(
+                'create' => array(
+                    'link' => $this->createUrlBackend($createUrl),
+                    'title' => Yii::t('StoreModule.admin', 'Создать'),
+                    'options' => array(
+                        'icons' => array('primary' => 'ui-icon-plus')
+                    )
+                ),
+            ),
+        ));
     }
 
 }
