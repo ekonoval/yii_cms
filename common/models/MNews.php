@@ -16,6 +16,7 @@ use CDbCriteria, CActiveDataProvider;
  *
  * The followings are the available model relations:
  * @property MNews2CategoryConn[] $news2CategoryConns
+ * @property MNewsCategory[] $categoriesRel
  */
 class MNews extends ActiveRecordBase
 {
@@ -58,7 +59,19 @@ class MNews extends ActiveRecordBase
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'news2CategoryConns' => array(self::HAS_MANY, MNews2CategoryConn::getClassNameFQ(), 'newsID'),
+			'news2CategoryConns' => array(
+                self::HAS_MANY,
+                MNews2CategoryConn::getClassNameFQ(),
+                'newsID',
+                'joinType' => "INNER JOIN"
+            ),
+			'categoriesRel' => array(
+                self::HAS_MANY,
+                MNewsCategory::getClassNameFQ(),
+                'categoryID',
+                'through' => 'news2CategoryConns',
+                'joinType' => "INNER JOIN",
+            )
 		);
 	}
 
