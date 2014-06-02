@@ -20,6 +20,10 @@ use CDbCriteria, CActiveDataProvider;
  */
 class MNews extends ActiveRecordBase
 {
+    const REL_NEWS2CATS = "news2CategoryConns";
+    const REL_CATS_FULL = "categoriesRel";
+
+
     static function getClassNameFQ()
     {
         return getClassNameFullyQualified(__CLASS__);
@@ -59,17 +63,17 @@ class MNews extends ActiveRecordBase
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'news2CategoryConns' => array(
+			self::REL_NEWS2CATS => array(
                 self::HAS_MANY,
                 MNews2CategoryConn::getClassNameFQ(),
                 'newsID',
                 'joinType' => "INNER JOIN"
             ),
-			'categoriesRel' => array(
+			self::REL_CATS_FULL => array(
                 self::HAS_MANY,
                 MNewsCategory::getClassNameFQ(),
                 'categoryID',
-                'through' => 'news2CategoryConns',
+                'through' => self::REL_NEWS2CATS,
                 'joinType' => "INNER JOIN",
             )
 		);

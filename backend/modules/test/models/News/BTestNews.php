@@ -4,20 +4,42 @@ use Ekv\models\MNews;
 
 class BTestNews extends MNews
 {
-    public $categoriesRelated = array(22 => 'xxx2', 33 => 'yy3');
+    public $categoryIdsRelated = array();
+    public $categoryIdsOld = array();
+
     public function rules()
     {
+
         return $this->mergeRules(
             array(array("categoriesRelated", "safe")),
             parent::rules()
         );
     }
 
-
+    /**
+     * @param string $className
+     * @return BTestNews
+     */
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
     }
+
+    protected function afterFind()
+    {
+        $catsRelated = $this->news2CategoryConns;
+
+        if(!empty($catsRelated)){
+            foreach($catsRelated as $categoryVal){
+                $this->categoryIdsRelated[] = $categoryVal->categoryID;
+            }
+
+            $this->categoryIdsOld = $this->categoryIdsRelated;
+        }
+
+        parent::afterFind();
+    }
+
 
     public function search()
    	{
