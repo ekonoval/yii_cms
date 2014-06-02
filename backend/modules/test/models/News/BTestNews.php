@@ -7,6 +7,8 @@ class BTestNews extends MNews
     public $categoryIdsRelated = array();
     public $categoryIdsOld = array();
 
+    public $preselectCategoryIds = false;
+
     public function rules()
     {
 
@@ -27,8 +29,10 @@ class BTestNews extends MNews
 
     protected function afterFind()
     {
-        foreach($this->news2CategoryConns as $categoryVal){
-            $this->categoryIdsOld[] = $categoryVal->categoryID;
+        if($this->preselectCategoryIds){
+            foreach($this->news2CategoryConns as $categoryVal){
+                $this->categoryIdsOld[] = $categoryVal->categoryID;
+            }
         }
         parent::afterFind();
     }

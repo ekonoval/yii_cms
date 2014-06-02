@@ -25,10 +25,9 @@ class NewsEditForm extends FormBuilder
 // /*
                         'categoryIdsRelated' => array(
                             'type' => "checkboxlist",
-                            //'items' => array(22 => 'sss2' , 55 => 'zz5'),
-                            //'options' => array(22 => array('label' => 'xxx'))
-
-                            //'type' => "text"
+                            'separator' => '',
+//                            'class' => 'risking',
+//                            'container' => 'ul'
                         )
 // */
                     ),

@@ -44,6 +44,7 @@ class NewsController extends BackendControllerBase
         if (!$modelNews) {
             throw new \CHttpException(404, \Yii::t('StoreModule.admin', 'Incorrect ID'));
         }
+        $modelNews->preselectCategoryIds = true;
 
         //$form = OrderEditForm::create($modelBase);
         $form = NewsEditForm::create($modelNews);
