@@ -25,6 +25,33 @@ class BTestNews extends MNews
         return parent::model($className);
     }
 
+    protected function afterFind()
+    {
+        foreach($this->news2CategoryConns as $categoryVal){
+            $this->categoryIdsOld[] = $categoryVal->categoryID;
+        }
+        parent::afterFind();
+    }
+
+    protected function afterSave()
+    {
+        if($this->categoryIdsOld != $this->categoryIdsRelated){
+            BTestNews2Category::model()->deleteAllByAttributes(array('newsID' => $this->idNews));
+
+            if(!empty($this->categoryIdsRelated)){
+                foreach($this->categoryIdsRelated as $catID){
+                    $model = new BTestNews2Category();
+                    $model->newsID = $this->idNews;
+                    $model->categoryID = $catID;
+                    $res = $model->save();
+                }
+            }
+        }
+
+        parent::afterSave();
+    }
+
+
     function preselectCategoriesConnected()
     {
         $catsRelated = $this->news2CategoryConns;
@@ -33,8 +60,6 @@ class BTestNews extends MNews
             foreach($catsRelated as $categoryVal){
                 $this->categoryIdsRelated[] = $categoryVal->categoryID;
             }
-
-            $this->categoryIdsOld = $this->categoryIdsRelated;
         }
     }
 

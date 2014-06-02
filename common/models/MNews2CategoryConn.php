@@ -38,7 +38,8 @@ class MNews2CategoryConn extends ActiveRecordBase
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, newsID, categoryID', 'required'),
+			array('newsID, categoryID', 'required'),
+            array('id', 'required', 'on' => 'update'),
 			array('id, newsID, categoryID', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

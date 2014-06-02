@@ -2,6 +2,8 @@
 namespace Ekv\B\modules\test\controllers;
 
 use BTestNews;
+use BTestNewsCategory;
+use CHtml;
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\modules\test\forms\NewsEditForm;
 use Ekv\models\MNews;
@@ -43,13 +45,12 @@ class NewsController extends BackendControllerBase
             throw new \CHttpException(404, \Yii::t('StoreModule.admin', 'Incorrect ID'));
         }
 
-
         //$form = OrderEditForm::create($modelBase);
         $form = NewsEditForm::create($modelNews);
+        $form["base"]["categoryIdsRelated"]->items = $this->getCetegoriesList();
 
         //--- check was form posted ---//
         if($this->isEditFormPosted($modelNews)){
-
             if (
                 $modelNews->validate()
             ) {
@@ -60,12 +61,21 @@ class NewsController extends BackendControllerBase
 
                 $this->redirect($this->createUrlBackend('index'));
             }
-        }else{}
+        }else{
+            $modelNews->preselectCategoriesConnected();
+        }
 
         $this->renderAuto(array(
             'model' => $modelNews,
             'form' => $form,
         ));
+    }
+
+    private function getCetegoriesList()
+    {
+        $res = BTestNewsCategory::model()->findAll();
+        $data = CHtml::listData($res, 'idCat', 'catName');
+        return $data;
     }
 
     function actionUpdateCustom()

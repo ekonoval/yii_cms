@@ -23,7 +23,7 @@ class NewsEditForm extends FormBuilder
                         'name' => array('type' => 'text',),
                         'enabled' => array('type' => 'checkbox',),
 // /*
-                        'categoriesRelated' => array(
+                        'categoryIdsRelated' => array(
                             'type' => "checkboxlist",
                             //'items' => array(22 => 'sss2' , 55 => 'zz5'),
                             //'options' => array(22 => array('label' => 'xxx'))
