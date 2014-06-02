@@ -75,24 +75,18 @@ class NewsController extends BackendControllerBase
         //$modelNews = BTestNews::model()->with(BTestNews::REL_NEWS2CATS)->findByPk($newsID);
         $modelNews = BTestNews::model()->findByPk($newsID);
         //$modelNews->news2CategoryConns;
-        pa($modelNews);exit;
-        $modelNews->categoriesRelated = array(2);
+        //pa($modelNews);exit;
 
         if (!$modelNews) {
             throw new \CHttpException(404, \Yii::t('StoreModule.admin', 'Incorrect ID'));
         }
 
-        //$form = OrderEditForm::create($modelBase);
-        //$form = NewsEditForm::create($modelNews);
+
 
         //--- check was form posted ---//
         if ($this->isEditFormPosted($modelNews)) {
 
-            $modelNews->categoriesRel = array(2);
-
-            if (
-            $modelNews->validate()
-            ) {
+            if ($modelNews->validate()) {
                 $baseSaveRes = $modelNews->save(false);
                 if ($baseSaveRes) {
                 }
@@ -101,7 +95,7 @@ class NewsController extends BackendControllerBase
                 $this->redirect($this->createUrlBackend('index'));
             }
         } else {
-            //$modelNews->categoriesRel = array(4);
+            $modelNews->preselectCategoriesConnected();
         }
 
         $this->renderAuto(array(

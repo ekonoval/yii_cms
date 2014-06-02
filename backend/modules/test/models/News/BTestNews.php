@@ -11,7 +11,7 @@ class BTestNews extends MNews
     {
 
         return $this->mergeRules(
-            array(array("categoriesRelated", "safe")),
+            array(array("categoryIdsRelated", "safe")),
             parent::rules()
         );
     }
@@ -25,7 +25,7 @@ class BTestNews extends MNews
         return parent::model($className);
     }
 
-    protected function afterFind()
+    function preselectCategoriesConnected()
     {
         $catsRelated = $this->news2CategoryConns;
 
@@ -36,8 +36,6 @@ class BTestNews extends MNews
 
             $this->categoryIdsOld = $this->categoryIdsRelated;
         }
-
-        parent::afterFind();
     }
 
 
