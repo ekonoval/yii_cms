@@ -35,6 +35,8 @@ $this->widget($grid_widget, array(
             }
         ),
 
+        'txtFile',
+
 
 //        array(
 //            'name' => 'createDate',

@@ -13,7 +13,12 @@ class CfEditForm extends FormBuilder
     protected static function _getConfig()
     {
         $config = array(
-            'id' => 'wordEditForm',
+            'attributes' => array(
+                'enctype' => 'multipart/form-data',
+            ),
+
+            'id' => 'cfEditFormID',
+
 
             'elements' => array(
                 'tab1' => array(
@@ -42,6 +47,10 @@ class CfEditForm extends FormBuilder
                         'dtFull' => array(
                             'type' => WDateTimePicker::getClassNameFQ(),
                             //'lang' => 'ru'
+                        ),
+
+                        'txtFile' => array(
+                            'type' => 'file'
                         ),
 
 //                        'txtBig' => array(

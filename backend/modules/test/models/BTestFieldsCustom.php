@@ -1,5 +1,7 @@
 <?php
 
+use Ekv\helpers\UploadHelper;
+
 class BTestFieldsCustom extends \MFieldsCustom
 {
     public $markupCalc;
@@ -25,6 +27,13 @@ class BTestFieldsCustom extends \MFieldsCustom
         $base_rules = parent::rules();
 
         $base_rules[] = array('markupCalc, hasMarkup, txtBig, txtShort, dtFull', 'safe');
+        $base_rules[] = array('txtFile', 'file',
+            'types'=>'doc,docx,xls,xlsx,odt,pdf, txt',
+            'allowEmpty'=> true,
+            //'minSize' => 1024*50,
+            'skipOnError' => true,
+            'on'=>'insert,update'
+        );
 
         return $base_rules;
     }
@@ -39,9 +48,35 @@ class BTestFieldsCustom extends \MFieldsCustom
         return $base_labels;
     }
 
+    protected function beforeSave()
+    {
+        if (!parent::beforeSave()) {
+            return false;
+        }
+
+        if(
+            in_array($this->scenario, array('insert', 'update'))
+            && $txtFileObj = CUploadedFile::getInstance($this,'txtFile')
+        ){
+
+            $this->txtFile = $txtFileObj->getName();
+
+            $txtFileObj->saveAs($this->getFilesSavePath($this->txtFile));
+            echo "<h2>Vasya   </h2>\n";exit;
+        }
+
+        return true;
+    }
+
+    private function getFilesSavePath($fileName)
+    {
+        return UploadHelper::getFrontFiles($fileName);
+    }
+
+
     protected function afterValidate()
     {
-        $this->addError("markupCalc", "Can't have both");
+        //$this->addError("markupCalc", "Can't have both");
 //        if(!$this->hasErrors()){
 //            $this->addError("markupCalc", "Super custom error");
 //        }

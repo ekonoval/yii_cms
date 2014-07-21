@@ -18,7 +18,7 @@ class UploadController extends  BackendControllerBase
             $model->attributes = $_POST["BTestUpload"];
 
             $fileObj = \CUploadedFile::getInstance($model, 'fileUp');
-            pa($fileObj);
+            //pa($fileObj);exit;
 
             if($model->validate()){
                 $fileNameFull = $dir . $fileObj->getName();

@@ -11,15 +11,23 @@ class UploadHelper
         return $path;
     }
 
-    static function getFrontendDocRoot()
+    static function getFrontendDocRoot($pathAddRelative = "")
     {
         $path = Yii::getPathOfAlias('frontend').DIRECTORY_SEPARATOR.'www'.DIRECTORY_SEPARATOR;
+        if(!empty($pathAddRelative)){
+            $path .= $pathAddRelative;
+        }
         return $path;
     }
 
-    static function getFrontFiles()
+    static function getFrontFiles($pathAddRelative = "")
     {
-        return self::getFrontendDocRoot()."files/";
+        $path = self::getFrontendDocRoot()."files/";
+        if(!empty($pathAddRelative)){
+            $path .= $pathAddRelative;
+        }
+
+        return $path;
     }
 
     static function getFrontImages()
