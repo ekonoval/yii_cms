@@ -8,10 +8,33 @@ class WebModule extends \CWebModule
 
     public $_assetsUrl = null;
 
+    /**
+     * Folders in models directory used to autoload nonNamespaced models (mostly for forms)
+     * @var array
+     */
+    protected $modelsPaths = array();//array('Ar', 'News', 'Sqlite');
+
     protected function init()
     {
         $this->controllerNamespace = "\\{$this->_namespace}\\controllers";
-        //pa($this->controllerNamespace);exit;
+
+        //--- autoloaded pathes for models in subdirs ---//
+        $aliases = array();
+        $baseModelsPath = $this->name.'.models';
+        $aliases[] = $baseModelsPath.".*";
+
+        if(!empty($this->modelsPaths)){
+            foreach($this->modelsPaths as $modelSubDir){
+                $aliases[] = $baseModelsPath . ".{$modelSubDir}.*";
+            }
+        }
+
+        $this->setImport($aliases);
+    }
+
+    protected function setModelsPaths($pathsArray)
+    {
+        $this->modelsPaths = $pathsArray;
     }
 
     protected function _setNamespace($namespace = __NAMESPACE__)
