@@ -54,15 +54,19 @@ class BTestFieldsCustom extends \MFieldsCustom
             return false;
         }
 
-        if(
-            in_array($this->scenario, array('insert', 'update'))
-            && $txtFileObj = CUploadedFile::getInstance($this,'txtFile')
-        ){
 
-            $this->txtFile = $txtFileObj->getName();
 
-            $txtFileObj->saveAs($this->getFilesSavePath($this->txtFile));
-            echo "<h2>Vasya   </h2>\n";exit;
+        if(in_array($this->scenario, array('insert', 'update'))){
+            $txtFileObj = CUploadedFile::getInstance($this,'txtFile');
+            $isFileUploading = !empty($txtFileObj);
+
+            if($isFileUploading){
+                $this->txtFile = $txtFileObj->getName();
+                $txtFileObj->saveAs($this->getFilesSavePath($this->txtFile));
+            }else{
+                unset($this->txtFile);
+            }
+
         }
 
         return true;
