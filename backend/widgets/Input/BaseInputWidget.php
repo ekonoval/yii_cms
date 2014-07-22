@@ -14,5 +14,19 @@ abstract class BaseInputWidget extends CInputWidget implements IFullyQualified
             echo CHtml::textField($name, $this->value, $this->htmlOptions);
         }
     }
+
+    protected function drawCellRightOpen()
+    {
+        return CHtml::openTag("div", array('class' => 'cell-right'));
+    }
+
+    protected function drawCellRightClose()
+    {
+        return CHtml::closeTag('div');
+    }
+
+    protected function drawDivClear()
+    {
+        return CHtml::openTag("div", array('class' => 'clear')) . CHtml::closeTag("div");
+    }
 }
- 
