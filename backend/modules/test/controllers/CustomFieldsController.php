@@ -43,7 +43,8 @@ class CustomFieldsController extends BackendControllerBase
 //            $model = new \BTransWord();
 //            $model->unsetAttributes();
         } else {
-            $model = BTestFieldsCustom::model()->findByPk($rowID);
+            //$model = BTestFieldsCustom::model()->findByPk($rowID);
+            $model = \BTestFieldsCustomWithBh::model()->findByPk($rowID);
         }
 
         if (!$model) {
