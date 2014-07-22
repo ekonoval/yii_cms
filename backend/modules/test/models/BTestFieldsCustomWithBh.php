@@ -25,6 +25,8 @@ class BTestFieldsCustomWithBh extends \MFieldsCustom
             'fileTypes' => 'txt'
         );
 
+        unset($parentBhs["uploadFile"]);
+
         return $parentBhs;
     }
 
@@ -67,7 +69,8 @@ class BTestFieldsCustomWithBh extends \MFieldsCustom
 
     protected function beforeSave()
     {
-        pa("Before save model");
+        //pa("Before save model");
+
         if (!parent::beforeSave()) {
             return false;
         }

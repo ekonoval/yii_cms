@@ -5,6 +5,8 @@ use Ekv\B\classes\Misc\DateHelper;
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\modules\test\forms\CfEditForm;
 use \BTestFieldsCustom;
+use Ekv\behaviors\BhUploadFile;
+use Ekv\helpers\UploadHelper;
 
 class CustomFieldsController extends BackendControllerBase
 {
@@ -45,11 +47,21 @@ class CustomFieldsController extends BackendControllerBase
         } else {
             //$model = BTestFieldsCustom::model()->findByPk($rowID);
             $model = \BTestFieldsCustomWithBh::model()->findByPk($rowID);
+
         }
 
         if (!$model) {
             throw new \CHttpException(404, \Yii::t('StoreModule.admin', 'Incorrect ID'));
         }
+
+        $model->attachBehavior('uploadFile',
+            array(
+                'class' => BhUploadFile::getClassNameFQ(),
+                'baseSavePathAbsolute' => UploadHelper::getFrontFiles(),
+                'fileAttrName' => 'txtFile',
+                'fileTypes' => 'txt'
+            )
+        );
 
         $form = CfEditForm::create($model);
 

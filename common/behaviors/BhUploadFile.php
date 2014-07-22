@@ -80,7 +80,7 @@ class BhUploadFile extends \CActiveRecordBehavior implements IFullyQualified
 //            $file->saveAs($this->savePath . $file->name);
 //        }
 
-        pa('before Save BH');exit;
+        //pa('before Save BH');exit;
 
         if(in_array($this->owner->scenario, $this->scenarios)){
             $fileObj = CUploadedFile::getInstance($this->owner, $this->fileAttrName);
