@@ -2,45 +2,59 @@
 
 // Register jquery and jquery ui.
 
+use Ekv\B\extensions\jgrowl\Jgrowl;
+use Ekv\B\widgets\AdminBreadcrumps;
 use Ekv\B\widgets\SystemMenu;
 use Ekv\components\Yii\Db\EkvPdoStatement;
 
 $assetUrl = "/exim";
 
+/**
+ * @var $assetsManager CClientScript
+ */
 $assetsManager = yApp()->clientScript;
-$assetsManager->registerCoreScript('jquery');
-$assetsManager->registerCoreScript('jquery.ui');
-
+//pa($assetsManager->scriptMap);
 // Disable jquery-ui default theme
 $assetsManager->scriptMap = array(
+    'jquery' => array(
+//        'baseUrl' => $assetsManager->getCoreScriptUrl().'/',
+//        'js' => array('jquery.min.js')
+        'baseUrl' => '//ajax.googleapis.com/ajax/libs/jquery/1.8/',
+        'js' => array('jquery.min.js'),
+    ),
+
+    //'jquery.js' => '/jquery.min.js',
     'jquery-ui.css' => false,
 );
 
-$assetsManager->registerCssFile($assetUrl . '/css/yui-grids/reset-fonts-grids.css');
-$assetsManager->registerCssFile($assetUrl.'/css/base.css');
-$assetsManager->registerCssFile($assetUrl.'/css/forms.css');
-$assetsManager->registerCssFile($assetUrl.'/css/breadcrumbs/style.css');
-$assetsManager->registerCssFile($assetUrl.'/vendors/jquery_ui/css/custom-theme/jquery-ui-1.8.14.custom.css');
-$assetsManager->registerCssFile($assetUrl.'/css/theme.css');
+$assetsManager->registerCoreScript('jquery');
+$assetsManager->registerCoreScript('jquery.ui');
 
-//	// jGrowl
-//	Yii::import('ext.jgrowl.Jgrowl');
-//	Jgrowl::register();
+
+$assetsManager->registerCssFile($assetUrl . '/css/yui-grids/reset-fonts-grids.css');
+$assetsManager->registerCssFile($assetUrl . '/css/base.css');
+$assetsManager->registerCssFile($assetUrl . '/css/forms.css');
+$assetsManager->registerCssFile($assetUrl . '/css/breadcrumbs/style.css');
+$assetsManager->registerCssFile($assetUrl . '/vendors/jquery_ui/css/custom-theme/jquery-ui-1.8.14.custom.css');
+$assetsManager->registerCssFile($assetUrl . '/css/theme.css');
+
+// jGrowl
+Jgrowl::register();
 
 // Back Button & Query Library
-$assetsManager->registerScriptFile($assetUrl.'/vendors/jquery.ba-bbq.min.js');
+//$assetsManager->registerScriptFile($assetUrl.'/vendors/jquery.ba-bbq.min.js');
 
 // Init script
-$assetsManager->registerScriptFile($assetUrl.'/js/init.scripts.js');
+$assetsManager->registerScriptFile($assetUrl . '/js/init.scripts.js');
 //$assetsManager->registerScriptFile($assetUrl.'/js/red_circles.js');
-$assetsManager->registerScriptFile($assetUrl.'/js/jquery-datepicker-russian.js');
-$assetsManager->registerScriptFile($assetUrl.'/js/jquery.hotkeys.js');
+//$assetsManager->registerScriptFile($assetUrl . '/js/jquery-datepicker-russian.js');
+$assetsManager->registerScriptFile($assetUrl . '/js/jquery.hotkeys.js');
 ?>
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>EximusCommerce - Admin</title>
+    <title>Yii - CMS</title>
 
     <style type="text/css">
         /*** Fix for tabs. ***/
@@ -71,10 +85,6 @@ $assetsManager->registerScriptFile($assetUrl.'/js/jquery.hotkeys.js');
                 ?>
             </div>
             <div class="yui-u" id="topRightMenu">
-                <form action="/admin/store/products/" method="get" id="topSearchForm">
-                    <input type="text" name="StoreProduct[name]" id="topSearchBox">
-                </form>
-
                 <?php
                 /*
                 echo CHtml::link(Yii::t('AdminModule.admin', 'Выход ({name})', array('{name}'=>Yii::app()->user->model->username)), array('/admin/auth/logout'), array(
@@ -95,12 +105,14 @@ $assetsManager->registerScriptFile($assetUrl.'/js/jquery.hotkeys.js');
                     <div>
 
                         <?php
-                        /*
-							$this->widget('application.modules.admin.widgets.SAdminBreadcrumbs', array(
-								'homeLink'=>$this->createUrl('admin'),
-								'links'=>$this->breadcrumbs,
-							));
-                        */
+                        // /*
+                        //$this->widget('application.modules.admin.widgets.SAdminBreadcrumbs', array(
+                        //$this->breadcrumbs = array ( 'Home' => '/admin', 'Производители' => '/admin/store/manufacturer/index', 0 => 'Apple', );
+                        $this->widget(AdminBreadcrumps::getClassNameFQ(), array(
+                            //'homeLink' => $this->createUrl('/'),
+                            'links' => $this->bc,
+                        ));
+                        // */
                         ?>
                     </div>
                 </div>
@@ -111,10 +123,10 @@ $assetsManager->registerScriptFile($assetUrl.'/js/jquery.hotkeys.js');
             <div class="navigation-content-right marright" align="right" style="float:right;">
                 <div style="float:right;">
                     <?php
-                    /*
+                    ///*
                         if (!empty($this->topButtons))
                             echo $this->topButtons;
-                    */
+                    //*/
                     ?>
                 </div>
             </div>
@@ -123,62 +135,60 @@ $assetsManager->registerScriptFile($assetUrl.'/js/jquery.hotkeys.js');
 
     <div id="bd" class="marleft">
         <div id="yui-main">
-            <? /* ?>
-			<?php if (isset($this->pageHeader) && !empty($this->pageHeader)) echo '<h3>'.CHtml::encode($this->pageHeader).'</h3>'; ?>
+            <?php if (isset($this->pageHeader) && !empty($this->pageHeader)) {
+                echo '<h3>' . CHtml::encode($this->pageHeader) . '</h3>';
+            } ?>
 
-			<!-- Remove yui-b class for full wide -->
-			<?php if (!empty($this->sidebarContent)) { ?>
-				<div class="yui-b marright">
-			<?php }else{ ?>
-				<div class="marright">
-			<?php } ?>
-				<!-- Main content -->
-				<?php
-					if(($messages = Yii::app()->user->getFlash('messages')))
-					{
-						echo '<script type="text/javascript">';
-						foreach ($messages as $m)
-						{
-							echo '$.jGrowl("'.CHtml::encode($m).'",{position:"bottom-right"});';
-						}
-						echo '</script>';
-					}
-				?>
-				<div id="content" class="yui-g">
-				<!-- <hr /> -->
-					<?php
-						echo $content;
-					?>
-				</div>
-			</div>
-            <? */
-            ?>
-        </div>
-        <!-- Sidebar content -->
-        <?php if (!empty($this->sidebarContent)) { ?>
-            <div id="sidebar" class="yui-b marleft">
-                <?php echo $this->sidebarContent; ?>
-                <!--
-                <h3>Меню</h3>
-                <hr/>
-
-                <div class="sidebarBlock marright">
-                    <h3>Block Header</h3>
-                    <div class="blockContent">
-                        <form>
-                            <input type="text" />
-                        </form>
+            <!-- Remove yui-b class for full wide -->
+            <?php if (!empty($this->sidebarContent)) { ?>
+            <div class="yui-b marright">
+                <?php }else{ ?>
+                <div class="marright">
+                    <?php } ?>
+                    <!-- Main content -->
+                    <?php
+                    if (($messages = Yii::app()->user->getFlash('messages'))) {
+                        echo '<script type="text/javascript">';
+                        foreach ($messages as $m) {
+                            echo '$.jGrowl("' . CHtml::encode($m) . '",{position:"bottom-right"});';
+                        }
+                        echo '</script>';
+                    }
+                    ?>
+                    <div id="content" class="yui-g">
+                        <!-- <hr /> -->
+                        <?php
+                        echo $content;
+                        ?>
                     </div>
                 </div>
-                -->
-            </div><!-- /sidebar -->
-        <?php } ?>
-    </div>
 
-    <!-- footer -->
-    <div id="ft" style="height:50px;">
-        &nbsp;
-        <? /* ?>
+            </div>
+            <!-- Sidebar content -->
+            <?php if (!empty($this->sidebarContent)) { ?>
+                <div id="sidebar" class="yui-b marleft">
+                    <?php echo $this->sidebarContent; ?>
+                    <!--
+                    <h3>Меню</h3>
+                    <hr/>
+
+                    <div class="sidebarBlock marright">
+                        <h3>Block Header</h3>
+                        <div class="blockContent">
+                            <form>
+                                <input type="text" />
+                            </form>
+                        </div>
+                    </div>
+                    -->
+                </div><!-- /sidebar -->
+            <?php } ?>
+        </div>
+
+        <!-- footer -->
+        <div id="ft" style="height:50px;">
+            &nbsp;
+            <? /* ?>
 		<?php
 			Yii::import('application.modules.admin.components.SLicenseChecker');
 			if(SLicenseChecker::check()===false):
@@ -188,12 +198,12 @@ $assetsManager->registerScriptFile($assetUrl.'/js/jquery.hotkeys.js');
 		</div>
 		<?php endif ?>
         <? */
-        ?>
-        <div class="small-footer-text">
-            <a href="http://eximuscommerce.com/" target="_blank">EximusCommerce</a>
+            ?>
+            <div class="small-footer-text">
+                © copy
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>
 </body>
 </html>

@@ -14,7 +14,36 @@ class EController extends CController
 {
 	public $meta_keywords = array();
 	public $meta_description = array();
-	public $breadcrumbs;
+
+    protected function beforeAction($action)
+    {
+        $this->_breadcrumps();
+        return parent::beforeAction($action);
+    }
+
+
+    /**
+     * @var array - breadcrumbs
+     */
+    public $bc;
+
+    protected function _breadcrumps()
+    {
+
+    }
+
+    protected function _addBreadCrumpItem($name, $href, $key = null)
+    {
+        $item = array(
+            'name' => $name,
+            'href' => $href
+        );
+        if(!is_null($key)){
+            $this->bc[$key] = $item;
+        }else{
+            $this->bc[] = $item;
+        }
+    }
 
 
 	/**
@@ -121,4 +150,8 @@ class EController extends CController
         $this->render(null, $data, false);
     }
 
+    function getActionId()
+    {
+        return $this->action->id;
+    }
 }

@@ -33,6 +33,9 @@ return array(
 
     // application modules
     'modules' => array(
+        'core' => array(
+            'class' => '\Ekv\B\modules\core\CoreModule'
+        ),
         'user' => array(
             'class' => '\Ekv\B\modules\user\UserModule'
         ),

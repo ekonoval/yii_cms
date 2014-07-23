@@ -9,22 +9,13 @@ class TestModule extends WebModule
     protected function init()
     {
         $this->_setNamespace(__NAMESPACE__);
+        $this->setModelsPaths(array('Ar', 'News', 'Sqlite', 'Upload'));
         parent::init();
 
-        $this->setImport(array($this->name.'.models.*'));
+//        $this->setImport(array($this->name.'.models.*'));
+//        $this->setImport(array($this->name.'.models.Ar.*'));
+//        $this->setImport(array($this->name.'.models.News.*'));
     }
-
-//	public function init()
-//	{
-//		// this method is called when the module is being created
-//		// you may place code here to customize the module or the application
-//
-//		// import the module-level models and components
-//		$this->setImport(array(
-//			'user.models.*',
-//			'user.components.*',
-//		));
-//	}
 
     public function beforeControllerAction($controller, $action)
     {

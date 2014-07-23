@@ -29,7 +29,7 @@ class MWords extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('wordEN, wordRU', 'required'),
+			'req' => array('wordEN, wordRU', 'required'),
 			array('episodeID, isHard, superHard', 'numerical', 'integerOnly'=>true),
 			array('wordEN, wordRU', 'length', 'max'=>255),
 			// The following rule is used by search().

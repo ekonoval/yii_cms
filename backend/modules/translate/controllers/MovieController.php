@@ -1,16 +1,24 @@
 <?php
 namespace Ekv\B\modules\translate\controllers;
 
+use EController;
 use Ekv\B\components\Controllers\BackendControllerBase;
 use BTransMovie, CHttpException;
 
 
-class MovieController extends BackendControllerBase
+class MovieController extends TranslateController
 {
     private $_mainModelName = "BTransMovie";
 
+    public function init()
+    {
+        parent::init();
+        $this->setEximLayout();
+    }
+
     function actionIndex()
     {
+        //pa($this->getFullName());
         //$model = new MMovies('search'); $get_name = 'Ekv\models\MMovies';
         $model = new \BTransMovie('search'); $get_name = get_class($model);
         //$model = new \OldMovies('search'); $get_name = "OldMovies";

@@ -8,6 +8,11 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 $env_conf =  array(
+//    'custom' => array(
+//        'domainFront' => 'appyii.dev',
+//        'domainBack' => 'backend.appyii.dev',
+//    ),
+
 	'modules' => array(
 		'gii' => array(
 			'class' => 'system.gii.GiiModule',
@@ -34,6 +39,10 @@ $env_conf =  array(
 		'yii.handleErrors'   => true,
 		'yii.debug' => true,
 		'yii.traceLevel' => 3,
+
+        //--- change this ---//
+        'domainFront' => 'appyii.dev',
+        'domainBack' => 'backend.appyii.dev',
 	)
 );
 

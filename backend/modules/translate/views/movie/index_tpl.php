@@ -6,17 +6,28 @@
 </style>
 <?php
 /**
+ * @var $this MovieController
  * @var $model MMovies
  */
 
+use Ekv\B\classes\Misc\DateHelper;
+use Ekv\B\extensions\sgridview\SGridView;
+use Ekv\B\modules\translate\controllers\MovieController;
+use Ekv\B\widgets\Input\Datepicker\WDatePicker;
 use Ekv\models\MMovies;
 
-$this->widget('zii.widgets.grid.CGridView', array(
+$grid_widget = SGridView::getClassNameFQ();
+
+$filterCreateDateJsID = 'filterCreateDate';
+
+$this->widget($grid_widget, array(
     'id' => 'movieGrid',
     'dataProvider' => $model->search(),
     'filter' => $model,
-    //5543'afterAjaxUpdate' => 'reinstallDatePicker',
+    'afterAjaxUpdate' => 'reinstallDatePicker',
     'selectableRows' => 2,
+    //'ajaxUrl' => yApp()->request->url,
+    'ajaxUrl' => "/translate/movie/index/",
 
     'columns' => array(
         array(
@@ -37,6 +48,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             //'CHtml::link(CHtml::encode($data->email), "mailto:".CHtml::encode($data->email))',
         ),
 
+        //<editor-fold desc="example fields">
 //        'movieNameLnk' => array(
 //            //'name' => "movieName",
 //            'class' => 'CLinkColumn',
@@ -65,38 +77,25 @@ $this->widget('zii.widgets.grid.CGridView', array(
 //                0 => 'НЕактивен'
 //            )
 //        ),
+        //</editor-fold>
 
         array(
             'name' => 'createDate',
             'type' => 'raw',
-            'value' => '$data->createDate',
-            //'filter' => $this->widget('zii.widgets.jui.CJuiDatePicker',
-            'filter' => $this->widget('common.widgets.jui.EkvJuiDatePicker',
-                    array(
-                        'model' => $model,
-                        'attribute' => 'createDate',
-                        //'language' => 'uk',
-                        //'language' => '',
-                        // 'i18nScriptFile' => 'jquery.ui.datepicker-ja.js', (#2)
-                        'htmlOptions' => array(
-                            'id' => 'dpCreateDate',
-                            'size' => '10',
-                        ),
-                        'options' => array('dateFormat' => 'yy-mm-dd'),
-                        'defaultOptions' => array( // (#3)
-                            //'yearRange' => '2013:2013',
-                            'showOn' => 'focus',
-                            //'dateFormat' => 'yy/mm/dd',
-                            'dateFormat' => 'yy-mm-dd',
-                            'showOtherMonths' => true,
-                            'selectOtherMonths' => true,
-                            'changeMonth' => true,
-                            'changeYear' => true,
-                            'showButtonPanel' => true,
-                        )
-                    ),
-                    true
-                ), // (#4)
+            //'value' => '$data->createDate',
+            'value' => function ($data) {
+                return DateHelper::getJqDatePickerFormatedDate($data->createDate, false);
+            },
+
+            'filter' => $this->widget(
+                WDatePicker::getClassNameFQ(),
+                array(
+                    'id' => $filterCreateDateJsID, // !!!! important for reinstall
+                    'model' => $model,
+                    'attribute' => 'createDate',
+                ),
+                true
+            ),
         ),
 
         array(
@@ -104,3 +103,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
     ),
 ));
+
+//#------------------- reset after ajax !! -------------------#//
+yClientScript()->registerScript(
+    're-install-date-picker',
+    "function reinstallDatePicker(id, data) {
+        $('#{$filterCreateDateJsID}').datepicker();
+    }
+    "
+);

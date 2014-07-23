@@ -35,7 +35,8 @@
         "yiisoft/yii": "dev-master",
         "yii-twbs/yiistrap": "dev-master",
         "2amigos/yiiwheels": "dev-master",
-        "ircmaxell/password-compat": "1.0.3"
+        "ircmaxell/password-compat": "1.0.3",
+        "zhuravljov/yii2-debug": "dev-master"
     },
     "require_archive": {
         "pentium10/yii-remember-filters-gridview" : "dev-master",

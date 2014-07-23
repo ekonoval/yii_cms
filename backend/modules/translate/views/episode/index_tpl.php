@@ -4,14 +4,22 @@
         padding: 0;
     }
 </style>
-<h4>grid with AR</h4>
+<h4>grid1 with AR</h4>
 <?php
 /**
  * @var $model BTransEpisode
+ * @var $this EpisodeController
  */
 
 
-$this->widget('zii.widgets.grid.CGridView', array(
+use Ekv\B\extensions\sgridview\SGridView;
+use Ekv\B\modules\translate\controllers\EpisodeController;
+
+$controller = $this; // fix 5.3 in anonymous functions
+
+$grid_widget = 'zii.widgets.grid.CGridView';
+$grid_widget = SGridView::getClassNameFQ();
+$this->widget($grid_widget, array(
     'id' => 'episodeGrid',
     'dataProvider' => $model->search(),
     'filter' => $model,
@@ -50,9 +58,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
 
         array(
             'type' => "raw",
-            'value' => function ($data, $row) {
+            'value' => function ($data, $row)use($controller) {
                 return CHtml::link("[words]",
-                    yApp()->createUrl("translate/word/index", array("episodeID" => $data->episodeID)),
+                    $controller->getEpisodeWordsIndexUrl($data->episodeID),
+                    //yApp()->createUrl("translate/word/index", array("episodeID" => $data->episodeID)),
                     array('title' => 'View episode words')
                 );
             }

@@ -39,6 +39,14 @@ function ySession()
     return Yii::app()->session;
 }
 
+/**
+ * @return CClientScript
+ */
+function yClientScript()
+{
+    return Yii::app()->getClientScript();
+}
+
 function t($message, $params, $category = 'myproject')
 {
     return Yii::t($category, $message, $params);

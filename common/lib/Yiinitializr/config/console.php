@@ -26,8 +26,8 @@ return Yiinitializr\Helpers\ArrayX::merge(
 	array(
 		'params' => array(
 			'composer.callbacks' => array(
-				'post-update' => array('yiic', 'migrate'),
-				'post-install' => array('yiic', 'migrate'),
+				//'post-update' => array('yiic', 'migrate'),
+				//'post-install' => array('yiic', 'migrate'),
 			)
 		),
 	)
