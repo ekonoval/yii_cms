@@ -26,6 +26,7 @@ index
 /console/runtime
 
 /backend/www/assets
+/backend/controllers/EkvTestController.php
 /backend/runtime
 /frontend/www/assets
 /frontend/www/images/*
