@@ -12,6 +12,7 @@ use Ekv\widgets\Jui\EkvJuiDatePicker;
 
 class CfEditForm extends FormBuilder
 {
+    //master
     protected static function _getConfig()
     {
         $config = array(
@@ -54,7 +55,7 @@ class CfEditForm extends FormBuilder
                         'txtFile' => array(
                             //'type' => 'file'
                             'type' => WFileUpload::getClassNameFQ(),
-                            'webRelativePath' => UrlHelper::getFronFilesUrl('test')
+                            'webRelativePath' => UrlHelper::getFronFilesUrl('test/')
                         ),
 
 //                        'txtBig' => array(
