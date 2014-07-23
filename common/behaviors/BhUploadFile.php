@@ -8,6 +8,7 @@ use CModelEvent;
 use CUploadedFile;
 use CValidator;
 use Ekv\B\components\System\IFullyQualified;
+use Ekv\helpers\UploadHelper;
 use Yii;
 
 class BhUploadFile extends \CActiveRecordBehavior implements IFullyQualified
@@ -43,6 +44,8 @@ class BhUploadFile extends \CActiveRecordBehavior implements IFullyQualified
      * @var string типы файлов, которые можно загружать (нужно для валидации)
      */
     public $fileTypes = 'doc,docx,xls,xlsx,odt,pdf';
+
+    public $filePrefix = ''; // prefix_d201c2b27f4a693cc1462348ce2f7542.doc
 
     /**
      * Шорткат для Yii::getPathOfAlias($this->savePathAlias).DIRECTORY_SEPARATOR.
@@ -86,15 +89,18 @@ class BhUploadFile extends \CActiveRecordBehavior implements IFullyQualified
 
             if($isFileUploading){
 
-                $this->owner->setAttribute($this->fileAttrName, $fileObj->getName());
-                $fileUploadRes = $fileObj->saveAs($this->getFileAbsFull());
+
+                $newFileName = UploadHelper::getRandomFileName($fileObj->extensionName, $this->filePrefix);
+                $fileUploadRes = $fileObj->saveAs($this->composeAbsolutePath($newFileName));
 
                 //--- delete previous file ---//
-                if(
-                    $fileUploadRes
-                    && !empty($this->oldFileName)
-                ){
-                    $this->deleteFile($this->oldFileName);
+                if($fileUploadRes){
+                    if(!empty($this->oldFileName)){
+                        $this->deleteFile($this->oldFileName);
+                    }
+
+                    //--- save file field only if upload was successfull ---//
+                    $this->owner->setAttribute($this->fileAttrName, $newFileName);
                 }
 
             }else{
@@ -110,9 +116,9 @@ class BhUploadFile extends \CActiveRecordBehavior implements IFullyQualified
         return true;
     }
 
-    private function getFileAbsFull()
+    private function composeAbsolutePath($relativePath)
     {
-        $path = $this->baseSavePathAbsolute . DIRECTORY_SEPARATOR . $this->getFileAttrValue();
+        $path = $this->baseSavePathAbsolute . DIRECTORY_SEPARATOR . $relativePath;
         return $path;
     }
 
@@ -132,15 +138,19 @@ class BhUploadFile extends \CActiveRecordBehavior implements IFullyQualified
     {
         //$filePath = $this->baseSavePathAbsolute . $this->owner->getAttribute($this->fileAttrName);
 
-        $filePath = $this->baseSavePathAbsolute . DIRECTORY_SEPARATOR ;
+        //$filePath = $this->baseSavePathAbsolute . DIRECTORY_SEPARATOR ;
+
+        $relativePathCalculated = "";
         if(!empty($relativePath)){
-            $filePath .= $relativePath;
+            $relativePathCalculated .= $relativePath;
         }else{
-            $filePath .= $this->getFileAttrValue();
+            $relativePathCalculated .= $this->getFileAttrValue();
         }
 
-        if (@is_file($filePath)) {
-            @unlink($filePath);
+        $absPath = $this->composeAbsolutePath($relativePathCalculated);
+
+        if (@is_file($absPath)) {
+            @unlink($absPath);
         }
     }
 }

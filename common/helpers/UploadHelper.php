@@ -34,5 +34,17 @@ class UploadHelper
     {
         return self::getFrontendDocRoot()."images/";
     }
+
+    static function  getRandomFileName($ext, $prefix = "")
+    {
+        $res = strtolower(md5(uniqid($prefix, true)));
+
+        if(!empty($prefix)){
+            $res = "{$prefix}_{$res}";
+        }
+
+        $res .= ".{$ext}";
+        return $res;
+    }
 }
  

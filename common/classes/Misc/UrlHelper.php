@@ -8,9 +8,16 @@ class UrlHelper
         return 'http://'.yApp()->params->domainFront . $url;
     }
 
-    static function getFronFilesUrl()
+    static function getFronFilesUrl($pathRelative = '')
     {
-        return self::appendUrlWithFrontDomain('/files/');
+        $urlFull = self::appendUrlWithFrontDomain('/files/');
+
+        if(!empty($pathRelative)){
+            $urlFull .= $pathRelative;
+        }
+
+        return $urlFull;
+
     }
 }
  

@@ -56,10 +56,11 @@ class CustomFieldsController extends BackendControllerBase
         $model->attachBehavior('uploadFile',
             array(
                 'class' => BhUploadFile::getClassNameFQ(),
-                'baseSavePathAbsolute' => UploadHelper::getFrontFiles(),
+                'baseSavePathAbsolute' => UploadHelper::getFrontFiles('test'),
                 'fileAttrName' => 'txtFile',
                 'oldFileName' => $model->txtFile,
-                'fileTypes' => 'txt'
+                'fileTypes' => 'txt',
+                'filePrefix' => 'tt'
             )
         );
 

@@ -54,7 +54,7 @@ class CfEditForm extends FormBuilder
                         'txtFile' => array(
                             //'type' => 'file'
                             'type' => WFileUpload::getClassNameFQ(),
-                            'webRelativePath' => UrlHelper::getFronFilesUrl()
+                            'webRelativePath' => UrlHelper::getFronFilesUrl('test')
                         ),
 
 //                        'txtBig' => array(
