@@ -14,6 +14,8 @@ class BTestFieldsCustomWithBh extends \MFieldsCustom
 
     public $dtFull;
 
+    public $customFlag = 'untouched';
+
     public function behaviors()
     {
         $parentBhs = parent::behaviors();
@@ -69,13 +71,15 @@ class BTestFieldsCustomWithBh extends \MFieldsCustom
 
     protected function beforeSave()
     {
-        //pa("Before save model");
+        //pa("Before save model");exit;
+
+        $this->customFlag = 'modelBeforeParent';
 
         if (!parent::beforeSave()) {
             return false;
         }
 
-
+        $this->customFlag = 'modelAfterParent';
 
 //        if(in_array($this->scenario, array('insert', 'update'))){
 //            $txtFileObj = CUploadedFile::getInstance($this,'txtFile');
@@ -89,6 +93,7 @@ class BTestFieldsCustomWithBh extends \MFieldsCustom
 //            }
 //        }
 
+
         return true;
     }
 
@@ -99,10 +104,12 @@ class BTestFieldsCustomWithBh extends \MFieldsCustom
 
     protected function afterValidate()
     {
+        parent::afterValidate();
         //$this->addError("markupCalc", "Can't have both");
 //        if(!$this->hasErrors()){
 //            $this->addError("markupCalc", "Super custom error");
 //        }
+
     }
 
 }

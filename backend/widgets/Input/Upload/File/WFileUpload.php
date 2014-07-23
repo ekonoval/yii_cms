@@ -17,17 +17,6 @@ class WFileUpload extends BaseInputWidget
     {
         parent::run();
 
-        list($name, $inputID) = $this->resolveNameID();
-
-//        echo $this->drawCellRightOpen();
-//
-//            echo CHtml::activeFileField($this->model, $this->attribute, $this->htmlOptions);
-//
-//        echo $this->drawCellRightClose();
-//        echo $this->drawDivClear();
-
-        //pa($this->webRelativePath);
-
         $currentFilename = $this->model->getAttribute($this->attribute);
         $currentUrl = null;
         if(!empty($currentFilename)){

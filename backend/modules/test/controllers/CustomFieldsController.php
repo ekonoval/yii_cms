@@ -47,7 +47,6 @@ class CustomFieldsController extends BackendControllerBase
         } else {
             //$model = BTestFieldsCustom::model()->findByPk($rowID);
             $model = \BTestFieldsCustomWithBh::model()->findByPk($rowID);
-
         }
 
         if (!$model) {
@@ -59,6 +58,7 @@ class CustomFieldsController extends BackendControllerBase
                 'class' => BhUploadFile::getClassNameFQ(),
                 'baseSavePathAbsolute' => UploadHelper::getFrontFiles(),
                 'fileAttrName' => 'txtFile',
+                'oldFileName' => $model->txtFile,
                 'fileTypes' => 'txt'
             )
         );
