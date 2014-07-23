@@ -12,6 +12,7 @@ use Ekv\widgets\Jui\EkvJuiDatePicker;
 
 class CfEditForm extends FormBuilder
 {
+    //master
     protected static function _getConfig()
     {
         $config = array(
