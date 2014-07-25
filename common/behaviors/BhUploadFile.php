@@ -47,7 +47,7 @@ class BhUploadFile extends \CActiveRecordBehavior implements IFullyQualified
      * Возвращает путь к директории, в которой будут сохраняться файлы.
      * @return string путь к директории, в которой сохраняем файлы
      */
-    public function getSavePath()
+    private function getSavePath()
     {
         return $this->baseSavePathAbsolute;
     }
