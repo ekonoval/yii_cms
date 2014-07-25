@@ -7,6 +7,11 @@ use Ekv\classes\Misc\PathHelper;
 
 class ImgResizeSettings
 {
+    /**
+     * For original images(unresized, as is)
+     */
+    const ORIGINAL_FOLDER = 'original';
+
     static private $galleryHeaderPhoto =
         array(
             'view' => EkvGlobalHelper::VIEW_FRONT,
@@ -14,14 +19,30 @@ class ImgResizeSettings
             "sizes" => array(
                 array(
                     "dir" => "size1",
-                    "method" => "resize_biggest_side",
+                    "method" => "resizeBiggestSide",
                     "sizeSingle" => 150,
+                    "sizeW" => 0,
+                    "sizeH" => 0,
+                ),
+
+                array(
+                    "dir" => "size2",
+                    "method" => "resizeBiggestSide",
+                    "sizeSingle" => 500,
                     "sizeW" => 0,
                     "sizeH" => 0,
                 ),
             ),
     );
 
+    static function getPathAbsoluteFull($pathBaseAbs, $size, $fileName = '')
+    {
+        $pathFullAbs = $pathBaseAbs . $size . DIRECTORY_SEPARATOR;
+        if(!empty($fileName)){
+            $pathFullAbs .= $fileName;
+        }
+        return $pathFullAbs;
+    }
 
     public static function getSettingsItem($key)
    	{
@@ -37,20 +58,6 @@ class ImgResizeSettings
         $settingsItem["basePathAbsolute"] = $basePathAbsolute;
 
         return $settingsItem;
-
-
-//   		//--- path root prefix definition ---//
-//   		$path_root_prefix = PATH_IMAGE;
-//           $path_root_prefix_relative = "/images";
-//   		if($path_root_prefix_param == "PATH_FILES"){
-//   			$path_root_prefix = PATH_FILES;
-//               $path_root_prefix_relative = "/files";
-//   		}
-//
-//   		$res = self::$$key;
-//           $res["base_photo_path_relative"] = $path_root_prefix_relative.$res["base_photo_path"];
-//   		$res["base_photo_path"] = $path_root_prefix.$res["base_photo_path"];
-//   		return $res;
    	}
 
     static function itemGalleryPhotos()
