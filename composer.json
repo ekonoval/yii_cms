@@ -36,6 +36,7 @@
         "yii-twbs/yiistrap": "dev-master",
         "2amigos/yiiwheels": "dev-master",
         "ircmaxell/password-compat": "1.0.3",
+        "imagine/imagine": "0.6.1",
         "zhuravljov/yii2-debug": "dev-master"
     },
     "require_archive": {

@@ -2,14 +2,13 @@
 namespace Ekv\B\modules\test\controllers;
 
 use Ekv\B\components\Controllers\BackendControllerBase;
-use Ekv\helpers\UploadHelper;
-use Yii;
+use Ekv\classes\Misc\PathHelper;
 
 class UploadController extends  BackendControllerBase
 {
     function actionSimple()
     {
-        $dir = UploadHelper::getFrontFiles();
+        $dir = PathHelper::getFrontFiles();
 
         $uploaded = false;
         $model = new \BTestUpload();

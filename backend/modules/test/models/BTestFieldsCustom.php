@@ -1,6 +1,6 @@
 <?php
 
-use Ekv\helpers\UploadHelper;
+use Ekv\classes\Misc\PathHelper;
 
 class BTestFieldsCustom extends \MFieldsCustom
 {
@@ -74,7 +74,7 @@ class BTestFieldsCustom extends \MFieldsCustom
 
     private function getFilesSavePath($fileName)
     {
-        return UploadHelper::getFrontFiles($fileName);
+        return PathHelper::getFrontFiles($fileName);
     }
 
 

@@ -1,7 +1,7 @@
 <?php
 
 use Ekv\behaviors\BhUploadFile;
-use Ekv\helpers\UploadHelper;
+use Ekv\classes\Misc\PathHelper;
 
 class BTestFieldsCustomWithBh extends \MFieldsCustom
 {
@@ -22,7 +22,7 @@ class BTestFieldsCustomWithBh extends \MFieldsCustom
 
         $parentBhs["uploadFile"] = array(
             'class' => BhUploadFile::getClassNameFQ(),
-            'baseSavePathAbsolute' => UploadHelper::getFrontFiles(),
+            'baseSavePathAbsolute' => PathHelper::getFrontFiles(),
             'fileAttrName' => 'txtFile',
             'fileTypes' => 'txt'
         );

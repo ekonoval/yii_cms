@@ -1,12 +1,12 @@
 <?php
 namespace Ekv\B\modules\test\controllers;
 
+use BTestFieldsCustom;
 use Ekv\B\classes\Misc\DateHelper;
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\modules\test\forms\CfEditForm;
-use \BTestFieldsCustom;
 use Ekv\behaviors\BhUploadFile;
-use Ekv\helpers\UploadHelper;
+use Ekv\classes\Misc\PathHelper;
 
 class CustomFieldsController extends BackendControllerBase
 {
@@ -56,7 +56,7 @@ class CustomFieldsController extends BackendControllerBase
         $model->attachBehavior('uploadFile',
             array(
                 'class' => BhUploadFile::getClassNameFQ(),
-                'baseSavePathAbsolute' => UploadHelper::getFrontFiles('test'),
+                'baseSavePathAbsolute' => PathHelper::getFrontFiles('test'),
                 'fileAttrName' => 'txtFile',
                 'oldFileName' => $model->txtFile,
                 'fileTypes' => 'txt',

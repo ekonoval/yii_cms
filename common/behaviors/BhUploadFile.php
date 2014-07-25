@@ -1,15 +1,10 @@
 <?php
 namespace Ekv\behaviors;
 
-use CComponent;
-use CEvent;
-use CModelBehavior;
-use CModelEvent;
 use CUploadedFile;
 use CValidator;
 use Ekv\B\components\System\IFullyQualified;
-use Ekv\helpers\UploadHelper;
-use Yii;
+use Ekv\classes\Misc\PathHelper;
 
 class BhUploadFile extends \CActiveRecordBehavior implements IFullyQualified
 {
@@ -90,7 +85,7 @@ class BhUploadFile extends \CActiveRecordBehavior implements IFullyQualified
             if($isFileUploading){
 
 
-                $newFileName = UploadHelper::getRandomFileName($fileObj->extensionName, $this->filePrefix);
+                $newFileName = PathHelper::getRandomFileName($fileObj->extensionName, $this->filePrefix);
                 $fileUploadRes = $fileObj->saveAs($this->composeAbsolutePath($newFileName));
 
                 //--- delete previous file ---//
