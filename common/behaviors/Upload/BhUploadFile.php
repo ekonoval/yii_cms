@@ -1,6 +1,7 @@
 <?php
-namespace Ekv\behaviors;
+namespace Ekv\behaviors\Upload;
 
+use CActiveRecordBehavior;
 use CUploadedFile;
 use CValidator;
 use Ekv\B\components\System\IFullyQualified;

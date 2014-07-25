@@ -1,6 +1,6 @@
 <?php
 
-use Ekv\behaviors\BhUploadFile;
+use Ekv\behaviors\Upload\BhUploadFile;
 use Ekv\classes\Misc\PathHelper;
 
 class BTestFieldsCustomWithBh extends \MFieldsCustom

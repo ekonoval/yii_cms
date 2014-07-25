@@ -5,7 +5,7 @@ use BTestFieldsCustom;
 use Ekv\B\classes\Misc\DateHelper;
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\modules\test\forms\CfEditForm;
-use Ekv\behaviors\BhUploadFile;
+use Ekv\behaviors\Upload\BhUploadFile;
 use Ekv\classes\Misc\PathHelper;
 
 class CustomFieldsController extends BackendControllerBase
