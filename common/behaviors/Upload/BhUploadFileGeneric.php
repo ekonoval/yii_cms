@@ -6,7 +6,7 @@ use CValidator;
 use Ekv\B\components\System\IFullyQualified;
 use Ekv\classes\Misc\PathHelper;
 
-class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFullyQualified
+abstract class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFullyQualified
 {
     static function getClassNameFQ()
     {
@@ -29,11 +29,7 @@ class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFullyQualif
      */
     public $oldFileName = '';
 
-    /**
-     * @var array сценарии валидации к которым будут добавлены правила валидации
-     * загрузки файлов
-     */
-    public $scenarios = array('insert', 'update');
+    public $allowEmpty = true;
 
     /**
      * @var string типы файлов, которые можно загружать (нужно для валидации)
@@ -41,6 +37,12 @@ class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFullyQualif
     public $fileTypes = '';//'doc,docx,xls,xlsx,odt,pdf';
 
     public $filePrefix = ''; // prefix_d201c2b27f4a693cc1462348ce2f7542.doc
+
+    /**
+     * @var array сценарии валидации к которым будут добавлены правила валидации
+     * загрузки файлов
+     */
+    public $scenarios = array('insert', 'update');
 
     /**
      * @param \CModel $owner
@@ -57,13 +59,19 @@ class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFullyQualif
                 $this->fileAttrName,
                 array(
                     'types' => $this->fileTypes,
-                    'allowEmpty' => true
+                    'allowEmpty' => $this->allowEmpty
                 )
             );
             $owner->validatorList->add($fileValidator);
         }
+
+        $this->init();
     }
 
+    protected function init()
+    {
+
+    }
 
 
     // имейте ввиду, что методы-обработчики событий в поведениях должны иметь
@@ -78,7 +86,7 @@ class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFullyQualif
 
                 $newFileName = PathHelper::getRandomFileName($fileObj->extensionName, $this->filePrefix);
 
-                $absPathBeingUploading = $this->composeAbsolutePathOverridable($newFileName);
+                $absPathBeingUploading = $this->composeAbsolutePathCustom($newFileName);
 
                 $fileUploadRes = $fileObj->saveAs($absPathBeingUploading);
 
@@ -105,7 +113,7 @@ class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFullyQualif
         return true;
     }
 
-    protected function composeAbsolutePathOverridable($relativePath)
+    protected function composeAbsolutePathCustom($relativePath)
     {
         return $this->composeAbsolutePath($relativePath);
     }
@@ -128,12 +136,9 @@ class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFullyQualif
         $this->deleteFile(); // удалили модель? удаляем и файл, связанный с ней
     }
 
-    protected function deleteFileOverridable()
-    {
+    abstract  protected function deleteFileCustom($relativePath);
 
-    }
-
-    private function deleteFile($relativePath = '')
+    protected function deleteFile($relativePath = '')
     {
 
         $relativePathCalculated = "";
@@ -143,11 +148,7 @@ class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFullyQualif
             $relativePathCalculated .= $this->getFileAttrValue();
         }
 
-        $absPath = $this->composeAbsolutePath($relativePathCalculated);
-
-        if (@is_file($absPath)) {
-            @unlink($absPath);
-        }
+        $this->deleteFileCustom($relativePathCalculated);
     }
 }
  

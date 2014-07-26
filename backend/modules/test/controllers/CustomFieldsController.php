@@ -6,7 +6,9 @@ use Ekv\B\classes\Misc\DateHelper;
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\modules\test\forms\CfEditForm;
 use Ekv\behaviors\Upload\BhUploadFile;
+use Ekv\behaviors\Upload\BhUploadImage;
 use Ekv\classes\Misc\PathHelper;
+use Ekv\components\EkvThumb\ImgResizeSettings;
 
 class CustomFieldsController extends BackendControllerBase
 {
@@ -63,6 +65,18 @@ class CustomFieldsController extends BackendControllerBase
                 'filePrefix' => 'tt'
             )
         );
+
+        $model->attachBehavior('uploadImg',
+            array(
+                'class' => BhUploadImage::getClassNameFQ(),
+                'resizeSettings' => ImgResizeSettings::itemGalleryPhotos(),
+                'fileAttrName' => 'photoFile',
+                'oldFileName' => $model->photoFile,
+                'filePrefix' => 'gph'
+            )
+        );
+
+        //$model->deleteFile();
 
         $form = CfEditForm::create($model);
 
