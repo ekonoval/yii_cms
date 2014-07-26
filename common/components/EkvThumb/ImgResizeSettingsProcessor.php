@@ -31,12 +31,14 @@ class ImgResizeSettingsProcessor
 
         foreach ($this->settings["sizes"] as $sizeVal) {
 
+            //--- full abs path with filename ---//
             $sizeAbsolutePathFull = $this->imgResizeHelper->getPathAbsoluteFull(
                 $basePathAbsolute,
                 $sizeVal["dir"],
                 $this->fileName
             );
 
+            // ... /size1/
             $sizeAbsolutePathDir = $this->imgResizeHelper->getPathAbsoluteFull(
                 $basePathAbsolute,
                 $sizeVal["dir"]
@@ -54,6 +56,7 @@ class ImgResizeSettingsProcessor
             $resizerObj = new ImgResizerSingle($originalAbsolutePathFull, $sizeAbsolutePathFull);
             ThumbException::ensure(method_exists($resizerObj, $method), "Resize method '{$method}' doesn't exist!");
 
+            //todo - realize possible other required specific resizing methods
             if($method == "resizeBiggestSide"){
                 $resizerObj->resizeBiggestSide($sizeVal["sizeSingle"]);
             }
