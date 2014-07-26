@@ -35,15 +35,6 @@ class ImgResizeSettings
             ),
     );
 
-    static function getPathAbsoluteFull($pathBaseAbs, $size, $fileName = '')
-    {
-        $pathFullAbs = $pathBaseAbs . $size . DIRECTORY_SEPARATOR;
-        if(!empty($fileName)){
-            $pathFullAbs .= $fileName;
-        }
-        return $pathFullAbs;
-    }
-
     public static function getSettingsItem($key)
    	{
         ThumbException::ensure(isset(self::$$key), "imgResize setting not found - '{$key}'");
@@ -53,7 +44,7 @@ class ImgResizeSettings
         $siView = isset($settingsItem["view"]) ? $settingsItem["view"] : EkvGlobalHelper::VIEW_FRONT;
 
         $basePathAbsolute = PathHelper::getAbsPathViewDependent($siView, $settingsItem["basePathRel"]);
-//        PathHelper::normilizePath($basePathAbsolute)
+        //PathHelper::normilizePath($basePathAbsolute)
 
         $settingsItem["basePathAbsolute"] = $basePathAbsolute;
 
@@ -64,6 +55,8 @@ class ImgResizeSettings
     {
         return self::getSettingsItem('galleryHeaderPhoto');
     }
+
+
 
 }
  

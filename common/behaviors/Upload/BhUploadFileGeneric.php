@@ -96,6 +96,8 @@ abstract class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFu
                         $this->deleteFile($this->oldFileName);
                     }
 
+                    $this->afterSuccessfullUpload($newFileName);
+
                     //--- save file field only if upload was successfull ---//
                     $this->owner->setAttribute($this->fileAttrName, $newFileName);
                 }
@@ -111,6 +113,11 @@ abstract class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFu
         }
 
         return true;
+    }
+
+    protected function afterSuccessfullUpload($newFileName)
+    {
+        //usefull for image uploading
     }
 
     protected function composeAbsolutePathCustom($relativePath)
@@ -136,7 +143,7 @@ abstract class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFu
         $this->deleteFile(); // удалили модель? удаляем и файл, связанный с ней
     }
 
-    abstract  protected function deleteFileCustom($relativePath);
+    abstract  protected function deleteFileCustom($fileName);
 
     protected function deleteFile($relativePath = '')
     {

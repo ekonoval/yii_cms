@@ -8,9 +8,9 @@ class BhUploadFile extends BhUploadFileGeneric
         return getClassNameFullyQualified(__CLASS__);
     }
 
-    protected function deleteFileCustom($relativePath)
+    protected function deleteFileCustom($fileName)
     {
-        $absPath = $this->composeAbsolutePath($relativePath);
+        $absPath = $this->composeAbsolutePath($fileName);
 
         if (@is_file($absPath)) {
             @unlink($absPath);

@@ -58,10 +58,15 @@ class CfEditForm extends FormBuilder
                             'webRelativePath' => UrlHelper::getFronFilesUrl('test/')
                         ),
 
+                        'photoFile' => array(
+                            'type' => WFileUpload::getClassNameFQ(),
+                            //'webRelativePath' => UrlHelper::getFronFilesUrl('test/')
+                        ),
+
 //                        'txtBig' => array(
 //                            'type' => WCKEditor::getClassNameFQ(),
 //                        ),
-                        'txtShort' => array('type' => WCKEditor::getClassNameFQ(), )
+                        //'txtShort' => array('type' => WCKEditor::getClassNameFQ(), )
                     ),
                 ),
             ),

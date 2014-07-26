@@ -4,7 +4,9 @@ namespace Ekv\behaviors\Upload;
 use CActiveRecordBehavior;
 use CValidator;
 use Ekv\classes\Exceptions\EkvException;
+use Ekv\components\EkvThumb\ImgResizeHelper;
 use Ekv\components\EkvThumb\ImgResizeSettings;
+use Ekv\components\EkvThumb\ImgResizeSettingsProcessor;
 
 class BhUploadImage extends BhUploadFileGeneric
 {
@@ -37,13 +39,27 @@ class BhUploadImage extends BhUploadFileGeneric
      */
     protected function composeAbsolutePathCustom($relativePath)
     {
-        $relativePath = ImgResizeSettings::ORIGINAL_FOLDER . DIRECTORY_SEPARATOR. $relativePath;
+        $originalRelativePath = ImgResizeSettings::ORIGINAL_FOLDER . DIRECTORY_SEPARATOR;
+        $absOriginalPath = $this->composeAbsolutePath($originalRelativePath);
+        @mkdir($absOriginalPath);
+
+        $relativePath = $originalRelativePath. $relativePath;
+
         return $this->composeAbsolutePath($relativePath);
     }
 
-    protected function deleteFileCustom($relativePath)
+    protected function deleteFileCustom($fileName)
     {
-        throw new EkvException('not implemented');
+        $imgResizeHelper = new ImgResizeHelper();
+        $imgResizeHelper->removeFilesOfAllSizes($this->resizeSettings, $fileName);
+    }
+
+    protected function afterSuccessfullUpload($newFileName)
+    {
+        parent::afterSuccessfullUpload($newFileName);
+
+        $thumbResizer = new ImgResizeSettingsProcessor($this->resizeSettings, $newFileName);
+        $thumbResizer->mainPerformResize();
     }
 
 

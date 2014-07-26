@@ -6,10 +6,16 @@ class ImgResizeSettingsProcessor
     private $settings;
     private $fileName;
 
+    /**
+     * @var ImgResizeHelper
+     */
+    private $imgResizeHelper;
+
     function __construct($resizeSettingsItem, $fileName)
     {
         $this->fileName = $fileName;
         $this->settings = $resizeSettingsItem;
+        $this->imgResizeHelper = new ImgResizeHelper();
     }
 
     function mainPerformResize()
@@ -17,22 +23,28 @@ class ImgResizeSettingsProcessor
         ThumbException::ensure(isset($this->settings["sizes"]), "Setting sizes incorrect");
         $basePathAbsolute = $this->settings["basePathAbsolute"];
 
-        $originalAbsolutePathFull = ImgResizeSettings::getPathAbsoluteFull(
+        $originalAbsolutePathFull = $this->imgResizeHelper->getPathAbsoluteFull(
             $basePathAbsolute,
             ImgResizeSettings::ORIGINAL_FOLDER,
             $this->fileName
         );
 
         foreach ($this->settings["sizes"] as $sizeVal) {
-            $sizeAbsolutePathFull = ImgResizeSettings::getPathAbsoluteFull(
+
+            $sizeAbsolutePathFull = $this->imgResizeHelper->getPathAbsoluteFull(
                 $basePathAbsolute,
                 $sizeVal["dir"],
                 $this->fileName
             );
 
+            $sizeAbsolutePathDir = $this->imgResizeHelper->getPathAbsoluteFull(
+                $basePathAbsolute,
+                $sizeVal["dir"]
+            );
+
             //--- create subdir if not exists ---//
-            if(!file_exists($basePathAbsolute)){
-                @mkdir($basePathAbsolute, 0775, true);
+            if(!file_exists($sizeAbsolutePathDir)){
+                @mkdir($sizeAbsolutePathDir, 0775, true);
             }
 
             //pa($sizeAbsolutePathFull);
