@@ -7,7 +7,9 @@ use Ekv\B\widgets\Input\CKEditor\WCKEditor;
 use Ekv\B\widgets\Input\Datepicker\WDatePicker;
 use Ekv\B\widgets\Input\Datepicker\WDateTimePicker;
 use Ekv\B\widgets\Input\Upload\File\WUploadFile;
+use Ekv\B\widgets\Input\Upload\File\WUploadImage;
 use Ekv\classes\Misc\UrlHelper;
+use Ekv\components\EkvThumb\ImgResizeSettings;
 use Ekv\widgets\Jui\EkvJuiDatePicker;
 
 class CfEditForm extends FormBuilder
@@ -59,8 +61,9 @@ class CfEditForm extends FormBuilder
                         ),
 
                         'photoFile' => array(
-                            'type' => WUploadFile::getClassNameFQ(),
-                            //'webRelativePath' => UrlHelper::getFronFilesUrl('test/')
+                            'type' => WUploadImage::getClassNameFQ(),
+                            'resizeSettings' => ImgResizeSettings::itemGalleryPhotos(),
+                            'size' => 'size1'
                         ),
 
 //                        'txtBig' => array(

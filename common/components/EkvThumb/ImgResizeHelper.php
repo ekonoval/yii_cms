@@ -1,6 +1,8 @@
 <?php
 namespace Ekv\components\EkvThumb;
 
+use Ekv\classes\Misc\UrlHelper;
+
 class ImgResizeHelper
 {
     function removeFilesOfAllSizes($resizeSettings, $fileName)
@@ -32,6 +34,15 @@ class ImgResizeHelper
             $pathFullAbs .= $fileName;
         }
         return $pathFullAbs;
+    }
+
+    function getWebUrl($resizeSettings, $size, $fileName)
+    {
+        $url = "{$resizeSettings["basePathRel"]}{$size}/{$fileName}";
+
+        $url = UrlHelper::getUrlViewDependent($resizeSettings["view"], $url);
+
+        return $url;
     }
 }
  
