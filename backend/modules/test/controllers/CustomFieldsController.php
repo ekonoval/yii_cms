@@ -2,6 +2,7 @@
 namespace Ekv\B\modules\test\controllers;
 
 use BTestFieldsCustom;
+use BTestFieldsCustomWithBh;
 use Ekv\B\classes\Misc\DateHelper;
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\modules\test\forms\CfEditForm;
@@ -32,23 +33,26 @@ class CustomFieldsController extends BackendControllerBase
         return $this->createUrl("/test/customFields/index");
     }
 
-    function actionUpdate()
+    function actionCreate()
+    {
+        $this->actionUpdate(false);
+    }
+
+    function actionUpdate($editMode = true)
     {
         $rowID = yR()->getQuery('id');
-
-        $edit_mode = true;
 
         /**
          * @var $model BTestFieldsCustom
          */
         $model = null;
 
-        if (!$edit_mode) {
-//            $model = new \BTransWord();
-//            $model->unsetAttributes();
+        if (!$editMode) {
+            $model = new BTestFieldsCustomWithBh();
+
         } else {
             //$model = BTestFieldsCustom::model()->findByPk($rowID);
-            $model = \BTestFieldsCustomWithBh::model()->findByPk($rowID);
+            $model = BTestFieldsCustomWithBh::model()->findByPk($rowID);
         }
 
         if (!$model) {

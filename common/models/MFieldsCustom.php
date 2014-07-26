@@ -31,7 +31,7 @@ class MFieldsCustom extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fName, dt, rubricID, markupNumeric, markupPercent', 'required'),
+			array('fName', 'required'),
 			array('rubricID', 'numerical', 'integerOnly'=>true),
 			array('fName, txtFile', 'length', 'max'=>255),
 			array('photoFile', 'length', 'max'=>100),

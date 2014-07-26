@@ -16,21 +16,21 @@ class BTestFieldsCustomWithBh extends \MFieldsCustom
 
     public $customFlag = 'untouched';
 
-    public function behaviors()
-    {
-        $parentBhs = parent::behaviors();
-
-        $parentBhs["uploadFile"] = array(
-            'class' => BhUploadFile::getClassNameFQ(),
-            'baseSavePathAbsolute' => PathHelper::getFrontFiles(),
-            'fileAttrName' => 'txtFile',
-            'fileTypes' => 'txt'
-        );
-
-        unset($parentBhs["uploadFile"]);
-
-        return $parentBhs;
-    }
+//    public function behaviors()
+//    {
+//        $parentBhs = parent::behaviors();
+//
+//        $parentBhs["uploadFile"] = array(
+//            'class' => BhUploadFile::getClassNameFQ(),
+//            'baseSavePathAbsolute' => PathHelper::getFrontFiles(),
+//            'fileAttrName' => 'txtFile',
+//            'fileTypes' => 'txt'
+//        );
+//
+//        unset($parentBhs["uploadFile"]);
+//
+//        return $parentBhs;
+//    }
 
 
     /**
