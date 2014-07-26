@@ -1,6 +1,6 @@
 <?php
-/** @var $this WFileUpload  */
-use Ekv\B\widgets\Input\Upload\File\WFileUpload;
+/** @var $this WUploadFile  */
+use Ekv\B\widgets\Input\Upload\File\WUploadFile;
 ?>
 <div class="cell-right">
     <div style="display: inline-block;">

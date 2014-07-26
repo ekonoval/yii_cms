@@ -4,7 +4,7 @@ namespace Ekv\B\widgets\Input\Upload\File;
 use CHtml;
 use Ekv\B\widgets\Input\BaseInputWidget;
 
-class WFileUpload extends BaseInputWidget
+class WUploadFile extends BaseInputWidget
 {
     public $webRelativePath;
 
@@ -24,7 +24,7 @@ class WFileUpload extends BaseInputWidget
         }
 
         $this->render(
-            'fileUpload_tpl',
+            'uploadFile_tpl',
             array(
                 'currentFilename' => $currentFilename,
                 'currentUrl' => $currentUrl

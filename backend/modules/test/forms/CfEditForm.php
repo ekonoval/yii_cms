@@ -6,7 +6,7 @@ use Ekv\B\modules\test\widgets\PriceMarkup\WPriceMarkup;
 use Ekv\B\widgets\Input\CKEditor\WCKEditor;
 use Ekv\B\widgets\Input\Datepicker\WDatePicker;
 use Ekv\B\widgets\Input\Datepicker\WDateTimePicker;
-use Ekv\B\widgets\Input\Upload\File\WFileUpload;
+use Ekv\B\widgets\Input\Upload\File\WUploadFile;
 use Ekv\classes\Misc\UrlHelper;
 use Ekv\widgets\Jui\EkvJuiDatePicker;
 
@@ -54,12 +54,12 @@ class CfEditForm extends FormBuilder
 
                         'txtFile' => array(
                             //'type' => 'file'
-                            'type' => WFileUpload::getClassNameFQ(),
+                            'type' => WUploadFile::getClassNameFQ(),
                             'webRelativePath' => UrlHelper::getFronFilesUrl('test/')
                         ),
 
                         'photoFile' => array(
-                            'type' => WFileUpload::getClassNameFQ(),
+                            'type' => WUploadFile::getClassNameFQ(),
                             //'webRelativePath' => UrlHelper::getFronFilesUrl('test/')
                         ),
 
