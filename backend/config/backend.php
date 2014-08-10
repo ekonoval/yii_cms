@@ -86,15 +86,27 @@ return array(
             // uncomment the following if you have enabled Apache's Rewrite module.
             'urlFormat' => 'path',
             'showScriptName' => false,
+// /*
             'rules' => array(
                 // default rules
-                //'<controller:\w+>/<id:\d+>' => '<controller>/view',
-                //'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                //'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/' => '<controller>/index',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 
+
+                /**
+                 * Fails $this->createUrl('/translate/episode/index/', array('movieID' =>  5, "secondPar" =>  2))
+                 * it displays /translate/episode/index?movieID=5&secondPar=2
+                 * instead of /translate/episode/index/movieID/5/secondPar/2
+                 * @see http://www.yiiframework.com/doc/guide/1.1/en/topics.url - section CBaseUrlRule
+                 */
                 //"<module:\w+>/<controller:\w+>/<action:\w+>" => "<module>/<controller>/<action>",
-                //"<module:\w+>/<controller:\w+>/<action:\w+>/*" => "<module>/<controller>/<action>",
+                "<module:\w+>/<controller:\w+>/<action:\w+>/*" => "<module>/<controller>/<action>",
+
+                //array( 'class' => 'Ekv\B\components\TestUrlParse' )
             ),
+// */
         ),
 
         'errorHandler' => array(

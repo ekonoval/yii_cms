@@ -10,6 +10,7 @@ class SiteController extends BackendControllerBase
      */
     public function actionIndex()
     {
+        //pa(yApp()->urlManager);
         //echo "<h2>Backend index  </h2>\n";
 
         //\Ekv\Product\Helpers\ProductDetailedHelper::staticTest();
