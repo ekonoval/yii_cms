@@ -1,5 +1,6 @@
 <?php
-namespace Ekv\B\modules\user\models;
+
+use Ekv\B\components\User\Auth\BUserIdentity;
 
 class BUserLoginForm extends \CFormModel
 {
@@ -7,7 +8,7 @@ class BUserLoginForm extends \CFormModel
     public $password;
     public $rememberMe = false;
 
-    private $_identity;
+    private $identity;
 
     /**
      * @return array
@@ -17,17 +18,25 @@ class BUserLoginForm extends \CFormModel
         return array(
             array('username, password', 'required'),
             array('rememberMe', 'boolean'),
-            array('password', 'authenticate'),
+            array('password', 'tryAuthenticate'), // !!!!
         );
     }
 
     /**
      * Authenticate user
      */
-    public function authenticate()
+    public function tryAuthenticate()
     {
-        $this->_identity = new UserIdentity($this->username, $this->password);
-        if (!$this->_identity->authenticate()) {
+        if(
+            empty($this->username)
+            || empty($this->password)
+        ){
+            return false;
+        }
+
+        $this->identity = new BUserIdentity($this->username, $this->password);
+
+        if (!$this->identity->authenticate()) {
             $this->addError('password', Yii::t('AdminModule.admin', 'Неправильное имя пользователя или пароль.'));
         }
     }
@@ -37,7 +46,7 @@ class BUserLoginForm extends \CFormModel
      */
     public function getIdentity()
     {
-        return $this->_identity;
+        return $this->identity;
     }
 }
  

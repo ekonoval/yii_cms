@@ -3,6 +3,7 @@
 namespace Ekv\B\components\User\Auth;
 use CUserIdentity;
 use Ekv\components\User\PasswordManage;
+use Ekv\models\MUser;
 
 /**
  * Check whether user can be authentified.
@@ -20,9 +21,9 @@ class BUserIdentity extends CUserIdentity
     public function authenticate()
     {
         /**
-         * @var $mUser \Ekv\models\MUser
+         * @var $mUser MUser
          */
-        $mUser = \Ekv\models\MUser::model()->find(" `login` = :login AND enabled = 1", array(':login' => $this->username));
+        $mUser = MUser::model()->find(" `login` = :login AND enabled = 1", array(':login' => $this->username));
 
         //--- user not found ---//
         if (is_null($mUser)) {
