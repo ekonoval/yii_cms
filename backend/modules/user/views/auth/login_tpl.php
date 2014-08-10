@@ -30,7 +30,14 @@ $cs->registerCssFile($assetUrl . '/css/theme.css');
             margin: auto;
             margin-top: 150px;
         }
+        .root div.form input[type="submit"]{
+            display: block;
+            width: 100px;
+            font-size: 15px;
+        }
     </style>
+
+
 </head>
 <body>
 
@@ -40,22 +47,11 @@ $cs->registerCssFile($assetUrl . '/css/theme.css');
             <!-- Remove yui-b class for full wide -->
             <div class="yui-b marright">
                 <!-- Main content -->
-                <h3>Eximus <span style="color:#1193cd">Commerce</span></h3>
 
                 <div id="content" class="yui-g">
-
-                    <script type="text/javascript">
-                        $(function ()
-                        {
-                            //$("#LoginForm_username").focus();
-                        });
-                    </script>
-
                     <div class="form wide padding-all">
                         <?php echo $form; ?>
                     </div>
-
-
                 </div>
             </div>
         </div>
