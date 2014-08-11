@@ -9,6 +9,8 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
+use Ekv\B\components\System\UrlManager\Rules\RuleControllerWithoutActionPlusParams;
+
 defined('APP_CONFIG_NAME') or define('APP_CONFIG_NAME', 'backend');
 
 // web application configuration
@@ -83,16 +85,20 @@ return array(
             )
         ),
         'urlManager' => array(
+            'class' => 'Ekv\B\components\System\UrlManager\EkvUrlManager',
             // uncomment the following if you have enabled Apache's Rewrite module.
             'urlFormat' => 'path',
             'showScriptName' => false,
 // /*
             'rules' => array(
                 // default rules
+                //array( 'class' => 'Ekv\B\components\Tmp\TestUrlParse' ),
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/' => '<controller>/index',
+                '<controller:\w+>/' => '<controller>/index', // !!!!!!!
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+
+                //array( 'class' => 'Ekv\B\components\System\UrlManager\Rules\RuleControllerWithoutActionPlusParams' ),
 
 
                 /**
@@ -101,11 +107,23 @@ return array(
                  * instead of /translate/episode/index/movieID/5/secondPar/2
                  * @see http://www.yiiframework.com/doc/guide/1.1/en/topics.url - section CBaseUrlRule
                  */
-                //"<module:\w+>/<controller:\w+>/<action:\w+>" => "<module>/<controller>/<action>",
+                "<module:\w+>/<controller:\w+>/<action:\w+>" => "<module>/<controller>/<action>",
                 "<module:\w+>/<controller:\w+>/<action:\w+>/*" => "<module>/<controller>/<action>",
 
-                //array( 'class' => 'Ekv\B\components\TestUrlParse' )
+                //'<statPageUrl:\w+>' => 'site/statPage/<statPageUrl>'
+                //'<statPageUrl>' => 'site/statPage',
+                //array( 'class' => 'Ekv\B\components\Tmp\TestUrlParse' )
             ),
+
+//            'rules' => array(
+//                // default rules
+//                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+//                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+//                //'<controller:\w+>/' => '<controller>/index',
+//                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+//                '<controller:\w+>/<action:\w+>/*' => '<controller>/<action>',
+//            ),
+
 // */
         ),
 

@@ -30,10 +30,17 @@ class SiteController extends BackendControllerBase
             if (Yii::app()->request->isAjaxRequest) {
                 echo $error['message'];
             } else {
-                //pa($error);
+                pa($error);exit;
                 $this->render('error', array('error' => $error));
             }
         }
+    }
+
+
+    function actionTest()
+    {
+        pa("Action test");
+        pa($_GET);
     }
 
 }
