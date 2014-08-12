@@ -2,6 +2,9 @@
 
 use Ekv\components\Yii\Db\EkvDbConnection;
 
+/**
+ * @return CWebApplication
+ */
 function yApp()
 {
     return Yii::app();

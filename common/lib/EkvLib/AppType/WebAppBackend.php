@@ -5,7 +5,7 @@ use CHttpException;
 
 class WebAppBackend extends WebApp
 {
-    public function processRequest()
+    public function processRequest1()
     {
         pa(\Yii::getLogger()->getExecutionTime());
         pa($this->request->isAjaxRequest);
