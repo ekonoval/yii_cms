@@ -45,7 +45,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Yiinitializr": "common/lib/"
+            "Yiinitializr": "common/lib/",
+            "EkvLib": "common/lib/"
         }
     },
     "scripts": {
