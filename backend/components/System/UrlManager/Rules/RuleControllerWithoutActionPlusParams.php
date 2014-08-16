@@ -10,10 +10,10 @@ use CUrlManager;
  */
 class RuleControllerWithoutActionPlusParams extends \CBaseUrlRule
 {
-    static function getClassNameFQ()
-    {
-        return getClassNameFullyQualified(__CLASS__);
-    }
+//    static function getClassNameFQ()
+//    {
+//        return getClassNameFullyQualified(__CLASS__);
+//    }
 
     public function createUrl($manager, $route, $params, $ampersand)
     {
@@ -30,25 +30,56 @@ class RuleControllerWithoutActionPlusParams extends \CBaseUrlRule
      */
     public function parseUrl($manager, $request, $pathInfo, $rawPathInfo)
     {
+        $actions = array('other',  'fake');
+        $actions[] = 'index';
+        foreach($actions as &$actionVal){
+            $actionVal .= '\/';
+        }
+
+
+        $actionsPartsStr = implode('|', $actions);
+        //$pattern = '#ekvTest\/((?!other|fake).*)#';
+        $pattern = '#(ekvTest)\/((?!'.$actionsPartsStr.').*)#';
+
         /**
          * @var CUrlManager $manager
          */
-        if (preg_match('%^(\w+)(/.*)?$%', $pathInfo, $matches)){
-pa($matches);
+        //if (preg_match('%^(\w+)(/.*)?$%', $pathInfo, $matches)){
+        if (preg_match($pattern, $pathInfo, $matches)){
+            //pa($matches);//exit;
+
+            $route = "{$matches["1"]}/index";
+            //$route = "xxx/xxx";
+            //pa(\Yii::getLogger()->executionTime);
+
+            /**
+             * @var \EkvTestController $controllerRes
+             */
+            $controllerRes = yApp()->createController($route);
+            //var_dump($controllerRes);//exit;
+
+            //pa(\Yii::getLogger()->executionTime);
+            //pa(\Yii::getLogger()->executionTime);
+            //pa($controllerRes->action);
+         //   exit;
+
+
             $part = ltrim(substr($pathInfo, strlen($matches[1])));
             $part = $matches["2"];
 
             //$res = $manager->parsePathInfo(ltrim(substr($pathInfo, strlen($matches[0])), '/'));
             $res = $manager->parsePathInfo($part);
-            pa($_REQUEST, $_GET);
-            pa($matches);exit;
+//            pa($_REQUEST, $_GET);
+//            pa($matches);//exit;
 
+            return $route;
 
             // Проверяем $matches[1] и $matches[3] на предмет
             // соответствия производителю и модели в БД.
             // Если соответствуют, выставляем $_GET['manufacturer'] и/или $_GET['model']
             // и возвращаем строку с маршрутом 'car/index'.
         }
+
         return false;  // не применяем данное правило
     }
 
