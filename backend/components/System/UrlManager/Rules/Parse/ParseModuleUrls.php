@@ -25,31 +25,6 @@ class ParseModuleUrls extends ParseUrlCustomBase
         }
     }
 
-    function mainParseUrl()
-    {
-        $this->parseUrlParts($this->pathInfo);
-
-        if(!$this->checkModule()){
-            return false;
-        }
-
-        if(empty($this->controllerName)){
-            return false;
-        }
-
-        $controllerObj = $this->tryLoadController();
-        if(empty($controllerObj)){
-            return false;
-        }
-
-        $finalRoute = $this->checkController($controllerObj);
-        if(!empty($finalRoute)){
-            return $finalRoute;
-        }
-
-        return false;
-    }
-
     protected function customPreValidation()
     {
         if(!$this->checkModule()){
