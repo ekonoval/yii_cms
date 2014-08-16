@@ -34,7 +34,7 @@ class ControllerGetAllActions
 
                 if (preg_match($pattern, $currentStr, $matches)) {
                     if(isset($matches[1])){
-                        $matchesGlobal[] = strtolower($matches[1]);
+                        $matchesGlobal[] = lcfirst($matches[1]);
                     }
                 }
 
