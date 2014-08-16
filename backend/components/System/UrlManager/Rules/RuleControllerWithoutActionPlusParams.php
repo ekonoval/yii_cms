@@ -10,11 +10,10 @@ use CUrlManager;
  */
 class RuleControllerWithoutActionPlusParams extends \CBaseUrlRule
 {
-//    static function getClassNameFQ()
-//    {
-//        return getClassNameFullyQualified(__CLASS__);
-//    }
 
+    /*
+     * Url Creating should work fine in native way without any additional actions
+     */
     public function createUrl($manager, $route, $params, $ampersand)
     {
         return false;
@@ -30,6 +29,39 @@ class RuleControllerWithoutActionPlusParams extends \CBaseUrlRule
      */
     public function parseUrl($manager, $request, $pathInfo, $rawPathInfo)
     {
+        pa(yApp()->getModules());exit;
+        pa('parse');exit;
+        return false;
+    }
+
+
+
+
+    /**
+     * Parses a URL based on this rule.
+     * @param CUrlManager $manager the URL manager
+     * @param CHttpRequest $request the request object
+     * @param string $pathInfo path info part of the URL (URL suffix is already removed based on {@link CUrlManager::urlSuffix})
+     * @param string $rawPathInfo path info that contains the potential URL suffix
+     * @return mixed the route that consists of the controller ID and action ID. False if this rule does not apply.
+     */
+    public function parseUrl1($manager, $request, $pathInfo, $rawPathInfo)
+    {
+        //pa(func_get_args()); exit;
+        $controllerName = $this->parseControllerName($pathInfo);
+
+        if(empty($controllerName)){
+            return false;
+        }
+
+        /**
+         * @var \EController $controllerObj
+         */
+        $controllerRes = yApp()->createController($controllerName.'/index');
+        pa($controllerRes[0]->getAction(), $controllerRes);exit;
+
+
+
         $actions = array('other',  'fake');
         $actions[] = 'index';
         foreach($actions as &$actionVal){
@@ -81,6 +113,17 @@ class RuleControllerWithoutActionPlusParams extends \CBaseUrlRule
         }
 
         return false;  // не применяем данное правило
+    }
+
+    private function parseControllerName($pathInfo)
+    {
+        $controllerName = '';
+
+        $pattern = '/([^\/]+)/';
+        if(preg_match($pattern, $pathInfo, $matches)){
+            $controllerName = $matches[1];
+        }
+        return $controllerName;
     }
 
 
