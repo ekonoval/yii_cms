@@ -9,7 +9,7 @@ use Ekv\B\components\System\UrlManager\Rules\Parse\ParseNonModuleUrls;
  * TMP
  * @deprecated
  */
-class RuleControllerWithoutActionPlusParams extends \CBaseUrlRule
+class RuleNonModules extends \CBaseUrlRule
 {
 
     /*

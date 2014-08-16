@@ -100,7 +100,7 @@ return array(
 
                 //"<module:\w+>/<controller:\w+>/<action:\w+>/*" => "<module>/<controller>/<action>",
                 array( 'class' => 'Ekv\B\components\System\UrlManager\Rules\RuleModules'),
-                array( 'class' => 'Ekv\B\components\System\UrlManager\Rules\RuleControllerWithoutActionPlusParams' ),
+                array( 'class' => 'Ekv\B\components\System\UrlManager\Rules\RuleNonModules' ),
 
 
                 /**
