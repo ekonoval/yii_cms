@@ -4,6 +4,8 @@ namespace Ekv\B\components\System\UrlManager\Rules\Parse;
 use CUrlManager;
 use EController;
 
+class ParseUrlCustomBaseException extends \Exception{}
+
 abstract class ParseUrlCustomBase
 {
     //protected $moduleName;
@@ -34,29 +36,52 @@ abstract class ParseUrlCustomBase
         return true;
     }
 
+    protected function ensure($expr, $failMsg)
+    {
+        if(!$expr){
+            throw new ParseUrlCustomBaseException($failMsg);
+        }
+    }
+
     function mainParseUrl()
     {
-        $this->parseUrlParts($this->pathInfo);
+        try{
+            $this->parseUrlParts($this->pathInfo);
+            
+            $this->customPreValidation();
 
-        if(!$this->customPreValidation()){
-            return false;
-        }
+            $this->ensure(!empty($this->controllerName), "empty ctrl name");
 
-        if(empty($this->controllerName)){
-            return false;
-        }
+            $controllerObj = $this->tryLoadController();
+            $this->ensure($controllerObj, 'controller not found');
 
-        $controllerObj = $this->tryLoadController();
-        if(empty($controllerObj)){
-            return false;
-        }
-
-        $finalRoute = $this->checkController($controllerObj);
-        if(!empty($finalRoute)){
+            $finalRoute = $this->checkController($controllerObj);
             return $finalRoute;
+
+        }catch(ParseUrlCustomBaseException $ex){
+
+            return false;
         }
 
-        return false;
+//        if(!$this->customPreValidation()){
+//            return false;
+//        }
+//
+//        if(empty($this->controllerName)){
+//            return false;
+//        }
+//
+//        $controllerObj = $this->tryLoadController();
+//        if(empty($controllerObj)){
+//            return false;
+//        }
+//
+//        $finalRoute = $this->checkController($controllerObj);
+//        if(!empty($finalRoute)){
+//            return $finalRoute;
+//        }
+//
+//        return false;
     }
 
     protected function parseAndSetRequestPrams()
@@ -109,7 +134,7 @@ abstract class ParseUrlCustomBase
             return $this->createRightRoute($this->defaultAction);
         }
 
-        return false;
+        $this->ensure(false, 'action not found');
     }
 
     /**

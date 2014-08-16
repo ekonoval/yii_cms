@@ -22,15 +22,15 @@ class ParseModuleUrls extends ParseUrlCustomBase
 
             $this->queryParamsRaw = isset($matches[5]) ? $matches[5] : '';
             //pa($this->moduleName, $this->controllerName, $this->actionName);
+            return true;
         }
+
+        $this->ensure(false, 'pregmatch module failed');
     }
 
     protected function customPreValidation()
     {
-        if(!$this->checkModule()){
-            return false;
-        }
-        return true;
+        $this->checkModule();
     }
 
 
@@ -60,7 +60,7 @@ class ParseModuleUrls extends ParseUrlCustomBase
             return true;
         }
 
-        return false;
+        $this->ensure(false, 'Module not found');
     }
 
 

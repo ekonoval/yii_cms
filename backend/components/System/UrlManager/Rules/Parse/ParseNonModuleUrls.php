@@ -20,7 +20,10 @@ class ParseNonModuleUrls extends ParseUrlCustomBase
 
             $this->queryParamsRaw = isset($matches[4]) ? $matches[4] : '';
             //pa($this->moduleName, $this->controllerName, $this->actionName);
+            return true;
         }
+
+        $this->ensure(false, 'pregmatch failed');
     }
 
     protected function getControllerBaseRoute()
