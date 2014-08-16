@@ -1,4 +1,6 @@
 <?php
+use Ekv\components\Yii\Misc\ControllerGetAllActions;
+
 /**
  * EController class
  *
@@ -27,9 +29,12 @@ class EController extends CController
      */
     public $bc;
 
-    protected function _breadcrumps()
-    {
+    protected function _breadcrumps(){}
 
+    function getAllActionsList()
+    {
+        $obj = new ControllerGetAllActions($this);
+        return $obj->mainGetAllActions();
     }
 
     protected function _addBreadCrumpItem($name, $href, $key = null)
