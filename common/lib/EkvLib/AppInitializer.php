@@ -74,7 +74,7 @@ class AppInitializer
         //Yii::registerAutoloader(array(new \ProjectCustomAutoloader(), 'loadClass'), true);
 
         //--- importing global shortcut functions ---//
-        Yii::import("common.helpers.global_shortcuts", true);
+        Yii::import("common.lib.EkvLib.global_shortcuts", true);
 
         //  return an app
         return $app;
