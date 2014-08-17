@@ -7,17 +7,11 @@ use EkvLib\EkvAutoloader;
  */
 class Yii extends \YiiBase
 {
-//    function __construct()
-//    {
-//        pa("new Yii"); exit;
-//    }
 
     private static function _getCustomAutoloader()
     {
         static $obj = null;
         if(is_null($obj)){
-            //require_once "components/ProjectCustomAutoloader.php";
-            //$obj = new ProjectCustomAutoloader();
             $obj = new EkvAutoloader();
         }
         return $obj;
@@ -40,6 +34,7 @@ class Yii extends \YiiBase
             $forceInclude
             && strpos($alias, 'Ekv\\') !== false
         ){
+            //pa($alias);
             $customAutoloaderObj = self::_getCustomAutoloader();
             $customAutoloaderObj->loadClass($alias);
             return $alias;
