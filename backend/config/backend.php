@@ -85,7 +85,6 @@ return array(
             )
         ),
         'urlManager' => array(
-            'class' => 'Ekv\B\components\System\UrlManager\EkvUrlManager',
             // uncomment the following if you have enabled Apache's Rewrite module.
             'urlFormat' => 'path',
             'showScriptName' => false,
