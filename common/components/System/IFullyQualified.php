@@ -1,5 +1,5 @@
 <?php
-namespace Ekv\B\components\System;
+namespace Ekv\components\System;
 
 interface IFullyQualified
 {

@@ -1,7 +1,7 @@
 <?php
 namespace Ekv\B\modules\test\widgets\PriceMarkup;
 
-use Ekv\B\components\System\IFullyQualified;
+use Ekv\components\System\IFullyQualified;
 
 class WPriceMarkup extends \CInputWidget implements IFullyQualified
 {

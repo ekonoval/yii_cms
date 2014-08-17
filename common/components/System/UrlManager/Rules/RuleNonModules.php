@@ -3,7 +3,7 @@ namespace Ekv\components\System\UrlManager\Rules;
 
 use CHttpRequest;
 use CUrlManager;
-use Ekv\B\components\System\IFullyQualified;
+use Ekv\components\System\IFullyQualified;
 use Ekv\components\System\UrlManager\Rules\Parse\ParseNonModuleUrls;
 
 class RuleNonModules extends \CBaseUrlRule implements IFullyQualified
