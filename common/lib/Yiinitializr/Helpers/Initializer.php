@@ -168,7 +168,7 @@ class Initializer
         if (!class_exists('YiiBase')) {
             //require(Config::value('yii.path') . '/yii.php');
             require(Config::value('yii.path') . '/YiiBase.php');
-            require(Config::value('yii.common') . '/yii_ekv.php');
+            require(Config::value('yii.common') . '/lib/EkvLib/EkvYii.php');
         }
     }
 
