@@ -6,6 +6,16 @@ use EController;
 
 class ParseUrlCustomBaseException extends \Exception{}
 
+/**
+ * Parses module and non module urls.
+ * First checks module urls and fixes urls where it's impossible to define only by preg parsing is action ommited or not.
+ * Like translate/episode/movieID/5/p2/xx
+ * Index action is ommited here and standart parsing tries to find movieID as action in episode controller.
+ * We check whether module, controller and action exists and set correctly passed params.
+ *
+ * The same situation is for non-module urls:
+ * test/movieID/5/p2/xx - index action is ommited
+ */
 abstract class ParseUrlCustomBase
 {
     //protected $moduleName;
