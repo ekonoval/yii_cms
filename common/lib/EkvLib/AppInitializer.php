@@ -13,13 +13,14 @@ class AppInitializer
     const APP_TYPE_API = 'api';
     const APP_TYPE_CONSOLE = 'console';
 
-    private $appType;
+    //private $appType;
     private $appClassName;
 
     function __construct($appType)
     {
         $appClassMap = array(
-            self::APP_TYPE_BACK => '\EkvLib\AppType\WebAppBackend'
+            self::APP_TYPE_BACK => '\EkvLib\AppType\WebAppBackend',
+            self::APP_TYPE_FRONT => '\EkvLib\AppType\WebAppFrontend',
         );
 
         EkvLibException::ensure(isset($appClassMap[$appType]), "No proper app class found");
@@ -29,6 +30,11 @@ class AppInitializer
     static function createBackend()
     {
         return new static(self::APP_TYPE_BACK);
+    }
+
+    static function createFrontend()
+    {
+        return new static(self::APP_TYPE_FRONT);
     }
 
     function createApp($root, $configName = 'main', $mergeWith = array())
