@@ -13,13 +13,14 @@ class AppInitializer
     const APP_TYPE_API = 'api';
     const APP_TYPE_CONSOLE = 'console';
 
-    private $appType;
+    //private $appType;
     private $appClassName;
 
     function __construct($appType)
     {
         $appClassMap = array(
-            self::APP_TYPE_BACK => '\EkvLib\AppType\WebAppBackend'
+            self::APP_TYPE_BACK => '\EkvLib\AppType\WebAppBackend',
+            self::APP_TYPE_FRONT => '\EkvLib\AppType\WebAppFrontend',
         );
 
         EkvLibException::ensure(isset($appClassMap[$appType]), "No proper app class found");
@@ -31,11 +32,19 @@ class AppInitializer
         return new static(self::APP_TYPE_BACK);
     }
 
+    static function createFrontend()
+    {
+        return new static(self::APP_TYPE_FRONT);
+    }
+
     function createApp($root, $configName = 'main', $mergeWith = array())
     {
+        require __DIR__ . "/pa.php";
         if (($root = realpath($root)) === false) {
             throw new Exception('could not initialize framework.');
         }
+
+        $this->registerAutoloader();
 
         $config = Initializer::config($configName, $mergeWith);
         //pa($config);
@@ -59,16 +68,25 @@ class AppInitializer
             }
         }
 
-        //#------------------- custom autoloader -------------------#//
-        //Yii::import("common.", true);
-
-        Yii::registerAutoloader(array(new \ProjectCustomAutoloader(), 'loadClass'), true);
+        /**
+         * @see YiiBase::registerAutoloader
+         */
+        Yii::$enableIncludePath = false;
 
         //--- importing global shortcut functions ---//
-        Yii::import("common.helpers.global_shortcuts", true);
+        Yii::import("common.lib.EkvLib.global_shortcuts", true);
 
         //  return an app
         return $app;
+    }
+
+    /**
+     * @see YiiBase::registerAutoloader
+     */
+    private function registerAutoloader()
+    {
+        //self::$enableIncludePath=false;
+        spl_autoload_register(array(new EkvAutoloader(), 'loadClass'));
     }
 
     private function appendDbBilet(&$config)

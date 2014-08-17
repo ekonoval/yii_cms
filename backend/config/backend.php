@@ -9,8 +9,6 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
-use Ekv\B\components\System\UrlManager\Rules\RuleControllerWithoutActionPlusParams;
-
 defined('APP_CONFIG_NAME') or define('APP_CONFIG_NAME', 'backend');
 
 // web application configuration
@@ -85,7 +83,6 @@ return array(
             )
         ),
         'urlManager' => array(
-            'class' => 'Ekv\B\components\System\UrlManager\EkvUrlManager',
             // uncomment the following if you have enabled Apache's Rewrite module.
             'urlFormat' => 'path',
             'showScriptName' => false,
@@ -99,8 +96,8 @@ return array(
 //                '<controller:\w+>/<action:\w+>/*' => '<controller>/<action>',
 
                 //"<module:\w+>/<controller:\w+>/<action:\w+>/*" => "<module>/<controller>/<action>",
-                array( 'class' => 'Ekv\B\components\System\UrlManager\Rules\RuleModules'),
-                array( 'class' => 'Ekv\B\components\System\UrlManager\Rules\RuleNonModules' ),
+                array( 'class' => 'Ekv\components\System\UrlManager\Rules\RuleModules'),
+                array( 'class' => 'Ekv\components\System\UrlManager\Rules\RuleNonModules' ),
 
 
                 /**

@@ -9,11 +9,15 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
+use EkvLib\AppInitializer;
+
 require('./../../common/lib/vendor/autoload.php');
 
+$initializerObj = AppInitializer::createFrontend();
 
-Yiinitializr\Helpers\Initializer::create('./../', 'frontend', array(
+$app = $initializerObj->createApp('./../', 'frontend', array(
 	__DIR__ .'/../../common/config/main.php',
 	__DIR__ .'/../../common/config/env.php',
 	__DIR__ .'/../../frontend/config/env/dev.php'
-))->run();
+));
+$app->run();

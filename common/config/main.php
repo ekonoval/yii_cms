@@ -8,9 +8,6 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
-//#------------------- debug function include -------------------#//
-require_once __DIR__ . '/../lib/Ekv/pa.php';
-
 return array(
 	'name' => '{APPLICATION NAME}',
     //'language' => 'en',

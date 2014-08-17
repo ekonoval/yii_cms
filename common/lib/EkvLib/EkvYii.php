@@ -1,22 +1,19 @@
 <?php
 
+use EkvLib\EkvAutoloader;
+
 /**
  * Custom implementation of Yii class, substitutes orginal Yii.
  * Allows to perform required customization
  */
 class Yii extends \YiiBase
 {
-//    function __construct()
-//    {
-//        pa("new Yii"); exit;
-//    }
 
     private static function _getCustomAutoloader()
     {
         static $obj = null;
         if(is_null($obj)){
-            require_once "components/ProjectCustomAutoloader.php";
-            $obj = new ProjectCustomAutoloader();
+            $obj = new EkvAutoloader();
         }
         return $obj;
     }

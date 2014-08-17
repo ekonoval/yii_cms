@@ -1,7 +1,7 @@
 <?php
 namespace Ekv\B\components\Tmp;
 
-use Ekv\B\components\System\IFullyQualified;
+use Ekv\components\System\IFullyQualified;
 
 /**
  * @url http://www.yiiframework.ru/doc/guide/ru/topics.url

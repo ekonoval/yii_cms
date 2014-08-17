@@ -5,7 +5,7 @@ use CClientScript;
 use CHtml;
 use CJavaScript;
 use CJuiDatePicker;
-use Ekv\B\components\System\IFullyQualified;
+use Ekv\components\System\IFullyQualified;
 use Yii;
 
 Yii::import('zii.widgets.jui.CJuiDatePicker');
