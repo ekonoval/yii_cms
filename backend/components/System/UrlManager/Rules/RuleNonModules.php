@@ -3,17 +3,17 @@ namespace Ekv\B\components\System\UrlManager\Rules;
 
 use CHttpRequest;
 use CUrlManager;
-use Ekv\B\components\System\UrlManager\Rules\Parse\ParseModuleUrls;
+use Ekv\B\components\System\UrlManager\Rules\Parse\ParseNonModuleUrls;
 
-class RuleModules extends \CBaseUrlRule
+/**
+ * TMP
+ * @deprecated
+ */
+class RuleNonModules extends \CBaseUrlRule
 {
-    /**
-     * Creates a URL based on this rule.
-     * @param CUrlManager $manager the manager
-     * @param string $route the route
-     * @param array $params list of parameters (name=>value) associated with the route
-     * @param string $ampersand the token separating name-value pairs in the URL.
-     * @return mixed the constructed URL. False if this rule does not apply.
+
+    /*
+     * Url Creating should work fine in native way without any additional actions
      */
     public function createUrl($manager, $route, $params, $ampersand)
     {
@@ -30,8 +30,9 @@ class RuleModules extends \CBaseUrlRule
      */
     public function parseUrl($manager, $request, $pathInfo, $rawPathInfo)
     {
-        $obj = new ParseModuleUrls($manager, $pathInfo);
+        $obj = new ParseNonModuleUrls($manager, $pathInfo);
         $res = $obj->mainParseUrl();
+        //pa($res);exit;
         return $res;
     }
 
