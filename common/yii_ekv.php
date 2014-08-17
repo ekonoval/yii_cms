@@ -1,4 +1,5 @@
 <?php
+use EkvLib\EkvAutoloader;
 
 /**
  * Custom implementation of Yii class, substitutes orginal Yii.
@@ -15,8 +16,9 @@ class Yii extends \YiiBase
     {
         static $obj = null;
         if(is_null($obj)){
-            require_once "components/ProjectCustomAutoloader.php";
-            $obj = new ProjectCustomAutoloader();
+            //require_once "components/ProjectCustomAutoloader.php";
+            //$obj = new ProjectCustomAutoloader();
+            $obj = new EkvAutoloader();
         }
         return $obj;
     }
@@ -38,7 +40,6 @@ class Yii extends \YiiBase
             $forceInclude
             && strpos($alias, 'Ekv\\') !== false
         ){
-            //pa($alias);
             $customAutoloaderObj = self::_getCustomAutoloader();
             $customAutoloaderObj->loadClass($alias);
             return $alias;

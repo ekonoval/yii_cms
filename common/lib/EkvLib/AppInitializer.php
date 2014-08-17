@@ -43,6 +43,9 @@ class AppInitializer
             throw new Exception('could not initialize framework.');
         }
 
+        $this->registerAutoloader();
+
+
         $config = Initializer::config($configName, $mergeWith);
         //pa($config);
 
@@ -68,13 +71,22 @@ class AppInitializer
         //#------------------- custom autoloader -------------------#//
         //Yii::import("common.", true);
 
-        Yii::registerAutoloader(array(new \ProjectCustomAutoloader(), 'loadClass'), true);
+        //Yii::registerAutoloader(array(new \ProjectCustomAutoloader(), 'loadClass'), true);
 
         //--- importing global shortcut functions ---//
         Yii::import("common.helpers.global_shortcuts", true);
 
         //  return an app
         return $app;
+    }
+
+    /**
+     * @see YiiBase::registerAutoloader
+     */
+    private function registerAutoloader()
+    {
+        //self::$enableIncludePath=false;
+        spl_autoload_register(array(new EkvAutoloader(), 'loadClass'));
     }
 
     private function appendDbBilet(&$config)
