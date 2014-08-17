@@ -1,6 +1,9 @@
 <?php
 class ProjectCustomAutoloaderException extends Exception{}
 
+/**
+ * @deprecated
+ */
 class ProjectCustomAutoloader
 {
     private $_predefined = array(
