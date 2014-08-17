@@ -10,7 +10,8 @@ class BackendControllerBase extends \EController
      * Default layout for all backend controllers
      * @var string
      */
-    public $layout = "//layouts/lMain";
+    //public $layout = "//layouts/lMain";
+    public $layout = "//layouts/lEximus";
 
     /**
    	 * Buttons to display

@@ -1,9 +1,13 @@
 <?php
 namespace Ekv\B\widgets;
 
+use CActiveRecord;
+use CClientScript;
+use CForm;
+use CMap;
 use Ekv\B\components\System\GlobalHelper;
-use Ekv\B\components\System\IFullyQualified;
-use Yii, CForm, CMap, CClientScript, CHtml, CActiveRecord;
+use Ekv\components\System\IFullyQualified;
+use Yii;
 
 class TopButtons extends \CWidget implements IFullyQualified
 {

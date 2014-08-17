@@ -86,11 +86,12 @@ $assetsManager->registerScriptFile($assetUrl . '/js/jquery.hotkeys.js');
             </div>
             <div class="yui-u" id="topRightMenu">
                 <?php
-                /*
-                echo CHtml::link(Yii::t('AdminModule.admin', 'Выход ({name})', array('{name}'=>Yii::app()->user->model->username)), array('/admin/auth/logout'), array(
-					'confirm'=>Yii::t('StoreModule.admin','Завершить сеанс?')
-				))
-                */
+
+                echo CHtml::link(
+                    Yii::t('AdminModule.admin', 'Выход ({name})', array('{name}' => yUser()->getName())),
+                    array('/user/auth/logout')
+                    //, array('confirm' => Yii::t('StoreModule.admin', 'Завершить сеанс?'))
+                );
                 ?>
             </div>
         </div>

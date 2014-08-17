@@ -1,46 +1,49 @@
 <?php
-class ProjectCustomAutoloaderException extends Exception{}
+namespace EkvLib;
 
-class ProjectCustomAutoloader
+class EkvAutoloaderException extends EkvLibException{}
+
+class EkvAutoloader
 {
-    private $_predefined = array(
+    private $predefined = array(
         "B" => "backend",
         "F" => "frontend",
         "A" => "api"
     );
 
-    private $_nsDelim = '\\';
+    private $nsDelim = '\\';
 
-    function loadClass($class_name_fully_qualified)
+    function loadClass($classNameFullyQualified)
     {
 
         $exists = false;
-        $ns_delim = '\\';
-        //pa($class_name_fully_qualified);
-        $parts = explode($ns_delim, $class_name_fully_qualified);
+        //pa($classNameFullyQualified);
+        $parts = explode($this->nsDelim, $classNameFullyQualified);
 
         //--- proper ekonoval class is comming ---//
         if(
             sizeof($parts) >= 2 // "\Ekv\Product" or "\Ekv\Frontend\Products"
             && $parts[0] == "Ekv"
         ){
-            //pa(Yii::getPathAliases());exit;
 
             //--- load common classes (common namespace is omitted) ---//
 
             //--- common ---//
-            $parts_1 = $parts[1];
+            $parts1 = $parts[1];
+
+            $appsRootPath = __DIR__.'/../../../';
 
             //--- try COMMON app ---//
-            if(!in_array($parts_1, array_keys($this->_predefined))){
+            if(!in_array($parts1, array_keys($this->predefined))){
                 //todo - fix direct path from namespace not components
-                $base_path = realpath(Yii::getPathOfAlias("common")) . DIRECTORY_SEPARATOR;
-                $relative_parts = array_slice($parts, 1);
+                //$base_path = realpath(Yii::getPathOfAlias("common")) . DIRECTORY_SEPARATOR;
+                $basePath = $appsRootPath.'common'.DIRECTORY_SEPARATOR;
+                $relativeParts = array_slice($parts, 1);
 
                 $this->_includeClass(
-                    $class_name_fully_qualified,
-                    $base_path,
-                    $relative_parts
+                    $classNameFullyQualified,
+                    $basePath,
+                    $relativeParts
                 );
 
 //                $absolute_path = $base_path . implode($ns_delim, $relative_parts) . ".php";
@@ -50,16 +53,16 @@ class ProjectCustomAutoloader
             //--- any of possible -end parts ---//
             else{
                 //$path_alias = strtolower($parts_1);
-                $path_alias = $this->_predefined[$parts_1];
+                $pathAlias = $this->predefined[$parts1];
                 //TODO - check if proper alias exists
-                $base_path = realpath(Yii::getPathOfAlias($path_alias)) . DIRECTORY_SEPARATOR;
+                $basePath = $appsRootPath . $pathAlias . DIRECTORY_SEPARATOR;
                 //$base_path .= DIRECTORY_SEPARATOR . "components" . DIRECTORY_SEPARATOR;
-                $relative_parts = array_slice($parts, 2);
+                $relativeParts = array_slice($parts, 2);
 
                 $this->_includeClass(
-                    $class_name_fully_qualified,
-                    $base_path,
-                    $relative_parts
+                    $classNameFullyQualified,
+                    $basePath,
+                    $relativeParts
                 );
 //                $absolute_path = $base_path . implode($ns_delim, $relative_parts) . ".php";
 //                //pa($absolute_path);
@@ -71,15 +74,16 @@ class ProjectCustomAutoloader
         return $exists;
     }
 
-    private function _includeClass($class_name_fully_qualified, $base_path, $relative_parts)
+    private function _includeClass($classNameFullyQualified, $basePath, $relativeParts)
     {
-        $absolute_path = $base_path . implode($this->_nsDelim, $relative_parts) . ".php";
+        $absolutePath = $basePath . implode($this->nsDelim, $relativeParts) . ".php";
 
-        if(file_exists($absolute_path)){
-            require $absolute_path;
+        if(file_exists($absolutePath)){
+            require $absolutePath;
         }else{
-            throw new ProjectCustomAutoloaderException("Classname {$class_name_fully_qualified} can't be loaded.");
+            throw new EkvAutoloaderException("Classname {$classNameFullyQualified} can't be loaded.");
         }
-        $exists = class_exists($class_name_fully_qualified) || interface_exists($class_name_fully_qualified);
+        $exists = class_exists($classNameFullyQualified) || interface_exists($classNameFullyQualified);
     }
 }
+ 

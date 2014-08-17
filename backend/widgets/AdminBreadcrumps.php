@@ -1,9 +1,9 @@
 <?php
 namespace Ekv\B\widgets;
 
-use CHtml, Yii;
+use CHtml;
 use Ekv\B\components\System\GlobalHelper;
-use Ekv\B\components\System\IFullyQualified;
+use Ekv\components\System\IFullyQualified;
 
 class AdminBreadcrumps extends \CWidget implements IFullyQualified
 {

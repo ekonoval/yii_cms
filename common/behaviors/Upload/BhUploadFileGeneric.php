@@ -3,8 +3,8 @@ namespace Ekv\behaviors\Upload;
 
 use CUploadedFile;
 use CValidator;
-use Ekv\B\components\System\IFullyQualified;
 use Ekv\classes\Misc\PathHelper;
+use Ekv\components\System\IFullyQualified;
 
 abstract class BhUploadFileGeneric extends \CActiveRecordBehavior implements IFullyQualified
 {

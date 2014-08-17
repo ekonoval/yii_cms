@@ -1,10 +1,14 @@
 <?php
 namespace Ekv\B\extensions\sgridview;
 
+use CClientScript;
+use CException;
+use CGridView;
+use CHtml;
 use Ekv\B\components\System\GlobalHelper;
-use Ekv\B\components\System\IFullyQualified;
 use Ekv\B\modules\core\models\GridViewFilter;
-use Yii, CGridView, CException, CClientScript, CHtml;
+use Ekv\components\System\IFullyQualified;
+use Yii;
 
 Yii::import('zii.widgets.grid.CGridView');
 //Yii::import('application.modules.core.models.GridViewFilter');

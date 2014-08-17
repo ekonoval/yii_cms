@@ -25,56 +25,57 @@ use Yii;
 class Initializer
 {
 
-    /**
-     * @param $root
-     * @param string $configName
-     * @param mixed $mergeWith
-     * @return mixed
-     * @throws Exception
-     */
-    public static function create($root, $configName = 'main', $mergeWith = array())
-    {
-        if (($root = realpath($root)) === false) {
-            throw new Exception('could not initialize framework.');
-        }
-
-        $config = self::config($configName, $mergeWith);
-        //pa($config);
-
-        //--- add db_bilet conf ---//
-        $config["components"]["db_bilet"] = $config["components"]["db"];
-        $config["components"]["db_bilet"]["connectionString"] =
-            str_replace(
-                "dbname=yii",
-                //"dbname=bilet",
-                "dbname=sched_dev",
-                $config["components"]["db_bilet"]["connectionString"]
-            );
-
-        //pa($config);exit;
-
-        if (php_sapi_name() !== 'cli') // aren't we in console?
-            $app = \Yii::createWebApplication($config); // create web
-        else {
-            defined('STDIN') or define('STDIN', fopen('php://stdin', 'r'));
-            $app = \Yii::createConsoleApplication($config);
-            $app->commandRunner->addCommands($root . '/cli/commands');
-            $env = @getenv('YII_CONSOLE_COMMANDS');
-            if (!empty($env))
-                $app->commandRunner->addCommands($env);
-        }
-
-        //#------------------- custom autoloader -------------------#//
-        //Yii::import("common.", true);
-
-        Yii::registerAutoloader(array(new \ProjectCustomAutoloader(), 'loadClass'), true);
-
-        //--- importing global shortcut functions ---//
-        Yii::import("common.helpers.global_shortcuts", true);
-
-        //  return an app
-        return $app;
-    }
+// See EkvLib .... AppInitializer
+//    /**
+//     * @param $root
+//     * @param string $configName
+//     * @param mixed $mergeWith
+//     * @return mixed
+//     * @throws Exception
+//     */
+//    public static function create($root, $configName = 'main', $mergeWith = array())
+//    {
+//        if (($root = realpath($root)) === false) {
+//            throw new Exception('could not initialize framework.');
+//        }
+//
+//        $config = self::config($configName, $mergeWith);
+//        //pa($config);
+//
+//        //--- add db_bilet conf ---//
+//        $config["components"]["db_bilet"] = $config["components"]["db"];
+//        $config["components"]["db_bilet"]["connectionString"] =
+//            str_replace(
+//                "dbname=yii",
+//                //"dbname=bilet",
+//                "dbname=sched_dev",
+//                $config["components"]["db_bilet"]["connectionString"]
+//            );
+//
+//        //pa($config);exit;
+//
+//        if (php_sapi_name() !== 'cli') // aren't we in console?
+//            $app = \Yii::createWebApplication($config); // create web
+//        else {
+//            defined('STDIN') or define('STDIN', fopen('php://stdin', 'r'));
+//            $app = \Yii::createConsoleApplication($config);
+//            $app->commandRunner->addCommands($root . '/cli/commands');
+//            $env = @getenv('YII_CONSOLE_COMMANDS');
+//            if (!empty($env))
+//                $app->commandRunner->addCommands($env);
+//        }
+//
+//        //#------------------- custom autoloader -------------------#//
+//        //Yii::import("common.", true);
+//
+//        Yii::registerAutoloader(array(new \ProjectCustomAutoloader(), 'loadClass'), true);
+//
+//        //--- importing global shortcut functions ---//
+//        Yii::import("common.helpers.global_shortcuts", true);
+//
+//        //  return an app
+//        return $app;
+//    }
 
     /**
      * @param string $configName config name to load (main, test, etc)
@@ -167,7 +168,7 @@ class Initializer
         if (!class_exists('YiiBase')) {
             //require(Config::value('yii.path') . '/yii.php');
             require(Config::value('yii.path') . '/YiiBase.php');
-            require(Config::value('yii.common') . '/yii_ekv.php');
+            require(Config::value('yii.common') . '/lib/EkvLib/EkvYii.php');
         }
     }
 

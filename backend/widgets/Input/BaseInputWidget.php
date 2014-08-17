@@ -2,7 +2,7 @@
 namespace Ekv\B\widgets\Input;
 use CHtml;
 use CInputWidget;
-use Ekv\B\components\System\IFullyQualified;
+use Ekv\components\System\IFullyQualified;
 
 abstract class BaseInputWidget extends CInputWidget implements IFullyQualified
 {

@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @deprecated
+ */
 class CkFinderConfig
 {
     static function getBaseUrl()
