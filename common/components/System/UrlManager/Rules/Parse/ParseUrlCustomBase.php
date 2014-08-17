@@ -57,6 +57,10 @@ abstract class ParseUrlCustomBase
 
     function mainParseUrl()
     {
+        if(strpos($this->pathInfo, 'gii') === 0){
+            return $this->pathInfo;
+        }
+
         try {
             $this->parseUrlParts($this->pathInfo);
 
@@ -75,25 +79,6 @@ abstract class ParseUrlCustomBase
             return false;
         }
 
-//        if(!$this->customPreValidation()){
-//            return false;
-//        }
-//
-//        if(empty($this->controllerName)){
-//            return false;
-//        }
-//
-//        $controllerObj = $this->tryLoadController();
-//        if(empty($controllerObj)){
-//            return false;
-//        }
-//
-//        $finalRoute = $this->checkController($controllerObj);
-//        if(!empty($finalRoute)){
-//            return $finalRoute;
-//        }
-//
-//        return false;
     }
 
     protected function parseAndSetRequestPrams()
