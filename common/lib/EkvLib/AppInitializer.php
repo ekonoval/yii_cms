@@ -39,12 +39,12 @@ class AppInitializer
 
     function createApp($root, $configName = 'main', $mergeWith = array())
     {
+        require __DIR__ . "/pa.php";
         if (($root = realpath($root)) === false) {
             throw new Exception('could not initialize framework.');
         }
 
         $this->registerAutoloader();
-
 
         $config = Initializer::config($configName, $mergeWith);
         //pa($config);
@@ -68,10 +68,10 @@ class AppInitializer
             }
         }
 
-        //#------------------- custom autoloader -------------------#//
-        //Yii::import("common.", true);
-
-        //Yii::registerAutoloader(array(new \ProjectCustomAutoloader(), 'loadClass'), true);
+        /**
+         * @see YiiBase::registerAutoloader
+         */
+        Yii::$enableIncludePath = false;
 
         //--- importing global shortcut functions ---//
         Yii::import("common.lib.EkvLib.global_shortcuts", true);
