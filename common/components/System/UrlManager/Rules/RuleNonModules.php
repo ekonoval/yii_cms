@@ -1,16 +1,17 @@
 <?php
-namespace Ekv\B\components\System\UrlManager\Rules;
+namespace Ekv\components\System\UrlManager\Rules;
 
 use CHttpRequest;
 use CUrlManager;
-use Ekv\B\components\System\UrlManager\Rules\Parse\ParseNonModuleUrls;
+use Ekv\B\components\System\IFullyQualified;
+use Ekv\components\System\UrlManager\Rules\Parse\ParseNonModuleUrls;
 
-/**
- * TMP
- * @deprecated
- */
-class RuleNonModules extends \CBaseUrlRule
+class RuleNonModules extends \CBaseUrlRule implements IFullyQualified
 {
+    static function getClassNameFQ()
+    {
+        return getClassNameFullyQualified(__CLASS__);
+    }
 
     /*
      * Url Creating should work fine in native way without any additional actions

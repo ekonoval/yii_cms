@@ -1,5 +1,5 @@
 <?php
-namespace Ekv\B\components\System\UrlManager\Rules\Parse;
+namespace Ekv\components\System\UrlManager\Rules\Parse;
 
 use CUrlManager;
 use EController;
@@ -28,7 +28,9 @@ abstract class ParseUrlCustomBase
     }
 
     abstract protected function parseUrlParts($pathInfo);
+
     abstract protected function getControllerBaseRoute();
+
     abstract protected function createRightRoute($action);
 
     protected function customPreValidation()
@@ -38,16 +40,16 @@ abstract class ParseUrlCustomBase
 
     protected function ensure($expr, $failMsg)
     {
-        if(!$expr){
+        if (!$expr) {
             throw new ParseUrlCustomBaseException($failMsg);
         }
     }
 
     function mainParseUrl()
     {
-        try{
+        try {
             $this->parseUrlParts($this->pathInfo);
-            
+
             $this->customPreValidation();
 
             $this->ensure(!empty($this->controllerName), "empty ctrl name");
@@ -58,7 +60,7 @@ abstract class ParseUrlCustomBase
             $finalRoute = $this->checkController($controllerObj);
             return $finalRoute;
 
-        }catch(ParseUrlCustomBaseException $ex){
+        } catch (ParseUrlCustomBaseException $ex) {
 
             return false;
         }
@@ -94,7 +96,7 @@ abstract class ParseUrlCustomBase
          * back it as part of param again!
          * Instead of translate/episode/index/movieID/5 where direct action is presented
          */
-        if($this->directActionFails){
+        if ($this->directActionFails) {
             $src = $this->actionName . $this->queryParamsRaw;
         }
 
@@ -107,7 +109,7 @@ abstract class ParseUrlCustomBase
     protected function checkController($ctrlObj)
     {
         $actionNameCalc = $this->actionName;
-        if(empty($actionNameCalc)){
+        if (empty($actionNameCalc)) {
             $actionNameCalc = $this->defaultAction;
         }
 
@@ -118,16 +120,15 @@ abstract class ParseUrlCustomBase
          * Check translate/episode/movieID/5 where movieID is not really an action.
          * Check possible actions in real controller actions
          */
-        if(in_array($actionNameCalc, $controllerActionsAll)){
+        if (in_array($actionNameCalc, $controllerActionsAll)) {
             $this->parseAndSetRequestPrams();
             return $this->createRightRoute($actionNameCalc);
-        }
-        /**
+        } /**
          * Directlty passed action doesn't exist -
          * check whether controller has DEFAULT action
          * translate/episode/movieID/5 equalas translate/episode/INDEX/movieID/5
          */
-        elseif(in_array($this->defaultAction, $controllerActionsAll)){
+        elseif (in_array($this->defaultAction, $controllerActionsAll)) {
 
             $this->directActionFails = true; //used for corect params parsing
             $this->parseAndSetRequestPrams();
@@ -152,10 +153,9 @@ abstract class ParseUrlCustomBase
 
         //--- try creating controller ---//
         $ctrlRes = yApp()->createController($route);
-        if(!empty($ctrlRes)){
+        if (!empty($ctrlRes)) {
             return $ctrlRes[0];
         }
         return null;
     }
 }
- 

@@ -1,12 +1,18 @@
 <?php
-namespace Ekv\B\components\System\UrlManager\Rules;
+namespace Ekv\components\System\UrlManager\Rules;
 
 use CHttpRequest;
 use CUrlManager;
-use Ekv\B\components\System\UrlManager\Rules\Parse\ParseModuleUrls;
+use Ekv\B\components\System\IFullyQualified;
+use Ekv\components\System\UrlManager\Rules\Parse\ParseModuleUrls;
 
-class RuleModules extends \CBaseUrlRule
+class RuleModules extends \CBaseUrlRule implements IFullyQualified
 {
+    static function getClassNameFQ()
+    {
+        return getClassNameFullyQualified(__CLASS__);
+    }
+
     /**
      * Creates a URL based on this rule.
      * @param CUrlManager $manager the manager

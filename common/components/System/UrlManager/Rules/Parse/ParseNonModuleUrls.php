@@ -1,7 +1,5 @@
 <?php
-namespace Ekv\B\components\System\UrlManager\Rules\Parse;
-
-use EController;
+namespace Ekv\components\System\UrlManager\Rules\Parse;
 
 class ParseNonModuleUrls extends ParseUrlCustomBase
 {
