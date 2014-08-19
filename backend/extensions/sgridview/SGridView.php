@@ -167,7 +167,7 @@ class SGridView extends CGridView implements IFullyQualified
                         '{filterId}' => $filter->id,
                         '{delete}' => CHtml::ajaxLink(
                                 CHtml::image($this->baseScriptUrl . '/cross.png', Yii::t('SGridView.core', 'Удалить')),
-                                Yii::app()->createUrl('core/admin/gridView/deleteFilter', array(
+                                Yii::app()->createUrl('core/gridView/deleteFilter', array(
                                     'id' => $filter->id,
                                 )),
 
