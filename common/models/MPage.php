@@ -10,6 +10,7 @@ use CActiveRecord, CDbCriteria, CActiveDataProvider;
  * The followings are the available columns in table 'ekvPage':
  * @property integer $idPage
  * @property string $pageTitle
+ * @property string $url
  * @property string $metaDescr
  * @property string $metaKeywords
  * @property string $dateCreated
