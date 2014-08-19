@@ -32,6 +32,18 @@ class WebModule extends \CWebModule
         $this->setImport($aliases);
     }
 
+    public function beforeControllerAction($controller, $action)
+    {
+        if (parent::beforeControllerAction($controller, $action)) {
+            //pa($controller->id);exit;
+            $modelSubPathForController = "{$this->name}.models.{$controller->id}.*";
+            Yii::import($modelSubPathForController);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     protected function setModelsPaths($pathsArray)
     {
         $this->modelsPaths = $pathsArray;

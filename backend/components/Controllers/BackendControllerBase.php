@@ -59,6 +59,16 @@ class BackendControllerBase extends \EController
         $this->layout = "//layouts/LEximus";
     }
 
+    function initIndexModel($model)
+    {
+        $modelClass = get_class($model);
+        $model->unsetAttributes(); // clear any default values
+
+        if (isset($_GET[$modelClass])) {
+            $model->attributes = $_GET[$modelClass];
+        }
+    }
+
     /**
    	 * Set flash messages.
    	 *
