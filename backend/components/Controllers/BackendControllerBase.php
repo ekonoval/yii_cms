@@ -166,6 +166,10 @@ class BackendControllerBase extends \EController
         $bigPartsSeparator = " :: ";
         $commonTitle = "Cms. Backend";
 
+        /**
+         * When pageTitleFull is defined directly in controller then apply it without any further hesitations
+         * or compose page title automatically
+         */
         if(empty($this->pageTitleFull)){
             $leftTitle = "";
             if(!empty($this->pageTitle)){
@@ -186,7 +190,6 @@ class BackendControllerBase extends \EController
             $this->pageTitleFull = "{$leftTitle}{$bigPartsSeparator}{$commonTitle}";
         }
 
-        pa($this->pageTitleFull);
     }
 
 

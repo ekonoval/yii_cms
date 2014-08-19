@@ -10,9 +10,6 @@ class CoreModule extends WebModule
         $this->_setNamespace(__NAMESPACE__);
         parent::init();
 
-        $this->setImport(array(
-            $this->name.'.models.*'
-        ));
     }
 
 

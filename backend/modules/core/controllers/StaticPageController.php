@@ -13,6 +13,7 @@ class StaticPageController extends BackendControllerBase
 
     function actionIndex()
     {
+        $this->pageTitle = "Static-page index";
 
         $model = new \BStatPage('search');
         $this->initIndexModel($model);
@@ -21,5 +22,7 @@ class StaticPageController extends BackendControllerBase
             'model' => $model
         ));
     }
+
+    //function actionUpdate(){
 }
  
