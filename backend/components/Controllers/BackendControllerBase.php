@@ -1,6 +1,8 @@
 <?php
 namespace Ekv\B\components\Controllers;
 
+use CAction;
+use CController;
 use Ekv\B\widgets\TopButtons;
 use Yii;
 
@@ -142,5 +144,50 @@ class BackendControllerBase extends \EController
             ),
         ));
     }
+
+    /**
+     * Used for composing page title in specific algorythm
+     * @param string $view
+     * @return bool
+     */
+    protected function beforeRender($view)
+    {
+        $parentRes = parent::beforeRender($view);
+
+        if($parentRes){
+            $this->composePageTitleFull();
+        }
+
+        return $parentRes;
+    }
+
+    private function composePageTitleFull()
+    {
+        $bigPartsSeparator = " :: ";
+        $commonTitle = "Cms. Backend";
+
+        if(empty($this->pageTitleFull)){
+            $leftTitle = "";
+            if(!empty($this->pageTitle)){
+                $leftTitle = $this->pageTitle;
+            }else{
+                $moduleName = !empty($this->module->id) ? $this->module->id : "";
+
+                $localSeparator = "/";
+                $leftTitle = "";
+
+                if(!empty($moduleName)){
+                    $leftTitle .= $moduleName . $localSeparator;
+                }
+
+                $leftTitle .= "{$this->id}{$localSeparator}{$this->action->id}";
+            }
+
+            $this->pageTitleFull = "{$leftTitle}{$bigPartsSeparator}{$commonTitle}";
+        }
+
+        pa($this->pageTitleFull);
+    }
+
 
 }

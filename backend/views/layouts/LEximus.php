@@ -49,12 +49,14 @@ $assetsManager->registerScriptFile($assetUrl . '/js/init.scripts.js');
 //$assetsManager->registerScriptFile($assetUrl.'/js/red_circles.js');
 //$assetsManager->registerScriptFile($assetUrl . '/js/jquery-datepicker-russian.js');
 $assetsManager->registerScriptFile($assetUrl . '/js/jquery.hotkeys.js');
+
+
 ?>
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Yii - CMS</title>
+    <title><?php echo $this->pageTitleFull; ?></title>
 
     <style type="text/css">
         /*** Fix for tabs. ***/

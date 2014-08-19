@@ -14,6 +14,9 @@ use Ekv\components\Yii\Misc\ControllerGetAllActions;
  */
 class EController extends CController
 {
+    public $pageTitle;
+    public $pageTitleFull;
+
 	public $meta_keywords = array();
 	public $meta_description = array();
 
