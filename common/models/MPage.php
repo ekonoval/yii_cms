@@ -35,12 +35,14 @@ class MPage extends ActiveRecordBase
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('pageTitle, metaDescr, metaKeywords, dateCreated, pageBody', 'required'),
+			array('pageTitle', 'required'),
 			array('pageEnabled', 'numerical', 'integerOnly'=>true),
 			array('pageTitle, url', 'length', 'max'=>255),
 			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('idPage, url, pageTitle, metaDescr, metaKeywords, dateCreated, pageBody, pageEnabled', 'safe', 'on'=>'search'),
+
+			array('url, pageTitle, metaDescr, metaKeywords, dateCreated, pageBody, pageEnabled', 'safe'),
+			//array('idPage, url, pageTitle, metaDescr, metaKeywords, dateCreated, pageBody, pageEnabled', 'safe', 'on'=>'search'),
+			array('idPage', 'safe', 'on'=>'search'),
 		);
 	}
 

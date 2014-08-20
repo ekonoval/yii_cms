@@ -21,6 +21,7 @@ class StatPageForm extends FormBuilder
                 'url' => array('type' => 'text',),
                 'metaDescr' => array('type' => 'textarea',),
                 'metaKeywords' => array('type' => 'textarea',),
+                'pageEnabled' => array('type' => 'checkbox'),
                 'pageBody' => array('type' => WCKEditor::getClassNameFQ(), )
 
 //                        'dt' => array(

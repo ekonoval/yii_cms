@@ -35,16 +35,17 @@ class StaticPageController extends BackendControllerBase
         ));
     }
 
-    function actionUpdate()
+    function actionUpdate($createMode = false)
     {
         $pageID = yR()->getQuery("pageID");
 
-        $model = BStatPage::model()->findByPk($pageID);
-
-        if (!$model) {
-            throw new \CHttpException(404, \Yii::t('StoreModule.admin', 'Incorrect ID'));
+        if(!$createMode){
+            $model = BStatPage::model()->findByPk($pageID);
+        }else{
+            $model = new BStatPage();
         }
 
+        $this->checkEditModel($model);
 
         //$form = OrderEditForm::create($modelBase);
         $form = StatPageForm::create($model);
@@ -65,10 +66,15 @@ class StaticPageController extends BackendControllerBase
 
         }
 
-        $this->renderAuto(array(
+        $this->render('update_tpl', array(
             'model' => $model,
             'form' => $form,
         ));
+    }
+
+    function actionCreate()
+    {
+        $this->actionUpdate(true);
     }
 
 }

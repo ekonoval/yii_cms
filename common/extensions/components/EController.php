@@ -169,15 +169,22 @@ class EController extends CController
 
         $relUrl = "";
         if(!empty($moduleName)){
-            $relUrl .= "{$moduleName}/";
+            $relUrl .= "/{$moduleName}";
         }
 
-        $relUrl .= "{$this->id}/index/";
+        $relUrl .= "/{$this->id}/index/";
         return $relUrl;
     }
 
     function redirectControllerIndexUrl()
     {
         $this->redirect($this->getControllerIndexUrl());
+    }
+
+    function checkEditModel($model)
+    {
+        if (!$model) {
+            throw new \CHttpException(404, \Yii::t('StoreModule.admin', 'Incorrect ID'));
+        }
     }
 }
