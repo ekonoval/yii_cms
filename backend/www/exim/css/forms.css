@@ -216,7 +216,7 @@ div.wide form label
 
 div.wide form .cell-right{
     float: left;
-    width: 90%;
+    width: 70.7%;
 }
 
 div.wide form .row
@@ -268,7 +268,7 @@ div.form textarea {
     /*background: #fff url(../images/input_bg.gif) repeat-x top;*/
     margin-bottom:0px;
     /*padding:5px 25px 5px 5px;*/
-    padding: 0;
+    padding: 5px;
     font-size:12px;
     width:70%;
     height:70px;
