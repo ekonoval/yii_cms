@@ -33,7 +33,10 @@ class WDatePicker extends EkvJuiDatePicker
         //$this->defaultOptions["dateFormat"] = self::JS_DATE_FORMAT;
         //$this->options["dateFormat"] = self::JS_DATE_FORMAT;
 
-        $this->language = 'uk';
+        if(empty($this->language)){
+            $this->language = 'en';
+        }
+        //$this->language = 'uk';
         //$this->language = 'ru';
 
         /*
