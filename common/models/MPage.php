@@ -37,10 +37,10 @@ class MPage extends ActiveRecordBase
 		return array(
 			array('pageTitle, metaDescr, metaKeywords, dateCreated, pageBody', 'required'),
 			array('pageEnabled', 'numerical', 'integerOnly'=>true),
-			array('pageTitle', 'length', 'max'=>255),
+			array('pageTitle, url', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('idPage, pageTitle, metaDescr, metaKeywords, dateCreated, pageBody, pageEnabled', 'safe', 'on'=>'search'),
+			array('idPage, url, pageTitle, metaDescr, metaKeywords, dateCreated, pageBody, pageEnabled', 'safe', 'on'=>'search'),
 		);
 	}
 

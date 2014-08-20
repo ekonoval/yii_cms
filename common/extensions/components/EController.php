@@ -162,4 +162,22 @@ class EController extends CController
     {
         return $this->action->id;
     }
+
+    function getControllerIndexUrl()
+    {
+        $moduleName = $this->module->name;
+
+        $relUrl = "";
+        if(!empty($moduleName)){
+            $relUrl .= "{$moduleName}/";
+        }
+
+        $relUrl .= "{$this->id}/index/";
+        return $relUrl;
+    }
+
+    function redirectControllerIndexUrl()
+    {
+        $this->redirect($this->getControllerIndexUrl());
+    }
 }
