@@ -27,7 +27,11 @@ return array(
 	'controllerMap' => array(),
 
 	// application modules
-	'modules' => array(),
+    'modules'=>array(
+        'core' => array(
+            //'class' => '\Ekv\B\modules\core\CoreModule'
+        ),
+    ),
 
 	// application components
 	'components' => array(
@@ -49,10 +53,12 @@ return array(
 			'showScriptName' => false,
 
 			'rules' => array(
-				// default rules
-				'<controller:\w+>/<id:\d+>' => '<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-				'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+//				// default rules
+//				'<controller:\w+>/<id:\d+>' => '<controller>/view',
+//				'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+//				'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                array( 'class' => 'Ekv\components\System\UrlManager\Rules\RuleModules'),
+                array( 'class' => 'Ekv\components\System\UrlManager\Rules\RuleNonModules' ),
 			),
 		),
 		'user' => array(
