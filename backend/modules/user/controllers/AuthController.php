@@ -43,7 +43,8 @@ class AuthController extends BackendControllerBase
                 }
 
                 $this->appUser->login($model->getIdentity(), $duration);
-                $this->redirectIndex();
+
+                $this->redirect(yUser()->returnUrl);
 
             }
             //pa($model);

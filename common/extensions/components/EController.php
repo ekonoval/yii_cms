@@ -14,6 +14,9 @@ use Ekv\components\Yii\Misc\ControllerGetAllActions;
  */
 class EController extends CController
 {
+    public $pageTitle;
+    public $pageTitleFull;
+
 	public $meta_keywords = array();
 	public $meta_description = array();
 
@@ -158,5 +161,30 @@ class EController extends CController
     function getActionId()
     {
         return $this->action->id;
+    }
+
+    function getControllerIndexUrl()
+    {
+        $moduleName = $this->module->name;
+
+        $relUrl = "";
+        if(!empty($moduleName)){
+            $relUrl .= "/{$moduleName}";
+        }
+
+        $relUrl .= "/{$this->id}/index/";
+        return $relUrl;
+    }
+
+    function redirectControllerIndexUrl()
+    {
+        $this->redirect($this->getControllerIndexUrl());
+    }
+
+    function checkEditModel($model)
+    {
+        if (!$model) {
+            throw new \CHttpException(404, \Yii::t('StoreModule.admin', 'Incorrect ID'));
+        }
     }
 }
