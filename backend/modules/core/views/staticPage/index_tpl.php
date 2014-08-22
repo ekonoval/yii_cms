@@ -13,7 +13,7 @@ $this->addTopButtonsCreate();
 //$filterDateJsID = "idSpDate";
 
 $this->widget(SGridView::getClassNameFQ(), array(
-    'id' => 'fieldsSp',
+    'id' => 'fieldsStatPage',
     'dataProvider' => $model->search(),
     'filter' => $model,
     'selectableRows' => 2,
