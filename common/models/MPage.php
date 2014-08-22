@@ -114,4 +114,20 @@ class MPage extends ActiveRecordBase
 	{
 		return parent::model($className);
 	}
+
+    function findPageByUrl($url)
+    {
+        $criteria = new CDbCriteria();
+        $criteria->select = "t.idPage";
+
+        $res = $this->findByAttributes(
+            array(
+                'url' => $url,
+                'pageEnabled' => 1
+            ),
+            $criteria
+        );
+
+        return !empty($res);
+    }
 }
