@@ -1,5 +1,5 @@
 <?php
-namespace Ekv\components;
+namespace Ekv\components\Yii\Main;
 use CWebModule;
 use Yii;
 

@@ -1,7 +1,7 @@
 <?php
 namespace Ekv\B\modules\core;
 
-use Ekv\components\WebModule;
+use Ekv\components\Yii\Main\WebModule;
 
 class CoreModule extends WebModule
 {

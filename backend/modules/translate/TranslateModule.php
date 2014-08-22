@@ -1,7 +1,7 @@
 <?php
 namespace Ekv\B\modules\translate;
 
-use Ekv\components\WebModule;
+use Ekv\components\Yii\Main\WebModule;
 
 class TranslateModule extends WebModule
 {

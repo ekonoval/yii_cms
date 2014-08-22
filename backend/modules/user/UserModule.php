@@ -1,7 +1,7 @@
 <?php
 namespace Ekv\B\modules\user;
 
-use Ekv\components\WebModule;
+use Ekv\components\Yii\Main\WebModule;
 
 class UserModule extends WebModule
 {
