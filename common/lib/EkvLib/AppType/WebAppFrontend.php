@@ -22,7 +22,7 @@ class WebAppFrontend extends WebApp
                 /*
                  * If there is active static page found - run proper stat page controller
                  */
-                if($statPageModel->findPageByUrl($currentUrl)){
+                if(!is_null($statPageModel->findPageByUrl($currentUrl))){
                     $this->runController('core/main/staticPage');
                     exit;
                 }

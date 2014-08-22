@@ -184,7 +184,18 @@ class EController extends CController
     function checkEditModel($model)
     {
         if (!$model) {
-            throw new \CHttpException(404, \Yii::t('StoreModule.admin', 'Incorrect ID'));
+            throw new CHttpException(404, \Yii::t('StoreModule.admin', 'Incorrect ID'));
+        }
+    }
+
+    function ensureWith404($expr, $failMsg = '')
+    {
+        if(!$expr){
+            if(!empty($failMsg)){
+                $failMsg = "";
+            }
+
+            throw new CHttpException(404, $failMsg);
         }
     }
 }
