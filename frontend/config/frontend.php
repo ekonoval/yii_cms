@@ -29,7 +29,7 @@ return array(
 	// application modules
     'modules'=>array(
         'core' => array(
-            //'class' => '\Ekv\B\modules\core\CoreModule'
+            'class' => '\Ekv\F\modules\core\CoreModule'
         ),
     ),
 

@@ -1,4 +1,5 @@
 <?php
+namespace Ekv\F\modules\core;
 
 use Ekv\components\Yii\Main\WebModule;
 
