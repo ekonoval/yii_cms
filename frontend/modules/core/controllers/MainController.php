@@ -16,10 +16,9 @@ class MainController extends FrontendControllerBase
         $statPageUrl = yR()->pathInfo;
 
         $pageInfo = MPage::model()->findPageByUrl($statPageUrl, false);
-        pa($pageInfo);exit;
+        //pa($pageInfo);exit;
 
-        pa($statPageUrl);
-        pa("stat exit"); exit;
+        $this->renderAuto(array('pageInfo' => $pageInfo));
     }
 }
  
