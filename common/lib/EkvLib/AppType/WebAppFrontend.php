@@ -19,9 +19,12 @@ class WebAppFrontend extends WebApp
                 $currentUrl = $this->request->pathInfo;
                 $statPageModel = new MPage();
 
+                /*
+                 * If there is active static page found - run proper stat page controller
+                 */
                 if($statPageModel->findPageByUrl($currentUrl)){
-                    //$this->runController()
-                    pa("exit"); exit;
+                    $this->runController('core/main/staticPage');
+                    exit;
                 }
 
                 // doing something
