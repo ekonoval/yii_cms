@@ -192,7 +192,7 @@ class EController extends CController
     {
         if(!$expr){
             if(!empty($failMsg)){
-                $failMsg = "";
+                $failMsg = "Page not found";
             }
 
             throw new CHttpException(404, $failMsg);

@@ -18,6 +18,8 @@ class MainController extends FrontendControllerBase
         $pageInfo = MPage::model()->findPageByUrl($statPageUrl, false);
         //pa($pageInfo);exit;
 
+        $this->ensureWith404(!empty($pageInfo));
+
         $this->renderAuto(array('pageInfo' => $pageInfo));
     }
 }
