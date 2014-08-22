@@ -1,22 +1,12 @@
 <?php
 use Ekv\F\components\System\FrontendControllerBase;
 
-/**
- *
- * SiteController class
- *
- * @author Antonio Ramirez <amigo.cobos@gmail.com>
- * @link http://www.ramirezcobos.com/
- * @link http://www.2amigos.us/
- * @copyright 2013 2amigOS! Consultation Group LLC
- * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
- */
 class SiteController extends FrontendControllerBase
 {
     public function actionIndex()
     {
-        //echo "<h2>-- Frontend index ACTION  </h2>\n";
 
+        $this->pageTitle = 'Index page';
         $this->render('index');
     }
 
@@ -35,10 +25,4 @@ class SiteController extends FrontendControllerBase
         }
     }
 
-    function actionRisking()
-    {
-        //pa("risking action");
-        pa("branch of frontend rbac");
-        exit;
-    }
 }

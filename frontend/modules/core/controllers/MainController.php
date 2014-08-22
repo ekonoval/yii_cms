@@ -20,6 +20,7 @@ class MainController extends FrontendControllerBase
 
         $this->ensureWith404(!empty($pageInfo));
 
+        $this->pageTitle = $pageInfo->pageTitle;
         $this->renderAuto(array('pageInfo' => $pageInfo));
     }
 }

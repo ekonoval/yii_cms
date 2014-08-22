@@ -244,6 +244,9 @@ class EController extends CController
             }
 
             $this->pageTitleFull = "{$leftTitle}{$bigPartsSeparator}{$commonTitle}";
+
+            $this->pageTitleFull = strip_tags($this->pageTitleFull);
+            
         }
     }
 }
