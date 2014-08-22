@@ -148,6 +148,10 @@ class SGridView extends CGridView implements IFullyQualified
         ));
 
         $filtersHtml = '';
+
+        /**
+         * If there have been any filters preloaded - display them as filer1 - delete button
+         */
         if ($filters) {
             $filtersHtml .= CHtml::openTag('hr');
             foreach ($filters as $filter) {
@@ -161,7 +165,9 @@ class SGridView extends CGridView implements IFullyQualified
 								{delete}
 							</div>
 						</div>
-					</li>', array(
+					</li>',
+
+                    array(
                         '{name}' => CHtml::encode($filter->name),
                         '{gridId}' => $this->getId(),
                         '{filterId}' => $filter->id,
@@ -182,10 +188,13 @@ class SGridView extends CGridView implements IFullyQualified
                                     'id' => 'fdLink' . $filter->id
                                 )
                             )
-                    ));
+                ));
             }
         }
 
+        /*
+         * Clear filter button / save filter buttons
+         */
         echo strtr('
 			<div class="gridViewOptions">&nbsp;</div>
 			<div class="gridViewOptionsMenu">
@@ -198,7 +207,12 @@ class SGridView extends CGridView implements IFullyQualified
 				</ul>
 			</div>', array(
                 '{saveLink}' => $this->_checkAttributes() ? '<a href="#" onClick="$(\'#' . $this->getId() . 'saveFilterDialog\').dialog(\'open\');">' . Yii::t('SGridView.core', 'Сохранить фильтр') . '</a>' : '<a class="nonActive">' . Yii::t('SGridView.core', 'Сохранить фильтр') . '</a>',
-            ));
+            )
+        );
+
+        /*
+         * Save filter jquery UI dialog preliminary markup (hidden after js is applied)
+         */
         echo CHtml::openTag('div', array(
             'id' => $this->getId() . 'saveFilterDialog',
             'data-token' => Yii::app()->request->csrfToken
