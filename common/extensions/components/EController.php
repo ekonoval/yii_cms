@@ -198,4 +198,52 @@ class EController extends CController
             throw new CHttpException(404, $failMsg);
         }
     }
+
+    /**
+     * Used for composing page title in specific algorythm
+     * @param string $view
+     * @return bool
+     */
+    protected function beforeRender($view)
+    {
+        $parentRes = parent::beforeRender($view);
+
+        if($parentRes){
+            $this->composePageTitleFull();
+        }
+
+        return $parentRes;
+    }
+
+    protected function composePageTitleFull()
+    {
+        //override in main front and back controllers
+    }
+
+    protected function composePageTitleCommon($bigPartsSeparator, $commonTitle)
+    {
+        /**
+         * When pageTitleFull is defined directly in controller then apply it without any further hesitations
+         * or compose page title automatically
+         */
+        if(empty($this->pageTitleFull)){
+            $leftTitle = "";
+            if(!empty($this->pageTitle)){
+                $leftTitle = $this->pageTitle;
+            }else{
+                $moduleName = !empty($this->module->id) ? $this->module->id : "";
+
+                $localSeparator = "/";
+                $leftTitle = "";
+
+                if(!empty($moduleName)){
+                    $leftTitle .= $moduleName . $localSeparator;
+                }
+
+                $leftTitle .= "{$this->id}{$localSeparator}{$this->action->id}";
+            }
+
+            $this->pageTitleFull = "{$leftTitle}{$bigPartsSeparator}{$commonTitle}";
+        }
+    }
 }

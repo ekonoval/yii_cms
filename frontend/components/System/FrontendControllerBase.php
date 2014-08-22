@@ -9,5 +9,13 @@ class FrontendControllerBase extends \EController
         $this->layout = '//layouts/lMain';
     }
 
+    protected function composePageTitleFull()
+    {
+        $bigPartsSeparator = " :: ";
+        $commonTitle = "Cms. Frontend";
+
+        $this->composePageTitleCommon($bigPartsSeparator, $commonTitle);
+    }
+
 }
  
