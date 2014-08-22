@@ -20,7 +20,7 @@ class SiteController extends EController
 
     public function actionIndex()
     {
-        echo "<h2>-- Frontend index ACTION  </h2>\n";
+        //echo "<h2>-- Frontend index ACTION  </h2>\n";
         //\Ekv\Product\Helpers\ProductDetailedHelper::staticTest();
 
         //\Ekv\Frontend\ProductFormatter::main();
