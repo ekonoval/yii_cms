@@ -17,8 +17,8 @@ class EController extends CController
     public $pageTitle;
     public $pageTitleFull;
 
-	public $meta_keywords = array();
-	public $meta_description = array();
+	public $metaKeywords = "";
+	public $metaDescription = "";
 
     protected function beforeAction($action)
     {
