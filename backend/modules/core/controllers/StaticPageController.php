@@ -2,6 +2,7 @@
 namespace Ekv\B\modules\core\controllers;
 
 use BStatPage;
+use CDbCriteria;
 use EController;
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\modules\core\forms\StatPageForm;
@@ -75,6 +76,21 @@ class StaticPageController extends BackendControllerBase
     function actionCreate()
     {
         $this->actionUpdate(true);
+    }
+
+    function actionDelete()
+    {
+        $ids = parent::actionDelete();
+
+        if(!empty($ids)){
+            $model = new BStatPage();
+
+            $criteria = new CDbCriteria;
+            $criteria->addInCondition('idPage', $ids);
+
+            $model->deleteAll($criteria);
+        }
+
     }
 
 }

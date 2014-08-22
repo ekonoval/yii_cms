@@ -193,4 +193,10 @@ class BackendControllerBase extends \EController
     }
 
 
+    function actionDelete()
+    {
+        $ids = isset($_POST["id"]) ? $_POST["id"] : array();
+        return $ids;
+    }
+
 }
