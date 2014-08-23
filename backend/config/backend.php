@@ -74,13 +74,12 @@ return array(
 //                    //'js' => array('/js/libs/jquery-1.9.1.min.js'),
 //                ),
 //            ),
-            'scriptMap' => array(
-                'jquery.js' => false,
-                'bootstrap.min.css' => false,
-                'bootstrap.min.js' => false,
-                'bootstrap-yii.css' => false,
-
-            )
+//            'scriptMap' => array(
+//                'jquery.js' => false,
+//                'bootstrap.min.css' => false,
+//                'bootstrap.min.js' => false,
+//                'bootstrap-yii.css' => false,
+//            )
         ),
         'urlManager' => array(
             // uncomment the following if you have enabled Apache's Rewrite module.
