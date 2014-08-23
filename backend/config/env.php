@@ -30,6 +30,10 @@ return array(
 //            'emulatePrepare' => true,
         ),
 
+        'debug' => array(
+            'enabled' => true
+        ),
+
         'log' => array(
             'class' => 'CLogRouter',
             'routes' => array(
