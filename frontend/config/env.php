@@ -13,7 +13,7 @@ return array(
 	'modules' => array(
 		'gii' => array(
 			'class' => 'system.gii.GiiModule',
-			'password' => 'yii',
+			'password' => 'risking',
 			'ipFilters' => array('127.0.0.1','::1'),
 		),
 	),

@@ -1,5 +1,6 @@
 <?php
-namespace Ekv\B\components;
+namespace Ekv\components\Yii\Main;
+use CWebModule;
 use Yii;
 
 class WebModule extends \CWebModule
