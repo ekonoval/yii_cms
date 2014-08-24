@@ -21,10 +21,13 @@ class BStatPage extends MPage
         $criteria->compare('pageBody', $this->pageBody, true);
         $criteria->compare('pageEnabled', $this->pageEnabled);
 
-        $criteria->order = 't.idPage DESC';
+        //$criteria->order = 't.idPage DESC';
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'idPage DESC',
+            ),
 
         ));
     }
