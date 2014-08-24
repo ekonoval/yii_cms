@@ -5,6 +5,7 @@
  */
 use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\extensions\sgridview\SGridView;
+use Ekv\B\widgets\Grid\WGridCheckbox;
 
 $controller = $this;
 
@@ -40,18 +41,12 @@ $this->widget(SGridView::getClassNameFQ(), array(
         ),
 
         'url',
-        'pageEnabled'
+        //'pageEnabled'
+        array(
+            'name' => 'pageEnabled',
+            'class' => WGridCheckbox::getClassNameFQ()
+        )
 
 
     ),
 ));
-
-//#------------------- reset after ajax !! -------------------#//
-//yClientScript()->registerScript(
-//    're-install-date-picker',
-//    "function reinstallDatePicker(id, data) {
-//        //console.log('reinstall');
-//        $('#{$filterDateJsID}').datepicker();
-//    }
-//    "
-//);

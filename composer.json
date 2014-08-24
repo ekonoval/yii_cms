@@ -32,7 +32,7 @@
         }
     ],
     "require": {
-        "yiisoft/yii": "dev-master",
+        "yiisoft/yii": "1.1.15",
         "yii-twbs/yiistrap": "dev-master",
         "2amigos/yiiwheels": "dev-master",
         "ircmaxell/password-compat": "1.0.3",

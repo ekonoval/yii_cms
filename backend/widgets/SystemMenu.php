@@ -37,6 +37,14 @@ class SystemMenu extends \CWidget
             'cms' => array(
                 'label' => Yii::t('AdminModule.admin', 'Сайт'),
                 'position' => 4,
+                'items'=>array(
+                    array(
+                        'label'=>Yii::t('PagesModule.core', 'Страницы'),
+                        'url'=>array('/core/staticPage/index'),
+                        'position'=>3
+                    ),
+                )
+
             ),
         );
     }
