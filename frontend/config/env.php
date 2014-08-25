@@ -13,11 +13,16 @@ return array(
 	'modules' => array(
 		'gii' => array(
 			'class' => 'system.gii.GiiModule',
-			'password' => 'yii',
+			'password' => 'risking',
 			'ipFilters' => array('127.0.0.1','::1'),
 		),
 	),
+
+
 	'components' => array(
+        'debug' => array(
+            'enabled' => true
+        ),
 // 		configure to suit your needs
 //		'db' => array(
 //			'connectionString' => '{DB_CONNECTION}',
@@ -31,6 +36,7 @@ return array(
 	'params' => array(
 		'yii.handleErrors'   => true,
 		'yii.debug' => true,
+		'yii.debug' => false,
 		'yii.traceLevel' => 3,
 	)
 );

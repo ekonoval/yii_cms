@@ -1,5 +1,5 @@
 <?php
-namespace Ekv\B\modules\core;
+namespace Ekv\F\modules\core;
 
 use Ekv\components\Yii\Main\WebModule;
 
@@ -9,8 +9,6 @@ class CoreModule extends WebModule
     {
         $this->_setNamespace(__NAMESPACE__);
         parent::init();
-
     }
-
 
 }

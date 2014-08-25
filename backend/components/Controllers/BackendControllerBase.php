@@ -1,6 +1,8 @@
 <?php
 namespace Ekv\B\components\Controllers;
 
+use CAction;
+use CController;
 use Ekv\B\widgets\TopButtons;
 use Yii;
 
@@ -57,6 +59,16 @@ class BackendControllerBase extends \EController
     function setEximLayout()
     {
         $this->layout = "//layouts/LEximus";
+    }
+
+    function initIndexModel($model)
+    {
+        $modelClass = get_class($model);
+        $model->unsetAttributes(); // clear any default values
+
+        if (isset($_GET[$modelClass])) {
+            $model->attributes = $_GET[$modelClass];
+        }
     }
 
     /**
@@ -131,6 +143,20 @@ class BackendControllerBase extends \EController
                 ),
             ),
         ));
+    }
+
+    protected function composePageTitleFull()
+    {
+        $bigPartsSeparator = " :: ";
+        $commonTitle = "Cms. Backend";
+
+        $this->composePageTitleCommon($bigPartsSeparator, $commonTitle);
+    }
+
+    function actionDelete()
+    {
+        $ids = isset($_POST["id"]) ? $_POST["id"] : array();
+        return $ids;
     }
 
 }

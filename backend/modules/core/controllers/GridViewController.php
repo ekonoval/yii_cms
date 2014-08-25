@@ -5,6 +5,9 @@ use Ekv\B\components\Controllers\BackendControllerBase;
 use Ekv\B\modules\core\models\GridViewFilter;
 use Yii;
 
+/**
+ * Handles gridview filters storing and reloading
+ */
 class GridViewController extends BackendControllerBase
 {
 

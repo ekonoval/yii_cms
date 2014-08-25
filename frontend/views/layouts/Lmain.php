@@ -22,7 +22,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title></title>
+	<title><?=$this->pageTitleFull ?></title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 
@@ -38,7 +38,9 @@
 
 	<script src="/js/libs/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
+
 <body>
+
 <!--[if lt IE 7]>
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
 	your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to
@@ -55,7 +57,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="#">Project name</a>
+			<a class="brand" href="/">Project name</a>
 
 			<div class="nav-collapse collapse">
 				<ul class="nav">
@@ -75,18 +77,22 @@
 						</ul>
 					</li>
 				</ul>
+                <? /* ?>
 				<form class="navbar-form pull-right">
 					<input class="span2" type="text" placeholder="Email">
 					<input class="span2" type="password" placeholder="Password">
 					<button type="submit" class="btn">Sign in</button>
 				</form>
-			</div>
-			<!--/.nav-collapse -->
+                <? */ ?>
+			</div><!--/.nav-collapse -->
 		</div>
 	</div>
 </div>
 
-<?php echo $content; ?>
+<div class="container">
+    <?php echo $content; ?>
+</div> <!-- container -->
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="/js/libs/bootstrap.min.js"></script>
