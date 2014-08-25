@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * 
  * frontend.php configuration file
  *
  * @author Antonio Ramirez <amigo.cobos@gmail.com>
